@@ -1,0 +1,808 @@
+/* ==========================================================================
+   HAULO — SECTION 01 : FUTURISTIC EDITORIAL HERO
+   Composition: LEFT = main headline / RIGHT = mech frog standing on the floor
+   Palette: #000 / #111 / #FFF + neon lime + subtle cyan / magenta accents
+   ========================================================================== */
+
+:root {
+  --haulo-ink: #111111;
+  --haulo-lime: #C9FF00;
+  --haulo-purple: #d64cff;
+  --haulo-cyan: #43DCFF;
+  --haulo-rule: rgba(17, 17, 17, 0.32);
+}
+
+/* ---------------------------------------------------------------
+   LAYERING — the flying words are the BACKDROP and this editorial
+   hero is the FOREGROUND. Only the stacking is set here.
+   --------------------------------------------------------------- */
+.hero-scene--conveyor {
+  z-index: 1;
+}
+
+.hero-scene--editorial {
+  z-index: 2;
+}
+
+/* ---------------------------------------------------------------
+   STAGE
+   --------------------------------------------------------------- */
+.haulo-hero {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  overflow: hidden;
+  pointer-events: none;
+  font-family: var(--font-mono);
+  contain: layout paint;
+}
+
+/* ---------------------------------------------------------------
+   VIEWPORT CORNER MARKERS (Handled globally by .hero-hud-layer)
+   --------------------------------------------------------------- */
+.haulo-hero__corner,
+.haulo-hero__sysinfo,
+.haulo-hero__desc {
+  display: none !important;
+}
+
+.haulo-hero__corner::after {
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: var(--haulo-purple);
+}
+
+.haulo-hero__corner--tl {
+  top: 2.4%;
+  left: 2.2%;
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+.haulo-hero__corner--tl::after { top: -3px; left: -3px; }
+
+.haulo-hero__corner--tr {
+  top: 2.4%;
+  right: 2.2%;
+  border-top-width: 1px;
+  border-right-width: 1px;
+}
+.haulo-hero__corner--tr::after { top: -3px; right: -3px; }
+
+.haulo-hero__corner--bl {
+  bottom: 2.4%;
+  left: 2.2%;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+}
+.haulo-hero__corner--bl::after { bottom: -3px; left: -3px; }
+
+.haulo-hero__corner--br {
+  bottom: 2.4%;
+  right: 2.2%;
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+}
+.haulo-hero__corner--br::after { bottom: -3px; right: -3px; }
+
+/* ---------------------------------------------------------------
+   LEFT — MAIN HEADLINE
+   Large black condensed display type; overlaps slightly toward the
+   frog at wide viewports but stays readable.
+   --------------------------------------------------------------- */
+.haulo-hero__copy {
+  position: absolute;
+  left: clamp(32px, 5.5vw, 100px);
+  top: 48%;
+  transform: translateY(-50%);
+  z-index: 5;
+  max-width: 65vw;
+  pointer-events: none;
+}
+
+.haulo-hero__headline {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: 'Anton', 'Barlow Condensed', 'Bebas Neue', 'Oswald',
+    var(--font-hero), sans-serif;
+  font-weight: 100;
+  font-size: clamp(35px, 5.8vw, 70px);
+  line-height: 0.94;
+  letter-spacing: -0.01em;
+  color: #050505;
+  text-transform: uppercase;
+  font-kerning: normal;
+}
+
+.haulo-hero__line {
+  display: block;
+  white-space: nowrap;
+}
+
+.haulo-hero__gap {
+  display: block;
+  height: 0.34em;
+}
+
+/* ---------------------------------------------------------------
+   RIGHT — EXISTING MECH FROG STANDING ON THE FLOOR
+   Undistorted (height fixed, width auto, contain). No card / box.
+   --------------------------------------------------------------- */
+.haulo-hero__frog {
+  position: absolute;
+  right: clamp(32px, 5.5vw, 100px);
+  bottom: clamp(24px, 7vh, 100px);
+  z-index: 4;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+/* Floor contact shadow for the Editorial Hero frog with ZERO gap */
+.haulo-hero__frog-shadow {
+  position: absolute;
+  bottom: clamp(-4px, -0.4vh, 2px);
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  width: clamp(220px, 28vw, 420px);
+  height: clamp(20px, 3.4vh, 36px);
+  border-radius: 50%;
+  background: radial-gradient(ellipse 50% 48% at 50% 50%,
+    rgba(0, 0, 0, 0.72) 0%,
+    rgba(0, 0, 0, 0.52) 30%,
+    rgba(0, 0, 0, 0.22) 60%,
+    rgba(0, 0, 0, 0) 84%
+  );
+  filter: blur(5px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.haulo-hero__frog-img {
+  position: relative;
+  z-index: 2;
+  display: block;
+  height: min(54vh, 38vw);
+  max-height: 520px;
+  width: auto;
+  object-fit: contain;
+  filter: none !important;
+}
+
+/* ---------------------------------------------------------------
+   SYSTEM INFORMATION (TOP RIGHT)
+   --------------------------------------------------------------- */
+.haulo-hero__sysinfo {
+  position: absolute;
+  right: 12%;
+  top: 15%;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.haulo-hero__sysinfo-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  line-height: 1.4;
+  color: #0d0d0d;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.haulo-hero__sysinfo-led {
+  width: 5px;
+  height: 5px;
+  background: var(--haulo-lime);
+  box-shadow: 0 0 0 1px rgba(17, 17, 17, 0.55);
+}
+
+.haulo-hero__sysinfo-sub {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  line-height: 1.6;
+  color: rgba(13, 13, 13, 0.55);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.haulo-hero__sysinfo-slash {
+  font-style: normal;
+  color: var(--haulo-purple);
+}
+
+.haulo-hero__sysinfo-link {
+  position: relative;
+  display: block;
+  width: 150px;
+  height: 1px;
+  margin-top: 12px;
+  background: linear-gradient(
+    to left,
+    rgba(176, 38, 255, 0) 0%,
+    rgba(176, 38, 255, 0.85) 100%
+  );
+  transform: rotate(-24deg);
+  transform-origin: right center;
+}
+
+.haulo-hero__sysinfo-node {
+  position: absolute;
+  left: -4px;
+  top: -3px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--haulo-purple);
+  box-shadow: 0 0 0 3px rgba(176, 38, 255, 0.16);
+}
+
+/* ---------------------------------------------------------------
+   BOTTOM LEFT DESCRIPTION
+   --------------------------------------------------------------- */
+.haulo-hero__desc {
+  position: absolute;
+  left: clamp(24px, 7.5vw, 150px);
+  bottom: 12%;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-width: 46vw;
+}
+
+.haulo-hero__desc-mark {
+  font-family: var(--font-hero);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  color: #000000;
+  text-transform: uppercase;
+}
+
+.haulo-hero__desc-mark sup {
+  font-size: 7px;
+  top: -0.7em;
+  position: relative;
+}
+
+.haulo-hero__desc-line {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  line-height: 1.35;
+  color: rgba(17, 17, 17, 0.62);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------
+   BOTTOM TECHNICAL DECORATION
+   --------------------------------------------------------------- */
+.haulo-hero__deco {
+  position: absolute;
+  left: 40%;
+  bottom: 7.5%;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.haulo-hero__slashes {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  color: rgba(17, 17, 17, 0.7);
+}
+
+.haulo-hero__rule {
+  display: block;
+  width: 92px;
+  height: 1px;
+  background: rgba(17, 17, 17, 0.45);
+}
+
+.haulo-hero__seg {
+  display: block;
+  height: 2px;
+}
+
+.haulo-hero__seg--lime {
+  width: 22px;
+  background: var(--haulo-lime);
+  box-shadow: 0 0 0 1px rgba(17, 17, 17, 0.5);
+}
+
+.haulo-hero__seg--purple {
+  width: 10px;
+  background: var(--haulo-purple);
+}
+
+.haulo-hero__dots {
+  display: block;
+  width: 34px;
+  height: 14px;
+  background-image: radial-gradient(
+    circle,
+    rgba(17, 17, 17, 0.55) 1px,
+    transparent 1.2px
+  );
+  background-size: 7px 7px;
+}
+
+.haulo-hero__plus {
+  position: relative;
+  display: block;
+  width: 9px;
+  height: 9px;
+}
+
+.haulo-hero__plus::before,
+.haulo-hero__plus::after {
+  content: '';
+  position: absolute;
+  background: rgba(17, 17, 17, 0.6);
+}
+
+.haulo-hero__plus::before {
+  left: 0;
+  top: 4px;
+  width: 9px;
+  height: 1px;
+}
+
+.haulo-hero__plus::after {
+  left: 4px;
+  top: 0;
+  width: 1px;
+  height: 9px;
+}
+
+/* ==========================================================================
+   HEADER / NAV / SITE BORDER
+   The existing `.header-container`, `.header-nav` and `.nav-link` rules in
+   `hero.css` (and the shared site border styling) are the approved design and
+   are left completely untouched. No spacing, colour or border value is
+   overridden here.
+
+   HAULO LOGO — RESIZE / REPOSITION (visual only, transform-only)
+   `public/HAULO-LOGO.png` is 666x375, but the visible wordmark only occupies
+   x 58-606 / y 128-234. At the existing `height: 48px` that leaves a ~70x13px
+   wordmark sitting low inside its 85x48 box. A transform is used rather than
+   width/height/margin so the element's layout box, the flex gap and every
+   existing border rule stay byte-for-byte identical.
+   ========================================================================== */
+.hero-pin .header-logo-img {
+  transform: none !important;
+  max-height: clamp(26px, 4.2vw, 42px);
+  width: auto;
+  object-fit: contain;
+}
+
+/* --------------------------------------------------------------------------
+   BOTTOM-CENTRE ALIGNMENT (hero CTA row) — re-done without any transform so
+   the GSAP scroll tween on the same node stays in sync.
+   -------------------------------------------------------------------------- */
+.hero-pin .bottom-caption-container {
+  left: 0;
+  right: 0;
+  bottom: clamp(14px, 2.5vh, 28px);
+  width: 90%;
+  max-width: 680px;
+  margin-inline: auto;
+  transform: none;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-pin .bottom-caption-container .hero-cta-buttons {
+  justify-content: center;
+}
+
+.hero-pin .bottom-caption-container .hero-bottom-text {
+  text-align: center;
+}
+
+/* Once the user scrolls, the whole bottom caption (buttons + text) is hidden
+   AND made non-interactive. The button wrapper carries an `!important`
+   pointer-events rule, so it must be overridden with equal weight here. */
+.hero-pin .bottom-caption-container.is-scroll-disabled,
+.hero-pin .bottom-caption-container.is-scroll-disabled .hero-buttons {
+  pointer-events: none !important;
+}
+
+/* ==========================================================================
+   LEFT TECHNICAL HUD  (reuses LeftRail — the + AR / + 3D / + AI / + XR stack)
+   ========================================================================== */
+.hero-pin .left-rail {
+  position: absolute;
+  left: 2.2vw;
+  top: 17%;
+  bottom: 18%;
+  width: 46px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px 0 12px;
+  z-index: 9;
+  font-family: var(--font-mono);
+}
+
+.hero-pin .left-rail-line {
+  left: 0;
+  background: var(--haulo-rule);
+}
+
+.hero-pin .left-progress-track {
+  left: 0;
+}
+
+.hero-pin .left-cyan-dot {
+  left: -1.5px;
+  margin-top: -2px;
+  background: var(--haulo-cyan);
+}
+
+.hero-pin .left-progress-fill {
+  background: linear-gradient(
+    to bottom,
+    var(--haulo-cyan) 0%,
+    var(--haulo-purple) 55%,
+    var(--haulo-lime) 100%
+  );
+  box-shadow: none;
+}
+
+.hero-pin .left-section {
+  position: relative;
+  left: 12px;
+  top: auto;
+  width: 34px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+}
+
+.hero-pin .left-section::before,
+.hero-pin .left-section::after {
+  display: none;
+}
+
+.hero-pin .rail-plus {
+  position: static;
+  font-size: 10px;
+  line-height: 10px;
+  color: rgba(17, 17, 17, 0.72);
+}
+
+.hero-pin .rail-label {
+  position: static;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.1;
+  color: var(--haulo-ink);
+}
+
+.hero-pin .rail-square {
+  position: static;
+  width: 5px;
+  height: 5px;
+  margin-top: 2px;
+  border: 1px solid rgba(17, 17, 17, 0.85);
+  background: transparent;
+}
+
+.hero-pin .rail-square.lime {
+  background: var(--haulo-lime);
+  border-color: rgba(17, 17, 17, 0.5);
+}
+
+.hero-pin .left-marker {
+  position: absolute;
+  left: -2px;
+  width: 4px;
+  height: 4px;
+}
+
+.hero-pin .marker-blue {
+  top: 9%;
+  background: var(--haulo-cyan);
+}
+
+.hero-pin .marker-purple {
+  top: 66%;
+  background: var(--haulo-purple);
+}
+
+/* ==========================================================================
+   RIGHT TECHNICAL HUD  (reuses RightRail — includes the 35% indicator)
+   ========================================================================== */
+.hero-pin .right-rail {
+  position: absolute;
+  right: 3vw;
+  top: 17%;
+  bottom: 18%;
+  width: 30px;
+  height: auto;
+  z-index: 9;
+  font-family: var(--font-mono);
+}
+
+.hero-pin .right-ruler::before {
+  right: 17px;
+  background: var(--haulo-rule);
+}
+
+.hero-pin .right-dot.top-dot {
+  right: 15px;
+  top: 0;
+  background: var(--haulo-cyan);
+}
+
+.hero-pin .right-lime-bar {
+  right: 4px;
+  top: 15%;
+  width: 5px;
+  height: 7%;
+  background: var(--haulo-lime);
+  box-shadow: 0 0 0 1px rgba(17, 17, 17, 0.45);
+}
+
+.hero-pin .right-ticks {
+  right: 1px;
+  top: 24%;
+  width: 18px;
+  height: 38%;
+}
+
+.hero-pin .right-tick {
+  background: rgba(17, 17, 17, 0.55);
+}
+
+.hero-pin .right-tick.long {
+  background: var(--haulo-ink);
+}
+
+.hero-pin .right-number {
+  right: 4px;
+  top: 64%;
+  height: 34px;
+  background: transparent;
+}
+
+.hero-pin .right-number span {
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: var(--haulo-ink);
+}
+
+.hero-pin .right-dot.purple-dot {
+  right: 4px;
+  top: 76%;
+  background: var(--haulo-purple);
+}
+
+.hero-pin .right-dot.bottom-dot {
+  right: 14px;
+  bottom: 0;
+  background: var(--haulo-cyan);
+}
+
+.hero-pin .right-progress {
+  right: 17px;
+  top: 24%;
+  height: 38%;
+}
+
+.hero-pin .right-progress-fill {
+  background: var(--haulo-ink);
+}
+
+/* Static decorative vertical percentage indicator */
+.hero-pin .right-static-pct {
+  position: absolute;
+  right: 34px;
+  top: 41%;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: rgba(17, 17, 17, 0.55);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+/* Staged entrance for the screen-locked technical rails */
+@keyframes haulo-hud-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.hero-pin .left-rail,
+.hero-pin .right-rail {
+  animation: haulo-hud-in 0.9s ease 0.45s both;
+}
+
+/* ==========================================================================
+   RESPONSIVE — TABLET (reduce headline + frog, keep balance)
+   ========================================================================== */
+@media (max-width: 1100px) {
+  .haulo-hero__headline {
+    font-size: clamp(34px, 5.0vw, 68px);
+  }
+
+  .haulo-hero__copy {
+    max-width: 78vw;
+  }
+
+  .haulo-hero__frog-img {
+    height: min(48vh, 40vw);
+    max-height: 460px;
+  }
+
+  .haulo-hero__sysinfo {
+    right: 8%;
+    top: 14%;
+  }
+
+  .haulo-hero__sysinfo-link {
+    width: 104px;
+  }
+
+  .haulo-hero__desc {
+    left: 6%;
+    bottom: 12%;
+  }
+
+  .haulo-hero__desc-line {
+    font-size: 8.5px;
+    letter-spacing: 0.16em;
+  }
+
+  .haulo-hero__deco {
+    left: 40%;
+    bottom: 6%;
+  }
+
+  .haulo-hero__rule {
+    width: 62px;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE — MOBILE (stacked: headline -> frog; HUD simplified)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .hero-pin .header-logo-img {
+    transform: none !important;
+    height: clamp(24px, 3.8vw, 32px);
+    width: auto;
+  }
+
+  .haulo-hero__corner {
+    width: 17px;
+    height: 17px;
+  }
+
+  .haulo-hero__corner--tl { top: 2%; left: 4%; }
+  .haulo-hero__corner--tr { top: 2%; right: 4%; }
+  .haulo-hero__corner--bl { bottom: 2%; left: 4%; }
+  .haulo-hero__corner--br { bottom: 2%; right: 4%; }
+
+  .haulo-hero__copy {
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    top: clamp(68px, 9.5vh, 92px);
+    transform: none;
+    width: 90vw;
+    max-width: 90vw;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .haulo-hero__headline {
+    font-size: clamp(20px, 5.6vw, 32px);
+    line-height: 1.1;
+    text-align: center;
+    align-items: center;
+  }
+
+  .haulo-hero__gap {
+    height: 0.22em;
+  }
+
+  .haulo-hero__frog {
+    left: 0;
+    right: 0;
+    bottom: clamp(160px, 22vh, 210px);
+    justify-content: center;
+    display: flex;
+  }
+
+  .haulo-hero__frog-img {
+    height: min(32vh, 60vw);
+    max-width: 82vw;
+    object-fit: contain;
+    filter: none !important;
+  }
+
+  .haulo-hero__sysinfo {
+    right: 8%;
+    top: 8%;
+  }
+
+  .haulo-hero__sysinfo-row {
+    font-size: 9px;
+    letter-spacing: 0.16em;
+  }
+
+  .haulo-hero__sysinfo-sub {
+    font-size: 8px;
+    letter-spacing: 0.18em;
+  }
+
+  .haulo-hero__sysinfo-link {
+    width: 62px;
+    margin-top: 8px;
+  }
+
+  .haulo-hero__desc {
+    left: 7%;
+    bottom: 4%;
+    max-width: 86%;
+    gap: 3px;
+  }
+
+  .haulo-hero__desc-mark {
+    font-size: 13px;
+  }
+
+  .haulo-hero__desc-line {
+    font-size: 7.5px;
+    letter-spacing: 0.12em;
+  }
+
+  .haulo-hero__deco {
+    display: none;
+  }
+
+  .hero-pin .left-rail,
+  .hero-pin .right-rail {
+    display: none;
+  }
+}
+
+@media (max-height: 620px) and (min-width: 769px) {
+  .haulo-hero__copy { top: 44%; }
+  .haulo-hero__headline { font-size: clamp(32px, 4.4vw, 64px); }
+  .haulo-hero__frog-img { height: min(50vh, 36vw); max-height: 420px; }
+  .haulo-hero__sysinfo { top: 12%; }
+  .haulo-hero__desc { bottom: 8%; }
+  .haulo-hero__deco { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-pin .left-rail,
+  .hero-pin .right-rail {
+    animation: none;
+  }
+}
