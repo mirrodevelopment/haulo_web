@@ -7,13 +7,13 @@ export function Header() {
   const location = useLocation();
 
   useEffect(() => {
-    // Initial page-load header entrance (not tied to ScrollTrigger)
+    // Initial page-load header entrance animation
     if (headerRef.current) {
       gsap.fromTo(
         headerRef.current,
         {
           autoAlpha: 0,
-          y: -12
+          y: -14
         },
         {
           autoAlpha: 1,
@@ -26,31 +26,50 @@ export function Header() {
     }
   }, []);
 
-  const isWork = location.pathname === '/work';
-  const isAbout = location.pathname === '/about';
-  const isContact = location.pathname === '/contact';
+  // In this work-page application, [ WORK ] is the active page
+  const isWork = true;
+  const isService = false;
+  const isContact = false;
 
   return (
-    <header className="header-container" ref={headerRef}>
-      <Link to="/" className="header-brand" aria-label="HAULO Home">
-        <img src="/HAULO-LOGO.png" alt="HAULO" className="header-logo-img" />
+    <header
+      ref={headerRef}
+      className="fixed top-0 left-0 right-0 h-16 sm:h-20 px-6 sm:px-10 md:px-11 flex items-center justify-between z-50 pointer-events-none pt-[env(safe-area-inset-top,0)] transition-colors duration-300"
+    >
+      <Link
+        to="/"
+        className="flex items-center transition-transform duration-200 pointer-events-auto hover:opacity-85 cursor-pointer"
+        aria-label="HAULO Home"
+      >
+        <img
+          src="/HAULO-LOGO.png"
+          alt="HAULO"
+          className="h-[18px] sm:h-[20px] md:h-[22px] w-auto object-contain transition-all duration-300"
+        />
       </Link>
-      <nav className="header-nav">
+
+      <nav className="flex items-center gap-1.5 sm:gap-3 md:gap-5 pointer-events-auto">
+        <Link
+          to="/service"
+          className={`font-mono text-[11px] sm:text-xs md:text-[13px] tracking-[0.14em] font-semibold transition-all duration-300 py-1.5 px-1 cursor-pointer select-none ${
+            isService ? 'text-black opacity-100 font-bold' : 'text-black/60 hover:text-black hover:opacity-100'
+          }`}
+        >
+          [ SERVICE ]
+        </Link>
         <Link
           to="/work"
-          className={`nav-link ${isWork ? 'nav-link-active' : ''}`}
+          className={`font-mono text-[11px] sm:text-xs md:text-[13px] tracking-[0.14em] font-semibold transition-all duration-300 py-1.5 px-1 cursor-pointer select-none ${
+            isWork ? 'text-black opacity-100 font-bold' : 'text-black/60 hover:text-black hover:opacity-100'
+          }`}
         >
           [ WORK ]
         </Link>
         <Link
-          to="/about"
-          className={`nav-link ${isAbout ? 'nav-link-active' : ''}`}
-        >
-          [ ABOUT ]
-        </Link>
-        <Link
           to="/contact"
-          className={`nav-link ${isContact ? 'nav-link-active' : ''}`}
+          className={`font-mono text-[11px] sm:text-xs md:text-[13px] tracking-[0.14em] font-semibold transition-all duration-300 py-1.5 px-1 cursor-pointer select-none ${
+            isContact ? 'text-black opacity-100 font-bold' : 'text-black/60 hover:text-black hover:opacity-100'
+          }`}
         >
           [ CONTACT ]
         </Link>

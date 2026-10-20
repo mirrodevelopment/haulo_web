@@ -1,0 +1,41 @@
+export const CARD_IMAGES = [
+  '/assets/card-1.jpg',
+  '/assets/card-2.png',
+  '/assets/card-3.jpg',
+  '/assets/card-4.jpg',
+  '/assets/card-5.jpg',
+  '/assets/card-6.png',
+  '/assets/card-7.jpg',
+  '/assets/card-8.png',
+  '/assets/card-9.jpg',
+  '/assets/card-10.png',
+  '/assets/card-11.png',
+  '/assets/card-12.jpg',
+  '/assets/card-13.png',
+  '/assets/card-14.png',
+  '/assets/card-15.png',
+  '/assets/card-16.png',
+  '/assets/card-17.jpg',
+  '/assets/card-18.jpg'
+];
+
+export const DEFAULT_CARDS_DATA = [
+  { image: '/assets/card-1.jpg', color: '#0D52D6', title: 'NEXUS', text: 'Intelligent spatial computing platform.' },
+  { image: '/assets/card-2.png', color: '#D9146C', title: 'CYBER', text: 'Autonomous neural visual architecture.' },
+  { image: '/assets/card-3.jpg', color: '#16A34A', title: 'VORTEX', text: 'Next-generation sensory simulation engine.' },
+  { image: '/assets/card-4.jpg', color: '#7C22E8', title: 'QUANTUM', text: 'Ultra-dense holographic processing matrix.' },
+  { image: '/assets/card-5.jpg', color: '#EA580C', title: 'PULSE', text: 'High-frequency tactile interaction loop.' },
+  { image: '/assets/card-6.png', color: '#0284C7', title: 'ORBIT', text: 'Adaptive planetary telemetry ecosystem.' },
+  { image: '/assets/card-7.jpg', color: '#DC2626', title: 'FUSION', text: 'Synchronous real-time digital worlds.' },
+  { image: '/assets/card-8.png', color: '#059669', title: 'PRISM', text: 'Multi-spectrum optical refraction grid.' },
+  { image: '/assets/card-9.jpg', color: '#4F46E5', title: 'SYNAPSE', text: 'Decentralized cognitive design systems.' },
+  { image: '/assets/card-10.png', color: '#D97706', title: 'SOLAR', text: 'Energy-dense kinetic interface module.' },
+  { image: '/assets/card-11.png', color: '#C026D3', title: 'MATRIX', text: 'Infinite dimensional spatial substrate.' },
+  { image: '/assets/card-12.jpg', color: '#0891B2', title: 'HORIZON', text: 'Seamless ambient hardware integration.' },
+  { image: '/assets/card-13.png', color: '#1E293B', title: 'OBSIDIAN', text: 'Precision engineered cybernetic chassis.' },
+  { image: '/assets/card-14.png', color: '#E11D48', title: 'GENESIS', text: 'Algorithmic reality generation framework.' },
+  { image: '/assets/card-15.png', color: '#2563EB', title: 'TITAN', text: 'Heavyweight autonomous robotics console.' },
+  { image: '/assets/card-16.png', color: '#65A30D', title: 'RADIAL', text: 'Curved panoramic sensory perspective.' },
+  { image: '/assets/card-17.jpg', color: '#9333EA', title: 'ECLIPSE', text: 'Deep contrast tactile feedback array.' },
+  { image: '/assets/card-18.jpg', color: '#111827', title: 'SPECTRUM', text: 'Unified intelligent operating environment.' }
+];
