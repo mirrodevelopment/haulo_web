@@ -1,0 +1,304 @@
+/* =========================================================
+   SCENE 6: BEYOND PARTICLE PORTAL (HIGH-CONCEPT EDITORIAL SHOWCASE)
+   ========================================================= */
+.beyondWorld {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, #060814 0%, #020205 70%, #000000 100%);
+  overflow: hidden;
+  z-index: 46;
+  pointer-events: auto;
+}
+
+/* Atmospheric Cosmic Nebula Halo */
+.beyondCosmicNebula {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(100vw, 1000px);
+  height: min(100vh, 850px);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(59, 20, 95, 0.45) 0%,
+    rgba(14, 52, 60, 0.35) 38%,
+    rgba(3, 8, 20, 0.2) 65%,
+    transparent 80%
+  );
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 2;
+  animation: nebulaPulse 7s ease-in-out infinite alternate;
+}
+
+@keyframes nebulaPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.92);
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 0.95;
+  }
+}
+
+/* Center Iris Shockwave Ring (animated outward on entrance) */
+.beyondEyeIrisRing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150px;
+  height: 150px;
+  margin-top: -75px;
+  margin-left: -75px;
+  border-radius: 50%;
+  border: 2px solid rgba(163, 230, 53, 0.95);
+  box-shadow: 0 0 45px rgba(163, 230, 53, 0.75), inset 0 0 30px rgba(56, 189, 248, 0.55);
+  pointer-events: none;
+  z-index: 12;
+  opacity: 0;
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+
+/* Center 3D Floating Icon with Orbital Rings */
+.beyondStarFixed {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(220px, 24vw, 320px);
+  height: clamp(220px, 24vw, 320px);
+  margin-top: calc(clamp(220px, 24vw, 320px) / -2);
+  margin-left: calc(clamp(220px, 24vw, 320px) / -2);
+  color: #ffffff;
+  filter: none;
+  z-index: 15;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+
+/* Dual Orbital Energy Rings */
+.beyondOrbitRing {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  transform-origin: center center;
+}
+
+.beyondOrbitRing.outerRing {
+  width: 130%;
+  height: 130%;
+  border: 1px dashed rgba(163, 230, 53, 0.35);
+  box-shadow: 0 0 25px rgba(163, 230, 53, 0.15);
+  animation: orbitSpinCW 24s linear infinite;
+}
+
+.beyondOrbitRing.innerRing {
+  width: 105%;
+  height: 105%;
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  border-top-color: rgba(163, 230, 53, 0.85);
+  border-bottom-color: rgba(56, 189, 248, 0.85);
+  animation: orbitSpinCCW 16s linear infinite;
+}
+
+@keyframes orbitSpinCW {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbitSpinCCW {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.cleanBeyondLogoWrapper {
+  position: relative;
+  width: clamp(110px, 11vw, 150px);
+  height: clamp(110px, 11vw, 150px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  animation: cleanLogoFloat 4.2s ease-in-out infinite;
+  z-index: 5;
+}
+
+@keyframes cleanLogoFloat {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-9px) scale(1.03);
+  }
+}
+
+.cleanBeyondLogoGlow {
+  position: absolute;
+  width: 160%;
+  height: 160%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(163, 230, 53, 0.45) 0%,
+    rgba(56, 189, 248, 0.25) 45%,
+    transparent 72%
+  );
+  filter: blur(28px);
+  pointer-events: none;
+  animation: cleanGlowPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes cleanGlowPulse {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.65;
+  }
+  100% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+.cleanBeyondLogoImg {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 35px rgba(0, 0, 0, 0.8))
+    drop-shadow(0 0 24px rgba(163, 230, 53, 0.65));
+}
+
+/* Typography Container */
+.beyondContainer {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: clamp(600px, 78vw, 1100px);
+  height: 100%;
+  margin: 0 auto;
+  padding: clamp(90px, 16vh, 150px) clamp(24px, 4vw, 50px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+  transform: perspective(1200px) rotateX(var(--by-tilt, 0deg)) rotateY(var(--bx-tilt, 0deg));
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+@media (max-width: 768px) {
+  .beyondContainer {
+    padding: clamp(70px, 11vh, 90px) clamp(16px, 4vw, 24px);
+  }
+}
+
+/* Top-Left: BEYOND Group */
+.beyondTitleGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  will-change: transform, opacity;
+}
+
+.beyondMetaTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-family: monospace;
+  font-size: clamp(9px, 0.75vw, 11.5px);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+}
+
+.metaTagDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #a3e635;
+  box-shadow: 0 0 10px #a3e635;
+  flex-shrink: 0;
+  animation: dotBlink 2.2s infinite ease-in-out;
+}
+
+@keyframes dotBlink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.beyondMainHeading {
+  font-size: clamp(52px, 8vw, 120px);
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  color: #ffffff;
+  line-height: 0.92;
+  margin: 0;
+  text-transform: uppercase;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 255, 255, 0.2);
+}
+
+/* Bottom-Right: ALL LIMITS Group */
+.limitsTitleGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  will-change: transform, opacity;
+}
+
+.limitsMainHeading {
+  font-size: clamp(52px, 8vw, 120px);
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  color: #ffffff;
+  line-height: 0.92;
+  margin: 0;
+  text-align: right;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #ffffff 40%, rgba(163, 230, 53, 0.9) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 30px rgba(0, 0, 0, 0.8));
+}
+
+.limitsMetaTag {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-family: monospace;
+  font-size: clamp(9px, 0.75vw, 11.5px);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+}

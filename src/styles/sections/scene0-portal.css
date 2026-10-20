@@ -1,0 +1,168 @@
+/* =========================================================
+   SCENE 0: PURPLE PORTAL INTRO
+   ========================================================= */
+.portalWorld {
+  z-index: 25;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.portalGlow {
+  position: absolute;
+  width: min(85vw, 920px);
+  height: min(85vw, 920px);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(191, 219, 254, 0.55) 0%,
+    rgba(224, 238, 255, 0.35) 28%,
+    rgba(243, 232, 255, 0.20) 48%,
+    rgba(248, 250, 252, 0.08) 68%,
+    transparent 82%
+  );
+  filter: blur(52px);
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  pointer-events: none;
+}
+
+.portalGlow::before {
+  content: "";
+  position: absolute;
+  inset: 22%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(186, 230, 253, 0.6) 0%,
+    rgba(199, 210, 254, 0.3) 40%,
+    transparent 72%
+  );
+  filter: blur(32px);
+}
+
+.portalGlow::after {
+  content: "";
+  position: absolute;
+  inset: 35%;
+  border-radius: 50%;
+  border: 1px solid rgba(147, 197, 253, 0.25);
+  box-shadow: 0 0 45px rgba(186, 215, 255, 0.45);
+  filter: blur(3px);
+}
+
+.portalBlackStar {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform, opacity;
+  transform: translate3d(0, 25px, 0);
+  pointer-events: none;
+}
+
+.portalCenterLogo {
+  width: clamp(180px, 18vw, 290px);
+  max-width: 290px;
+  max-height: 290px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 0 24px rgba(96, 165, 250, 0.7))
+    drop-shadow(0 0 55px rgba(59, 130, 246, 0.5))
+    drop-shadow(0 14px 32px rgba(0, 0, 0, 0.85));
+  user-select: none;
+}
+
+.portalTextBackdrop {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1100px;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.portalWorkText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 2.2vh, 26px);
+  font-family: inherit;
+  font-size: clamp(44px, 7.8vw, 118px);
+  font-weight: 200;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  line-height: 1;
+  perspective: 1100px;
+  transform-style: preserve-3d;
+}
+
+.portalWordGroup {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+.portalWordLogo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portalLogoImg {
+  display: block;
+  width: clamp(280px, 44vw, 680px);
+  max-width: 90vw;
+  height: auto;
+  aspect-ratio: 1515 / 300;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  filter: none !important;
+  user-select: none;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .portalLogoImg {
+    width: clamp(210px, 78vw, 360px);
+    max-height: clamp(42px, 15vw, 72px);
+  }
+}
+
+.portalLetter {
+  display: inline-block;
+  margin-right: 0.08em;
+  transform-style: preserve-3d;
+}
+
+.portalLetter:last-child {
+  margin-right: 0;
+}
+
+.portalLetterInner {
+  display: inline-block;
+  padding: 0 0.015em;
+  color: #06020e;
+  background: linear-gradient(
+    180deg,
+    #050508 0%,
+    #181a26 40%,
+    #2a334d 80%,
+    #3b4968 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+

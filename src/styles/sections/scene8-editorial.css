@@ -1,0 +1,512 @@
+/* =========================================================
+   SCENE 8: EDITORIAL POSTER SHOWCASE (Full Screen Edge-to-Edge)
+   ========================================================= */
+.editorialGalleryWorld {
+  background: #000000 !important;
+  overflow: hidden;
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  perspective: 1400px;
+  perspective-origin: center center;
+}
+
+.editorialStage {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  pointer-events: auto;
+  user-select: none;
+  isolation: isolate;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  will-change: transform;
+  z-index: 10;
+  transform: perspective(1400px) rotateX(var(--my-tilt, 0deg)) rotateY(var(--mx-tilt, 0deg));
+  transition: transform 0.18s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+.editorialFace {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  transform-style: preserve-3d;
+  pointer-events: auto;
+}
+
+.editorialFaceFront {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  transform-style: preserve-3d;
+  pointer-events: auto;
+  opacity: 1;
+  will-change: opacity, transform;
+}
+
+.editorialFaceBack {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  transform-style: preserve-3d;
+  pointer-events: auto;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.editorialElement {
+  position: absolute;
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+}
+
+/* ==============================================================
+   3-LEVEL PROGRESSIVE SPATIAL ANGLE SYSTEM
+   - Level 1: Little angle change (subtle ~7° 3D tilt)
+   - Level 2: Increased angle degree (medium ~16° 3D tilt)
+   - Level 3: Further increased angle degree (deep ~27° 3D tilt)
+   ============================================================== */
+.editorialLevel1 {
+  transform: rotateY(-3deg) rotateX(1.5deg) rotateZ(-0.3deg) translateZ(0px);
+  transform-style: preserve-3d;
+}
+
+.editorialLevel2 {
+  transform: rotateY(-8deg) rotateX(4.5deg) rotateZ(-0.8deg) translateZ(25px);
+  transform-style: preserve-3d;
+}
+
+.editorialLevel3 {
+  transform: rotateY(-14deg) rotateX(7deg) rotateZ(-1.2deg) translateZ(45px);
+  transform-style: preserve-3d;
+}
+
+.editorialCardFrame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 3px;
+  background: #080808;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.9), 0 0 25px rgba(0, 0, 0, 0.6);
+  transform-style: preserve-3d;
+}
+
+.editorialImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 1. Badge #CREATIVE */
+.editorialCreativePill {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 0.8vw, 14px);
+  z-index: 5;
+}
+
+.editorialCapsuleOutline {
+  width: clamp(42px, 3.6vw, 62px);
+  height: clamp(14px, 1.2vw, 19px);
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  border-radius: 9999px;
+}
+
+.editorialPillBadge {
+  background: #ffffff;
+  color: #000000;
+  padding: clamp(3px, 0.25vw, 5px) clamp(10px, 0.8vw, 16px);
+  border-radius: 9999px;
+  font-size: clamp(9.5px, 0.8vw, 12px);
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+
+.editorialChevronLine {
+  display: flex;
+  align-items: center;
+  width: clamp(36px, 3.5vw, 56px);
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.85);
+  position: relative;
+}
+
+.editorialChevron {
+  position: absolute;
+  right: -2px;
+  top: -7px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+/* 2. Left Column: Vertical Athlete Card + ALPHAFY */
+.editorialLeftRunnerCard {
+  display: flex;
+  flex-direction: column;
+  z-index: 5;
+}
+
+.editorialLeftFrame {
+  height: clamp(130px, 24vh, 215px);
+  aspect-ratio: 115 / 221;
+  width: auto;
+}
+
+.editorialVerticalLabel {
+  position: absolute;
+  left: clamp(-36px, -2.5vw, -28px);
+  top: 40%;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: center center;
+  font-size: clamp(7px, 0.62vw, 9px);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.75);
+  white-space: nowrap;
+}
+
+.editorialAlphaflyTitle {
+  font-size: clamp(20px, 2.2vw, 34px);
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  margin-top: 8px;
+  line-height: 1;
+}
+
+/* 3. Bottom Skater & Giant R */
+.editorialBottomSkaterCard {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(12px, 1.2vw, 20px);
+  z-index: 5;
+}
+
+.editorialCardFrame.skaterFrame {
+  height: clamp(95px, 16.5vh, 150px);
+  aspect-ratio: 191 / 160;
+  width: auto;
+}
+
+.editorialGiantR {
+  font-size: clamp(48px, 5.5vw, 86px);
+  font-weight: 900;
+  line-height: 0.82;
+  color: #ffffff;
+}
+
+/* 4. Top Blue Card */
+.editorialTopBlueCard {
+  z-index: 5;
+}
+
+.editorialCardFrame.topBlueFrame {
+  height: clamp(65px, 11vh, 98px);
+  aspect-ratio: 89 / 96;
+  width: auto;
+}
+
+/* 5. Amber Sunglasses & Crosshair */
+.editorialAmberCard {
+  z-index: 5;
+}
+
+.editorialCardFrame.amberFrame {
+  height: clamp(78px, 13vh, 115px);
+  aspect-ratio: 120 / 111;
+  width: auto;
+}
+
+.editorialCrosshair {
+  position: absolute;
+  left: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.editorialCornerTick {
+  position: absolute;
+  left: -12px;
+  top: 25%;
+  width: 6px;
+  height: 6px;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.8);
+  border-left: 1.5px solid rgba(255, 255, 255, 0.8);
+}
+
+/* 6. Center Blue Runner & Horizontal Scanline */
+.editorialCenterBlueCard {
+  z-index: 5;
+}
+
+.editorialCardFrame.centerBlueFrame {
+  height: clamp(105px, 19vh, 168px);
+  aspect-ratio: 185 / 168;
+  width: auto;
+}
+
+.editorialScanline {
+  position: absolute;
+  left: -40px;
+  top: 45%;
+  width: 40px;
+  height: 1.5px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* 7. Innovation & Yellow Row */
+.editorialInnovationBlock {
+  display: flex;
+  flex-direction: column;
+  z-index: 5;
+}
+
+.editorialHeadline {
+  font-size: clamp(22px, 2.5vw, 36px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 0 0 10px 0;
+  line-height: 1;
+}
+
+.editorialYellowRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.editorialYellowThumb {
+  height: clamp(38px, 5.5vh, 52px);
+  width: clamp(54px, 5.5vw, 76px);
+  border-radius: 3px;
+  overflow: hidden;
+  background: #080808;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.7);
+  flex-shrink: 0;
+}
+
+/* 8. Hero Orange Runner Card */
+.editorialHeroOrangeBlock {
+  display: flex;
+  flex-direction: column;
+  z-index: 5;
+}
+
+.editorialVisionTitle {
+  font-size: clamp(17px, 1.8vw, 26px);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  margin: 0 0 6px 0;
+  line-height: 1;
+}
+
+.editorialHeroCardWrapper {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 0.8vw, 14px);
+}
+
+.editorialCardFrame.heroFrame {
+  height: clamp(150px, 27vh, 245px);
+  aspect-ratio: 195 / 253;
+  width: auto;
+}
+
+.editorialVerticalCreate {
+  writing-mode: vertical-rl;
+  font-size: clamp(7.5px, 0.65vw, 9.5px);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+}
+
+.editorialIdeasText {
+  max-width: clamp(170px, 16vw, 240px);
+  font-size: clamp(7.5px, 0.65vw, 9.5px);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  margin: 8px 0 0 0;
+  line-height: 1.35;
+}
+
+/* 9. Bottom Right Block */
+.editorialBottomRightBlock {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 1.6vw, 24px);
+  z-index: 5;
+}
+
+.editorialBiggerDreams {
+  font-size: clamp(8.5px, 0.78vw, 11px);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  line-height: 1.38;
+}
+
+.editorialRedNeonFrame {
+  position: relative;
+  height: clamp(68px, 12vh, 108px);
+  aspect-ratio: 111 / 99;
+  width: auto;
+}
+
+.editorialRedNeonFrame .editorialImg {
+  border-radius: 2px;
+}
+
+.editorialCornerBracket {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+}
+
+.bracketTL {
+  top: -3px;
+  left: -3px;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+}
+
+.bracketBR {
+  bottom: -3px;
+  right: -3px;
+  border-bottom: 2px solid #ffffff;
+  border-right: 2px solid #ffffff;
+}
+
+/* 10. Far-Right Top Card */
+.editorialFarRightTopCard {
+  display: flex;
+  flex-direction: column;
+  z-index: 5;
+}
+
+.editorialCardFrame.farRightTopFrame {
+  height: clamp(68px, 11.5vh, 100px);
+  aspect-ratio: 736 / 1229;
+  width: auto;
+}
+
+.topFarRightCross {
+  position: absolute;
+  left: -14px;
+  top: 40%;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+}
+
+.editorialMicroTag {
+  font-size: clamp(7px, 0.6vw, 8.5px);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 5px;
+}
+
+/* 11. Far-Right Middle Kinetic Card */
+.editorialFarRightMidCard {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 5;
+}
+
+.editorialCardFrame.farRightMidFrame {
+  height: clamp(142px, 25vh, 222px);
+  aspect-ratio: 736 / 1104;
+  width: auto;
+  position: relative;
+}
+
+.editorialVerticalKinetic {
+  position: absolute;
+  right: -24px;
+  top: 40%;
+  transform: translateY(-50%) rotate(90deg);
+  transform-origin: center center;
+  font-size: clamp(7px, 0.62vw, 9px);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.75);
+  white-space: nowrap;
+}
+
+.editorialHighVoltageTitle {
+  font-size: clamp(14px, 1.4vw, 20px);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  margin-top: 8px;
+  line-height: 1;
+}
+
+.farRightTick {
+  position: absolute;
+  left: -12px;
+  top: 15%;
+  width: 6px;
+  height: 6px;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.8);
+  border-left: 1.5px solid rgba(255, 255, 255, 0.8);
+}
+
+/* 12. Bottom-Center Bridge Card */
+.editorialBottomCenterCard {
+  display: flex;
+  flex-direction: column;
+  z-index: 5;
+}
+
+.editorialCardFrame.bottomCenterFrame {
+  height: clamp(82px, 14.5vh, 130px);
+  aspect-ratio: 16 / 10;
+  width: auto;
+}
+
+.bottomCenterTick {
+  position: absolute;
+  left: -10px;
+  top: -8px;
+  width: 6px;
+  height: 6px;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.8);
+  border-left: 1.5px solid rgba(255, 255, 255, 0.8);
+}
+
+.bottomCenterScan {
+  position: absolute;
+  right: -35px;
+  top: 50%;
+  width: 35px;
+  height: 1.5px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.editorialFieldReportTag {
+  font-size: clamp(7px, 0.6vw, 8.5px);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: 6px;
+}
+

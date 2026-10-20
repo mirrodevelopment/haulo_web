@@ -1,25 +1,15 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import tailwindcss from '@tailwindcss/vite';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
+// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    tailwindcss(),
-    react()
-  ],
+  plugins: [react()],
   server: {
+    host: '0.0.0.0',
     port: 3000,
     open: false,
-    host: true
-  },
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          three: ['three'],
-          vendor: ['react', 'react-dom', 'react-router-dom', 'gsap']
-        }
-      }
+    watch: {
+      ignored: ['**/*.mp4', '**/*.mov', '**/*.webm']
     }
   }
-});
+})

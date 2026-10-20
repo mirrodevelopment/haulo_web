@@ -6,24 +6,19 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        cyber: {
-          yellow: '#FAFF00',
-          lime: '#8AC900',
-          cyan: '#00B8D4',
-          purple: '#9C27B0',
-          dark: '#08090B',
-          panel: '#0C0E14',
-          titanium: '#C6D0DD',
-        }
-      },
       fontFamily: {
-        mono: ['"SF Mono"', 'Monaco', 'Consolas', '"Liberation Mono"', 'monospace'],
-        display: ['Impact', 'Haettenschweiler', '"Arial Black"', '-apple-system', 'sans-serif'],
+        sans: ['inherit'],
+        mono: ['"Geist Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
       },
-      animation: {
-        'pulse-subtle': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-      }
+      letterSpacing: {
+        tightest: '-0.04em',
+        tighter2: '-0.035em',
+        tighter3: '-0.03em',
+      },
+      lineHeight: {
+        none2: '0.95',
+        tighter2: '1.12',
+      },
     },
   },
   plugins: [],
