@@ -11,10 +11,10 @@ export function useLenis() {
     if (prefersReducedMotion) return;
 
     const lenis = new Lenis({
-      duration: 1.25,
-      easing: (t) => 1 - Math.pow(1 - t, 3.2),
+      duration: 1.35,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      wheelMultiplier: 1.0,
+      wheelMultiplier: 0.9,
       touchMultiplier: 1.25,
       infinite: false,
       autoResize: true
@@ -27,7 +27,7 @@ export function useLenis() {
     };
 
     gsap.ticker.add(updateTicker);
-    gsap.ticker.lagSmoothing(500, 33);
+    gsap.ticker.lagSmoothing(0);
 
     window.__lenis = lenis;
 

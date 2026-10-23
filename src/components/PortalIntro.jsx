@@ -50,7 +50,7 @@ export const PortalIntro = ({
           }
         },
         null,
-        "+=1.1"
+        "+=2.0"
       );
     }, portalTextRef);
 
@@ -61,9 +61,9 @@ export const PortalIntro = ({
     <div ref={portalWorldRef} className="worldLayer portalWorld">
       <div ref={portalGlowRef} className="portalGlow" />
       <div ref={portalTextRef} className="portalTextBackdrop">
-        <span className="portalWorkText" aria-label="HAULO SERVICE">
+        <div className="portalWorkText" aria-label="HAULO SERVICE">
           {/* TOP ELEMENT: HAULO LOGO IMAGE */}
-          <span
+          <div
             ref={(el) => {
               wordGroupRefs.current[0] = el;
               if (portalTopWordRef) {
@@ -79,10 +79,10 @@ export const PortalIntro = ({
               className="portalLogoImg"
               draggable={false}
             />
-          </span>
+          </div>
 
           {/* BOTTOM ELEMENT: SERVICE TYPOGRAPHY */}
-          <span
+          <div
             ref={(el) => {
               wordGroupRefs.current[1] = el;
               if (portalBottomWordRef) {
@@ -101,8 +101,8 @@ export const PortalIntro = ({
                 <span className="portalLetterInner">{char}</span>
               </span>
             ))}
-          </span>
-        </span>
+          </div>
+        </div>
       </div>
     </div>
   );

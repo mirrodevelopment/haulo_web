@@ -1,6 +1,7 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
-import smallCard1Img from "../assets/gallery/Small-Card-1.png";
+import cardBoxImg1 from "../assets/cardBoxImg/CardBoxOrbit-1.png";
+import ButtonBorderTrace from "./ButtonBorderTrace";
 
 export const ServicesHeroPanel = ({
   promptsWorldRef,
@@ -40,15 +41,18 @@ export const ServicesHeroPanel = ({
             <div className="promptsBtnRow flex items-center gap-2.5 sm:gap-3.5 flex-wrap">
               <button
                 onClick={() => window.__hauloScrollTo?.("services-cards")}
-                className="promptsSecondaryBtn px-4 sm:px-5 py-2.5 sm:py-3 rounded-full bg-black/5 hover:bg-black/10 border border-black/15 text-black text-[12px] sm:text-[13px] font-semibold cursor-pointer transition"
+                className="promptsSecondaryBtn px-4 sm:px-5 py-2.5 sm:py-3 rounded-full text-black text-[12px] sm:text-[13px] font-semibold cursor-pointer"
               >
-                View Services
+                <span>View Services</span>
+                <ButtonBorderTrace />
               </button>
               <button
                 onClick={() => window.__hauloScrollTo?.("contact")}
-                className="promptsPrimaryBtn inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-[#0a0a0c] text-white text-[12px] sm:text-[13px] font-bold cursor-pointer border-none shadow-[0_4px_18px_rgba(0,0,0,0.18)] hover:bg-black transition"
+                className="promptsPrimaryBtn inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-white text-[12px] sm:text-[13px] font-bold cursor-pointer"
               >
-                Start a Project <ArrowRight size={14} />
+                <span>Start a Project</span>
+                <ArrowRight size={14} />
+                <ButtonBorderTrace />
               </button>
             </div>
 
@@ -68,7 +72,8 @@ export const ServicesHeroPanel = ({
         {/* Preview card (GSAP-controlled) */}
         <div ref={promptsUiUxCardRef} className="cardPosition promptsUiUxContainer">
           <div className="rockCardFace cardFaceFront">
-            <img src={smallCard1Img} alt="Creative" className="orbitCardImg" />
+            <img src={cardBoxImg1} alt="Web Development" className="orbitCardImg" />
+            
             <div className="orbitCardBottom">
               <span className="orbitCardWord">WEB DEVELOPMENT</span>
             </div>

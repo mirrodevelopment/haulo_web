@@ -1,5 +1,4 @@
-import React, { useRef, useCallback } from "react";
-import hauloIconLogo from "../assets/logo/haulo-icon-logo.png";
+import React from "react";
 import { GalleryStarfieldCanvas } from "./GalleryStarfieldCanvas";
 
 export const BeyondPortalSection = ({
@@ -9,60 +8,48 @@ export const BeyondPortalSection = ({
   beyondTitleRef,
   limitsTitleRef
 }) => {
-  const containerRef = useRef(null);
-
-  const handleMouseMove = useCallback((e) => {
-    if (!containerRef.current) return;
-    const nx = (e.clientX / window.innerWidth - 0.5) * 2;
-    const ny = (e.clientY / window.innerHeight - 0.5) * 2;
-    containerRef.current.style.setProperty("--bx-tilt", `${(-nx * 5).toFixed(2)}deg`);
-    containerRef.current.style.setProperty("--by-tilt", `${(ny * 4).toFixed(2)}deg`);
-  }, []);
-
-  const handleMouseLeave = useCallback(() => {
-    if (!containerRef.current) return;
-    containerRef.current.style.setProperty("--bx-tilt", "0deg");
-    containerRef.current.style.setProperty("--by-tilt", "0deg");
-  }, []);
-
   return (
     <div
       ref={beyondWorldRef}
       className="worldLayer beyondWorld"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
     >
       {/* 2D Cosmic Starfield Canvas */}
       <GalleryStarfieldCanvas />
 
-      {/* Atmospheric Nebula Cosmic Glow */}
-      <div className="beyondCosmicNebula" />
-
-      {/* Center Iris Shockwave Ring (animated on entrance) */}
-      <div className="beyondEyeIrisRing" />
-
-      {/* Center 3D Floating Icon with Orbital Energy Rings */}
-      <div ref={beyondStarRef} className="beyondStarFixed">
-        {/* Dual Orbital Energy Rings */}
-        <div className="beyondOrbitRing outerRing" />
-        <div className="beyondOrbitRing innerRing" />
-
-        <div className="cleanBeyondLogoWrapper">
-          <div className="cleanBeyondLogoGlow" />
-          <img src={hauloIconLogo} alt="Haulo Icon" className="cleanBeyondLogoImg" />
-        </div>
-      </div>
-
-      {/* Typography Container */}
-      <div ref={containerRef} className="beyondContainer">
-        {/* Top-Left: "BEYOND" */}
-        <div ref={beyondTitleRef} className="beyondTitleGroup">
-          <h2 className="beyondMainHeading">BEYOND</h2>
+      {/* Editorial Content Container */}
+      <div className="beyondContainer">
+        {/* Top Header Group */}
+        <div ref={beyondTitleRef} className="beyondHeroGroup">
+          <span className="beyondEyebrow">OUR PHILOSOPHY / 001</span>
+          <h1 className="beyondHeroHeadline">
+            <span className="beyondHeroLine1">WHERE VISION MEETS</span>
+            <span className="beyondHeroLine2">UNCOMPROMISED CRAFT.</span>
+          </h1>
         </div>
 
-        {/* Bottom-Right: "ALL LIMITS" */}
-        <div ref={limitsTitleRef} className="limitsTitleGroup">
-          <h2 className="limitsMainHeading">ALL LIMITS</h2>
+        {/* Subtle Horizontal Divider */}
+        <div className="beyondDivider" />
+
+        {/* Bottom Group: Mission Statement + Value Pillars */}
+        <div ref={limitsTitleRef} className="beyondBottomGroup">
+          <p className="beyondHeroParagraph">
+            We partner with ambitious teams to turn complex ideas into purposeful digital products, distinctive brands, and experiences designed to make a difference.
+          </p>
+
+          <div className="beyondValuesRow">
+            <div className="beyondValueCol">
+              <span className="beyondValueTitle">DESIGN</span>
+              <span className="beyondValueSubtitle">Built with purpose</span>
+            </div>
+            <div className="beyondValueCol">
+              <span className="beyondValueTitle">TECH</span>
+              <span className="beyondValueSubtitle">Made to perform</span>
+            </div>
+            <div className="beyondValueCol">
+              <span className="beyondValueTitle">IMPACT</span>
+              <span className="beyondValueSubtitle">Created to matter</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

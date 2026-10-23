@@ -1,14 +1,10 @@
 // Project Panel Assets
-import galleryCard6Img from "../assets/gallery/Card-6.jpg";
-import galleryCard7Img from "../assets/gallery/Card-7.jpg";
-import galleryCard8Img from "../assets/gallery/Card-8.jpg";
-import galleryCard9Img from "../assets/gallery/Card-9.jpg";
-import galleryCard10Img from "../assets/gallery/Card-10.jpg";
+import galleryCardImg from "../assets/gallery/galleryCard.png";
 
 export const projectPanelsData = [
   {
     id: "proj-brand",
-    image: galleryCard6Img,
+    image: galleryCardImg,
     metaLeft: "BRAND & IDENTITY • HAULO",
     metaRight: "FEATURED SERVICE",
     title: "Brand & Identity",
@@ -22,7 +18,7 @@ export const projectPanelsData = [
   },
   {
     id: "proj-ecommerce",
-    image: galleryCard7Img,
+    image: galleryCardImg,
     metaLeft: "E-COMMERCE SYSTEMS • HAULO",
     metaRight: "DIGITAL COMMERCE",
     title: "E-commerce Development",
@@ -36,7 +32,7 @@ export const projectPanelsData = [
   },
   {
     id: "proj-cloud",
-    image: galleryCard8Img,
+    image: galleryCardImg,
     metaLeft: "CLOUD SYSTEMS • HAULO",
     metaRight: "INFRASTRUCTURE",
     title: "Cloud & Infrastructure",
@@ -50,7 +46,7 @@ export const projectPanelsData = [
   },
   {
     id: "proj-software",
-    image: galleryCard9Img,
+    image: galleryCardImg,
     metaLeft: "SOFTWARE ENGINEERING • HAULO",
     metaRight: "CORE SYSTEMS",
     title: "Software Engineering",
@@ -64,7 +60,7 @@ export const projectPanelsData = [
   },
   {
     id: "proj-erp",
-    image: galleryCard10Img,
+    image: galleryCardImg,
     metaLeft: "BUSINESS SYSTEMS • HAULO",
     metaRight: "ENTERPRISE SOLUTIONS",
     title: "ERP & Business Systems",

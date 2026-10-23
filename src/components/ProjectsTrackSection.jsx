@@ -1,5 +1,4 @@
 import React from "react";
-import { ArrowUpRight } from "lucide-react";
 import { projectPanelsData } from "../data/showcaseData";
 import { GalleryStarfieldCanvas } from "./GalleryStarfieldCanvas";
 
@@ -47,7 +46,7 @@ export const ProjectsTrackSection = ({
               <div className="projectPanelInner">
                 <div className="projectPanelCenter">
                   {/* Responsive heading: 20px mobile → 36px desktop */}
-                  <h2 className="projectHeading text-[clamp(20px,2.2vw,36px)] font-extrabold tracking-[-0.035em] text-white mb-2 leading-[1.14] m-0 [text-shadow:0_2px_14px_rgba(0,0,0,0.85)]">
+                  <h2 className="projectHeading text-[clamp(20px,2.2vw,36px)] font-bold tracking-[-0.035em] text-white mb-2 leading-[1.14] m-0 [text-shadow:0_2px_14px_rgba(0,0,0,0.85)]">
                     {project.title}
                   </h2>
                   {/* Responsive description */}
@@ -56,16 +55,7 @@ export const ProjectsTrackSection = ({
                   </p>
                 </div>
 
-                <div className="projectBottomCta">
-                  <button
-                    onClick={() => window.__hauloScrollTo?.("contact")}
-                    className="projectExploreBtn"
-                    style={{ "--btn-glow": glow }}
-                  >
-                    <span>Explore capability</span>
-                    <ArrowUpRight size={15} />
-                  </button>
-                </div>
+
               </div>
             </div>
           );

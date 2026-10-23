@@ -12,7 +12,7 @@ export const LeftRail = forwardRef(function LeftRail({ isDark = false }, ref) {
 
   return (
     <aside
-      className={`hidden md:flex fixed left-4 lg:left-5 top-1/2 -translate-y-1/2 flex-col items-center gap-4 font-mono text-[10px] pointer-events-none z-40 select-none transition-colors duration-300 ${
+      className={`hidden md:flex fixed left-4 lg:left-5 top-1/2 -translate-y-1/2 flex-col items-center gap-4 font-mono text-[10px] pointer-events-none z-[90] select-none transition-colors duration-300 ${
         isDark ? "text-white/60" : "text-black/60"
       }`}
       aria-hidden="true"

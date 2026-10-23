@@ -8,11 +8,13 @@ import gsap from "gsap";
 export const createMeasurementsManager = ({
   boxRadius,
   promptsCardRef,
+  promptsUiUxCardRef,
   cardGreenPosRef,
   promptsPinkFillOverlayRef,
   beyondWorldRef,
   batch2NodesRef,
   projectTrackRef,
+  marqueeWorldRef,
   marqueeRef
 }) => {
   let cachedCardScales = {
@@ -32,18 +34,19 @@ export const createMeasurementsManager = ({
     finalH: 740
   };
 
+  const getProjectEnterX = () => {
+    const cardEl = projectTrackRef?.current?.querySelector(".projectPanel");
+    const cardW = cardEl?.offsetWidth || Math.min(window.innerWidth * 0.38, 480);
+    return Math.round((window.innerWidth + cardW) * 0.48);
+  };
+
   const getProjectDistance = () =>
     Math.max(0, (projectTrackRef.current?.scrollWidth || 0) - window.innerWidth);
 
+  let cachedMarqueeOffsets = [0, -1450, -3100, -4750];
+
   const getMarqueeOffset = (sentenceIndex) => {
-    const container = marqueeRef?.current;
-    if (!container) return 0;
-    const texts = container.querySelectorAll(".marqueeText");
-    const el = texts[sentenceIndex];
-    if (!el) return 0;
-    const vw = window.innerWidth;
-    const elCenter = el.offsetLeft + el.offsetWidth / 2;
-    return Math.round(vw / 2 - elCenter);
+    return cachedMarqueeOffsets[sentenceIndex] ?? 0;
   };
 
   const updateCachedMeasurements = () => {
@@ -52,9 +55,8 @@ export const createMeasurementsManager = ({
     const cardEl = cardGreenPosRef.current;
     const vw = window.innerWidth;
     const vh = window.innerHeight;
-    const perspScale = (2000 / (2000 - boxRadius)) * (2000 / (2000 - boxRadius));
-    let targetW = Math.max(240, Math.min(vw * 0.19, 290)) * perspScale;
-    let targetH = Math.max(370, Math.min(vw * 0.29, 440)) * perspScale;
+    let targetW = cardEl?.offsetWidth || 270;
+    let targetH = cardEl?.offsetHeight || 405;
 
     if (cardEl) {
       gsap.set(cardEl, {
@@ -73,6 +75,14 @@ export const createMeasurementsManager = ({
         targetW = rect.width;
         targetH = rect.height;
       }
+    }
+
+    // Direct 1:1 pixel match between right-side hero card and 3D front card
+    if (promptsUiUxCardRef?.current && targetW > 0 && targetH > 0) {
+      gsap.set(promptsUiUxCardRef.current, {
+        width: Math.round(targetW),
+        height: Math.round(targetH)
+      });
     }
 
     const promptsW = promptsEl?.offsetWidth || Math.max(340, Math.min(vw * 0.94, 1560));
@@ -127,12 +137,35 @@ export const createMeasurementsManager = ({
     if (beyondWorldRef.current) {
       gsap.set(beyondWorldRef.current, { clipPath: "none" });
     }
+
+    // 3. Measure and cache exact marquee sentence center offsets for each 3D card
+    if (marqueeRef?.current && marqueeWorldRef?.current) {
+      const container = marqueeRef.current;
+      const world = marqueeWorldRef.current;
+      const prevVis = world.style.visibility;
+      world.style.visibility = "visible";
+
+      const containerRect = container.getBoundingClientRect();
+      const texts = container.querySelectorAll(".marqueeText");
+
+      if (texts.length >= 4 && containerRect.width > 0) {
+        cachedMarqueeOffsets = Array.from(texts).map((el) => {
+          const elRect = el.getBoundingClientRect();
+          const relativeCenter = (elRect.left - containerRect.left) + elRect.width / 2;
+          return Math.round(vw / 2 - relativeCenter);
+        });
+      }
+
+      world.style.visibility = prevVis;
+    }
   };
 
   return {
     updateCachedMeasurements,
     getCachedCardScales: () => cachedCardScales,
     getCachedExpandCard: () => cachedExpandCard,
-    getProjectDistance
+    getProjectDistance,
+    getProjectEnterX,
+    getMarqueeOffset
   };
 };

@@ -61,7 +61,9 @@ export const setupStepController = ({
 
     // Fluid step duration: responsive and luxurious without locking or sticking
     const isExpandOrGalleryStep = clampedIdx === 13 || clampedIdx === 14 || clampedIdx === 15;
-    const stepDur = isExpandOrGalleryStep ? 1.15 : 0.88;
+    const isProjectsEntrance = clampedIdx === 8 || (activeStepIndex === 8 && clampedIdx === 7);
+    const isIntroToHero = clampedIdx === 1 && activeStepIndex === 0;
+    const stepDur = isIntroToHero ? 1.85 : isExpandOrGalleryStep ? 1.15 : isProjectsEntrance ? 1.35 : 0.95;
 
     if (window.__lenis) {
       window.__lenis.scrollTo(targetY, {
@@ -71,7 +73,7 @@ export const setupStepController = ({
         easing: smoothEase,
         onComplete: () => {
           isNavigating = false;
-          if (clampedIdx >= 1 && !introState.hasPassed) {
+          if (clampedIdx >= 1) {
             introState.hasPassed = true;
             if (portalWorldRef.current) {
               gsap.set(portalWorldRef.current, { autoAlpha: 0, display: "none" });
@@ -86,7 +88,7 @@ export const setupStepController = ({
     clearTimeout(navTimeout);
     navTimeout = setTimeout(() => {
       isNavigating = false;
-      if (clampedIdx >= 1 && !introState.hasPassed) {
+      if (clampedIdx >= 1) {
         introState.hasPassed = true;
         if (portalWorldRef.current) {
           gsap.set(portalWorldRef.current, { autoAlpha: 0, display: "none" });
@@ -181,6 +183,15 @@ export const setupStepController = ({
   const onKeyDown = (e) => {
     const now = performance.now();
     if (isNavigating || now - lastNavStartTime < 380) return;
+    if (introState.hasPassed && (e.key === "ArrowUp" || e.key === "PageUp")) {
+      const currentY = window.__lenis?.scroll ?? window.scrollY;
+      const steps = getSectionSteps();
+      const heroY = steps[1] || 0;
+      if (currentY <= heroY + 8) {
+        e.preventDefault();
+        return;
+      }
+    }
     if (e.key === "ArrowDown" || e.key === "PageDown" || e.key === " ") {
       handleStepScroll(1, e);
     } else if (e.key === "ArrowUp" || e.key === "PageUp") {
@@ -195,9 +206,64 @@ export const setupStepController = ({
     }
   };
 
-  window.addEventListener("wheel", onWheel, { passive: false, capture: true });
+  // Continuous buttery-smooth Lenis scroll clamped to heroHold once intro has passed
+  const onLenisScroll = ({ scroll }) => {
+    const steps = getSectionSteps();
+    const heroY = steps[1] || 0;
+
+    // Once intro has passed, clamp scroll minimum to heroHold ("Services that move ideas forward")
+    if (introState.hasPassed && scroll < heroY - 2) {
+      if (window.__lenis) {
+        window.__lenis.scrollTo(heroY, { immediate: true });
+      }
+      return;
+    }
+
+    if (!isNavigating) {
+      activeStepIndex = syncClosestStepIndex(scroll, steps);
+    }
+  };
+
+  // Prevent wheel from scrolling up past the first image section ("Services that move ideas forward")
+  const onWheelGuard = (e) => {
+    if (introState.hasPassed && e.deltaY < 0) {
+      const currentY = window.__lenis?.scroll ?? window.scrollY;
+      const steps = getSectionSteps();
+      const heroY = steps[1] || 0;
+      if (currentY <= heroY + 8) {
+        if (e.cancelable) e.preventDefault();
+        e.stopImmediatePropagation?.();
+        if (window.__lenis && currentY < heroY) {
+          window.__lenis.scrollTo(heroY, { immediate: true });
+        }
+      }
+    }
+  };
+
+  // Prevent touch swipe up past the first image section
+  const onTouchMoveGuard = (e) => {
+    if (touchStartY === null || !e.touches?.length) return;
+    const diff = touchStartY - e.touches[0].clientY; // diff < 0 means pulling down / scrolling up
+    if (introState.hasPassed && diff < 0) {
+      const currentY = window.__lenis?.scroll ?? window.scrollY;
+      const steps = getSectionSteps();
+      const heroY = steps[1] || 0;
+      if (currentY <= heroY + 8) {
+        if (e.cancelable) e.preventDefault();
+        e.stopImmediatePropagation?.();
+        if (window.__lenis && currentY < heroY) {
+          window.__lenis.scrollTo(heroY, { immediate: true });
+        }
+      }
+    }
+  };
+
+  if (window.__lenis) {
+    window.__lenis.on("scroll", onLenisScroll);
+  }
+  window.addEventListener("wheel", onWheelGuard, { passive: false });
   window.addEventListener("touchstart", onTouchStart, { passive: true });
-  window.addEventListener("touchmove", onTouchMove, { passive: false, capture: true });
+  window.addEventListener("touchmove", onTouchMoveGuard, { passive: false });
   window.addEventListener("keydown", onKeyDown);
 
   if (cardOrbitCtaRef.current) {
@@ -209,7 +275,8 @@ export const setupStepController = ({
     const start = st?.start || 0;
     const end = st?.end || start + 9600;
     const totalDur = master.totalDuration() || TOTAL_TIMELINE_DURATION;
-    const targetT = idx === 0 ? 6.9 : panStart + idx * stepDuration;
+    const projectLabels = ["projectsStart", "projCard1", "projectsMid", "projCard3", "projectsEnd"];
+    const targetT = master.labels[projectLabels[idx]] ?? (panStart + idx * stepDuration);
     const targetY = start + (targetT / totalDur) * (end - start);
     if (window.__lenis) {
       window.__lenis.scrollTo(targetY, { duration: 1.15, lock: true, force: true, easing: smoothEase });
@@ -234,7 +301,7 @@ export const setupStepController = ({
     } else if (target === "contact" || target === "final") {
       targetT = master.labels["finalHold"] ?? 13.45;
     } else if (target === "top") {
-      targetT = 0;
+      targetT = introState.hasPassed ? (master.labels["heroHold"] ?? 0.52) : 0;
     } else if (typeof target === "number") {
       targetT = target;
     }
@@ -251,9 +318,12 @@ export const setupStepController = ({
     window.__hauloScrollTo = null;
     autoAdvanceRef.current = null;
     selectProjectRef.current = null;
-    window.removeEventListener("wheel", onWheel, { capture: true });
+    if (window.__lenis) {
+      window.__lenis.off("scroll", onLenisScroll);
+    }
+    window.removeEventListener("wheel", onWheelGuard);
     window.removeEventListener("touchstart", onTouchStart);
-    window.removeEventListener("touchmove", onTouchMove, { capture: true });
+    window.removeEventListener("touchmove", onTouchMoveGuard);
     window.removeEventListener("keydown", onKeyDown);
     clearTimeout(navTimeout);
   };

@@ -1,14 +1,20 @@
 /* =========================================================
-   SCENE 0: PURPLE PORTAL INTRO
+   SCENE 0: PORTAL INTRO (HAULO + SERVICE CENTERED)
    ========================================================= */
 .portalWorld {
   z-index: 25;
   background: #ffffff;
   overflow: hidden;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .portalGlow {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: min(85vw, 920px);
   height: min(85vw, 920px);
   border-radius: 50%;
@@ -22,7 +28,6 @@
   );
   filter: blur(52px);
   will-change: transform, opacity;
-  transform: translate3d(0, 0, 0);
   pointer-events: none;
 }
 
@@ -50,32 +55,11 @@
   filter: blur(3px);
 }
 
-.portalBlackStar {
-  position: absolute;
-  z-index: 4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  will-change: transform, opacity;
-  transform: translate3d(0, 25px, 0);
-  pointer-events: none;
-}
-
-.portalCenterLogo {
-  width: clamp(180px, 18vw, 290px);
-  max-width: 290px;
-  max-height: 290px;
-  height: auto;
-  display: block;
-  object-fit: contain;
-  filter: drop-shadow(0 0 24px rgba(96, 165, 250, 0.7))
-    drop-shadow(0 0 55px rgba(59, 130, 246, 0.5))
-    drop-shadow(0 14px 32px rgba(0, 0, 0, 0.85));
-  user-select: none;
-}
-
 .portalTextBackdrop {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 2;
   display: flex;
   align-items: center;
@@ -83,7 +67,6 @@
   perspective: 1100px;
   transform-style: preserve-3d;
   will-change: transform, opacity;
-  transform: translate3d(0, 0, 0);
   pointer-events: none;
   user-select: none;
   white-space: nowrap;
@@ -94,15 +77,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(12px, 2.2vh, 26px);
+  gap: clamp(10px, 1.8vh, 22px);
   font-family: inherit;
-  font-size: clamp(44px, 7.8vw, 118px);
+  font-size: clamp(38px, 6.2vw, 98px);
   font-weight: 200;
-  letter-spacing: 0;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   line-height: 1;
   perspective: 1100px;
   transform-style: preserve-3d;
+  margin: 0;
+  padding: 0;
 }
 
 .portalWordGroup {
@@ -121,23 +106,21 @@
 
 .portalLogoImg {
   display: block;
-  width: clamp(280px, 44vw, 680px);
+  width: clamp(260px, 42vw, 660px);
   max-width: 90vw;
   height: auto;
   aspect-ratio: 1515 / 300;
   object-fit: contain;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
-  filter: none !important;
   user-select: none;
   pointer-events: none;
 }
 
-@media (max-width: 768px) {
-  .portalLogoImg {
-    width: clamp(210px, 78vw, 360px);
-    max-height: clamp(42px, 15vw, 72px);
-  }
+.portalWordBottom {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .portalLetter {
@@ -165,4 +148,11 @@
   -webkit-text-fill-color: transparent;
 }
 
-
+@media (max-width: 768px) {
+  .portalLogoImg {
+    width: clamp(200px, 76vw, 360px);
+  }
+  .portalWorkText {
+    gap: 12px;
+  }
+}

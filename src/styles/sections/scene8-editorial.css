@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    SCENE 8: EDITORIAL POSTER SHOWCASE (Full Screen Edge-to-Edge)
    ========================================================= */
 .editorialGalleryWorld {
@@ -27,7 +27,7 @@
   will-change: transform;
   z-index: 10;
   transform: perspective(1400px) rotateX(var(--my-tilt, 0deg)) rotateY(var(--mx-tilt, 0deg));
-  transition: transform 0.18s cubic-bezier(0.2, 0, 0.2, 1);
+  /* smooth transform */
 }
 
 .editorialFace {
@@ -69,9 +69,9 @@
 
 /* ==============================================================
    3-LEVEL PROGRESSIVE SPATIAL ANGLE SYSTEM
-   - Level 1: Little angle change (subtle ~7° 3D tilt)
-   - Level 2: Increased angle degree (medium ~16° 3D tilt)
-   - Level 3: Further increased angle degree (deep ~27° 3D tilt)
+   - Level 1: Little angle change (subtle ~7Â° 3D tilt)
+   - Level 2: Increased angle degree (medium ~16Â° 3D tilt)
+   - Level 3: Further increased angle degree (deep ~27Â° 3D tilt)
    ============================================================== */
 .editorialLevel1 {
   transform: rotateY(-3deg) rotateX(1.5deg) rotateZ(-0.3deg) translateZ(0px);
@@ -167,7 +167,7 @@
   top: 40%;
   transform: translateY(-50%) rotate(-90deg);
   transform-origin: center center;
-  font-size: clamp(7px, 0.62vw, 9px);
+  font-size: clamp(6px, 0.5vw, 7.5px);
   font-weight: 700;
   letter-spacing: 0.16em;
   color: rgba(255, 255, 255, 0.75);
@@ -175,8 +175,8 @@
 }
 
 .editorialAlphaflyTitle {
-  font-size: clamp(20px, 2.2vw, 34px);
-  font-weight: 900;
+  font-size: clamp(13px, 1.2vw, 17px); white-space: nowrap;
+  font-weight: 600;
   letter-spacing: 0.05em;
   color: #ffffff;
   margin-top: 8px;
@@ -198,8 +198,8 @@
 }
 
 .editorialGiantR {
-  font-size: clamp(48px, 5.5vw, 86px);
-  font-weight: 900;
+  font-size: clamp(18px, 1.9vw, 25px); letter-spacing: 0.08em; white-space: nowrap; line-height: 0.95;
+  font-weight: 600;
   line-height: 0.82;
   color: #ffffff;
 }
@@ -275,8 +275,8 @@
 }
 
 .editorialHeadline {
-  font-size: clamp(22px, 2.5vw, 36px);
-  font-weight: 900;
+  font-size: clamp(15px, 1.45vw, 20px); white-space: nowrap;
+  font-weight: 600;
   letter-spacing: -0.02em;
   color: #ffffff;
   margin: 0 0 10px 0;
@@ -307,8 +307,8 @@
 }
 
 .editorialVisionTitle {
-  font-size: clamp(17px, 1.8vw, 26px);
-  font-weight: 900;
+  font-size: clamp(14px, 1.35vw, 18px); white-space: nowrap;
+  font-weight: 600;
   letter-spacing: -0.01em;
   color: #ffffff;
   margin: 0 0 6px 0;
@@ -329,7 +329,7 @@
 
 .editorialVerticalCreate {
   writing-mode: vertical-rl;
-  font-size: clamp(7.5px, 0.65vw, 9.5px);
+  font-size: clamp(6.5px, 0.55vw, 8px);
   font-weight: 800;
   letter-spacing: 0.18em;
   color: rgba(255, 255, 255, 0.9);
@@ -338,8 +338,8 @@
 
 .editorialIdeasText {
   max-width: clamp(170px, 16vw, 240px);
-  font-size: clamp(7.5px, 0.65vw, 9.5px);
-  font-weight: 800;
+  font-size: clamp(6.5px, 0.55vw, 8px);
+  font-weight: 600;
   letter-spacing: 0.04em;
   color: #ffffff;
   margin: 8px 0 0 0;
@@ -355,8 +355,8 @@
 }
 
 .editorialBiggerDreams {
-  font-size: clamp(8.5px, 0.78vw, 11px);
-  font-weight: 800;
+  font-size: clamp(8.5px, 0.72vw, 10px);
+  font-weight: 600;
   letter-spacing: 0.05em;
   color: #ffffff;
   line-height: 1.38;
@@ -416,7 +416,7 @@
 }
 
 .editorialMicroTag {
-  font-size: clamp(7px, 0.6vw, 8.5px);
+  font-size: clamp(6px, 0.5vw, 7.5px);
   font-weight: 800;
   letter-spacing: 0.12em;
   color: rgba(255, 255, 255, 0.7);
@@ -444,7 +444,7 @@
   top: 40%;
   transform: translateY(-50%) rotate(90deg);
   transform-origin: center center;
-  font-size: clamp(7px, 0.62vw, 9px);
+  font-size: clamp(6px, 0.5vw, 7.5px);
   font-weight: 800;
   letter-spacing: 0.18em;
   color: rgba(255, 255, 255, 0.75);
@@ -452,8 +452,8 @@
 }
 
 .editorialHighVoltageTitle {
-  font-size: clamp(14px, 1.4vw, 20px);
-  font-weight: 900;
+  font-size: clamp(12px, 1.15vw, 15px);
+  font-weight: 600;
   letter-spacing: 0.04em;
   color: #ffffff;
   margin-top: 8px;
@@ -503,7 +503,7 @@
 }
 
 .editorialFieldReportTag {
-  font-size: clamp(7px, 0.6vw, 8.5px);
+  font-size: clamp(6px, 0.5vw, 7.5px);
   font-weight: 800;
   letter-spacing: 0.14em;
   color: rgba(255, 255, 255, 0.75);

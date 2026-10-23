@@ -11,6 +11,7 @@ export const buildCinematicTimeline = ({
   master,
   portalWorldRef,
   portalGlowRef,
+  portalTextRef,
   portalTopWordRef,
   portalBottomWordRef,
   promptsWorldRef,
@@ -41,56 +42,59 @@ export const buildCinematicTimeline = ({
   bgLightRef,
   boxRadius,
   perspScale,
+  promptsUiUxOffset,
   orbit,
   renderOrbit,
   getCachedCardScales,
   getProjectDistance,
+  getProjectEnterX,
   getMarqueeOffset
 }) => {
   // Clean, zero-dead-zone timeline labels
   master.addLabel("portalStart", 0.0);
   master.addLabel("heroEnter", 0.02);
-  master.addLabel("heroHold", 0.52);
-  master.addLabel("extract", 0.54);
-  master.addLabel("straighten", 1.0);
-  master.addLabel("singleCardHold", 1.08);
-  master.addLabel("sideReveal", 1.1);
-  master.addLabel("card0Front", 1.54);
-  master.addLabel("turnToCard1", 1.58);
-  master.addLabel("card1Front", 2.55);
-  master.addLabel("turnToCard2", 2.65);
-  master.addLabel("card2Front", 3.65);
-  master.addLabel("turnToCard3", 3.75);
-  master.addLabel("logoFront", 4.75);
-  master.addLabel("logoZoom", 4.85);
-  master.addLabel("beyondHold", 5.8);
-  master.addLabel("projects", 5.95);
-  master.addLabel("projectsStart", 6.85); // Card 0: Brand & Identity
-  master.addLabel("projCard1", 7.45);     // Card 1: E-commerce Development
-  master.addLabel("projectsMid", 8.05);   // Card 2: Cloud & Infrastructure
-  master.addLabel("projCard3", 8.65);     // Card 3: Software Engineering
-  master.addLabel("projectsEnd", 9.25);   // Card 4: ERP & Business Systems
-  master.addLabel("gallery1", 9.55);
-  master.addLabel("gallery1Hold", 10.6);
-  master.addLabel("gallery2", 10.8);
-  master.addLabel("gallery2Hold", 12.15);
-  master.addLabel("screenCardZoom", 12.35);
-  master.addLabel("finalHold", 13.45);
+  master.addLabel("heroHold", 1.05);
+  master.addLabel("extract", 1.45);
+  master.addLabel("straighten", 1.95);
+  master.addLabel("singleCardHold", 2.05);
+  master.addLabel("sideReveal", 2.08);
+  master.addLabel("card0Front", 2.50);
+  master.addLabel("turnToCard1", 2.55);
+  master.addLabel("card1Front", 3.52);
+  master.addLabel("turnToCard2", 3.62);
+  master.addLabel("card2Front", 4.62);
+  master.addLabel("turnToCard3", 4.72);
+  master.addLabel("logoFront", 5.72);
+  master.addLabel("logoZoom", 5.82);
+  master.addLabel("beyondHold", 6.77);
+  master.addLabel("projects", 6.92);
+  master.addLabel("projectsStart", 7.82); // Card 0: Brand & Identity
+  master.addLabel("projCard1", 8.42);     // Card 1: E-commerce Development
+  master.addLabel("projectsMid", 9.02);   // Card 2: Cloud & Infrastructure
+  master.addLabel("projCard3", 9.62);     // Card 3: Software Engineering
+  master.addLabel("projectsEnd", 10.22);  // Card 4: ERP & Business Systems (Equal 0.60 hold, centered)
+  master.addLabel("gallery1", 10.82);     // Seamless cross-transition: Section 1 moves left, Section 2 enters top-right
+  master.addLabel("gallery1Hold", 11.67); // Spatial Gallery Batch 1 (Fully Assembled)
+  master.addLabel("gallery2", 12.30);     // Flip to Face 2 ("Build beyond.")
+  master.addLabel("gallery2Hold", 13.15);
+  master.addLabel("finalHold", 13.80);
 
   const promptsHeroBgEl = promptsCardRef?.current?.querySelector(".promptsHeroBg");
+  const heroCardBottomEl = promptsUiUxCardRef?.current?.querySelector(".orbitCardBottom");
   const promptsSecondEl = promptsCardRef?.current?.querySelector(".promptsSecondDiv");
   const logoCardDecorEls = cardNeuralPosRef?.current
     ? Array.from(cardNeuralPosRef.current.querySelectorAll(".logoCardBadge, .logoCardBottom, .logoCardBg"))
     : [];
 
-  // --- SCENE 0 -> SCENE 1: Horizontal Split ---
+  // --- SCENE 0 -> SCENE 1: Center HAULO SERVICE moves smoothly to the top side ---
   if (portalTopWordRef?.current) {
     master.to(
       portalTopWordRef.current,
       {
-        yPercent: -130,
+        yPercent: -120,
+        y: -60,
         opacity: 0,
-        duration: 0.44,
+        duration: 0.85,
         ease: "power2.inOut"
       },
       "heroEnter"
@@ -100,9 +104,21 @@ export const buildCinematicTimeline = ({
     master.to(
       portalBottomWordRef.current,
       {
-        yPercent: -130,
+        yPercent: -120,
+        y: -60,
         opacity: 0,
-        duration: 0.44,
+        duration: 0.85,
+        ease: "power2.inOut"
+      },
+      "heroEnter"
+    );
+  }
+  if (portalTextRef?.current) {
+    master.to(
+      portalTextRef.current,
+      {
+        y: -60,
+        duration: 0.85,
         ease: "power2.inOut"
       },
       "heroEnter"
@@ -112,11 +128,12 @@ export const buildCinematicTimeline = ({
     master.to(
       portalGlowRef.current,
       {
-        scaleX: 2.2,
-        scaleY: 1.4,
+        y: -80,
+        scaleX: 1.6,
+        scaleY: 1.2,
         opacity: 0,
-        duration: 0.4,
-        ease: "power2.in"
+        duration: 0.85,
+        ease: "power2.inOut"
       },
       "heroEnter"
     );
@@ -142,38 +159,43 @@ export const buildCinematicTimeline = ({
     master.to(promptsWorldRef.current, { autoAlpha: 1, scale: 1, duration: 0.06 }, "heroEnter+=0.48");
   }
 
-  // Crisp bottom-up entrance animation triggered right when reaching the hero section
+  // Rolls-Royce Luxury entrance: triggered once the section is fully revealed on screen
   const heroTargetsIn = [promptsHeadingRef?.current, promptsSecondEl, promptsBottomLeftRef?.current].filter(Boolean);
   if (heroTargetsIn.length) {
     master.fromTo(
       heroTargetsIn,
-      { y: 60, opacity: 0 },
+      { y: 35, opacity: 0 },
       {
         y: 0,
         opacity: 1,
-        duration: 0.22,
-        stagger: 0.06,
+        duration: 0.85,
+        stagger: 0.16,
         ease: "power2.out",
         immediateRender: false
       },
-      "heroHold-=0.26"
+      "heroEnter+=0.25"
     );
   }
 
   if (promptsUiUxCardRef?.current) {
     master.fromTo(
       promptsUiUxCardRef.current,
-      { y: 70, opacity: 0, autoAlpha: 0 },
+      { y: 45, x: promptsUiUxOffset, opacity: 0, autoAlpha: 0, scale: 1 },
       {
         y: 0,
+        x: promptsUiUxOffset,
         opacity: 1,
         autoAlpha: 1,
-        duration: 0.26,
+        scale: 1,
+        duration: 0.85,
         ease: "power2.out",
         immediateRender: false
       },
-      "heroHold-=0.24"
+      "heroEnter+=0.30"
     );
+    if (heroCardBottomEl) {
+      master.set(heroCardBottomEl, { opacity: 0, autoAlpha: 0, display: "none" }, "heroEnter");
+    }
   }
 
   // --- SCENE 1 -> SCENE 3: Card glides to center & left texts smoothly hide ---
@@ -190,22 +212,45 @@ export const buildCinematicTimeline = ({
       {
         x: 0,
         y: 0,
-        scale: perspScale,
+        scale: 1.0,
         opacity: 1,
-        duration: 0.42,
+        duration: 0.46,
         ease: "power2.inOut"
       },
       "extract"
     );
+    if (heroCardBottomEl) {
+      master.fromTo(
+        heroCardBottomEl,
+        { opacity: 0, autoAlpha: 0 },
+        { opacity: 1, autoAlpha: 1, duration: 0.32, ease: "power2.out", immediateRender: false },
+        "extract+=0.10"
+      );
+    }
   }
   if (marqueeWorldRef?.current) {
-    master.to(marqueeWorldRef.current, { autoAlpha: 1, duration: 0.35 }, "extract+=0.08");
+    master.to(marqueeWorldRef.current, { autoAlpha: 1, duration: 0.35 }, "extract+=0.04");
   }
 
   // --- SCENE 2 & 4: Background Marquee Synchronized With Each Card in Center ---
   if (marqueeRef?.current) {
-    // Card 0: Line 0 ("Building the web without limits") centered
-    master.set(marqueeRef.current, { x: () => (getMarqueeOffset ? getMarqueeOffset(0) : 0) }, "straighten");
+    // Card 0: Line 0 ("Building the web without limits") comes from right side smoothly into center
+    const getInitialMarqueeX = () => {
+      const base0 = getMarqueeOffset ? getMarqueeOffset(0) : 0;
+      return base0 + Math.round(window.innerWidth * 0.55);
+    };
+
+    master.fromTo(
+      marqueeRef.current,
+      { x: getInitialMarqueeX },
+      {
+        x: () => (getMarqueeOffset ? getMarqueeOffset(0) : 0),
+        duration: 0.46,
+        ease: "power2.out",
+        immediateRender: false
+      },
+      "extract"
+    );
 
     // Card 1: Line 1 ("Design that sells without compromise") centered as Card 1 rotates to front
     master.to(
@@ -243,7 +288,7 @@ export const buildCinematicTimeline = ({
 
   // --- SCENE 3: Seamless Discrete Handoff (Zero Ghosting, Zero Double Card) ---
   if (cardTransitionWorldRef?.current) {
-    master.to(cardTransitionWorldRef.current, { opacity: 1, autoAlpha: 1, duration: 0.01, ease: "none" }, "straighten");
+    master.to(cardTransitionWorldRef.current, { opacity: 1, autoAlpha: 1, display: "block", duration: 0.01, ease: "none" }, "straighten");
   }
   if (promptsUiUxCardRef?.current) {
     master.to(promptsUiUxCardRef.current, { autoAlpha: 0, opacity: 0, duration: 0.01, ease: "none" }, "straighten");
@@ -259,7 +304,7 @@ export const buildCinematicTimeline = ({
     )
     .to(
       orbit,
-      { angle: 0, split: 0, sideReveal: 1, boxMorph: 0, duration: 0.46, ease: "power2.inOut", onUpdate: renderOrbit },
+      { angle: 0, split: 0, sideReveal: 1, boxMorph: 1, duration: 0.46, ease: "power2.inOut", onUpdate: renderOrbit },
       "sideReveal"
     );
 
@@ -268,7 +313,7 @@ export const buildCinematicTimeline = ({
   }
   master.to(
     orbit,
-    { angle: 0, split: 0, sideReveal: 1, boxMorph: 0, duration: 0.06, onUpdate: renderOrbit },
+    { angle: 0, split: 0, sideReveal: 1, boxMorph: 1, duration: 0.06, onUpdate: renderOrbit },
     "sideReveal+=0.46"
   );
 
@@ -318,12 +363,13 @@ export const buildCinematicTimeline = ({
     master.to(bgDarkRef.current, { autoAlpha: 1, duration: 0.38, ease: "power2.inOut" }, "logoZoom");
   }
 
-  // 1. Camera dives directly into the center icon's glowing eye
+  // 1. Camera dives directly into the center icon's left eye
   if (neuralStarRef?.current) {
     master.to(
       neuralStarRef.current,
       {
         scale: 36,
+        transformOrigin: "50% 50%",
         duration: 0.56,
         ease: "power2.in"
       },
@@ -344,7 +390,7 @@ export const buildCinematicTimeline = ({
     );
   }
 
-  // 2. Next section opens seamlessly from inside the center icon's eye (expanding circular iris portal)
+  // 2. Next section opens seamlessly from inside the logo's left eye (expanding circular iris portal)
   if (beyondWorldRef?.current) {
     master.fromTo(
       beyondWorldRef.current,
@@ -378,9 +424,22 @@ export const buildCinematicTimeline = ({
     );
   }
 
-  // Transition world hides as the next section completely envelops the view
+  // Transition world and all 3D orbit cards hide completely as the next section envelops the view
   if (cardTransitionWorldRef?.current) {
-    master.to(cardTransitionWorldRef.current, { opacity: 0, duration: 0.12, ease: "power1.out" }, "logoZoom+=0.48");
+    master.to(
+      cardTransitionWorldRef.current,
+      { opacity: 0, autoAlpha: 0, display: "none", duration: 0.12, ease: "power1.out" },
+      "logoZoom+=0.48"
+    );
+  }
+  const allOrbitCards = [
+    cardGreenPosRef?.current,
+    cardPurplePosRef?.current,
+    cardRockPosRef?.current,
+    cardNeuralPosRef?.current
+  ].filter(Boolean);
+  if (allOrbitCards.length) {
+    master.to(allOrbitCards, { opacity: 0, autoAlpha: 0, duration: 0.12, ease: "power1.out" }, "logoZoom+=0.48");
   }
 
   // Center logo settles in Scene 6
@@ -393,22 +452,33 @@ export const buildCinematicTimeline = ({
     );
   }
 
-  // "Beyond" opens to top-left from the eye portal
+  // Hero headline glides up smoothly from bottom
   if (beyondTitleRef?.current) {
     master.fromTo(
       beyondTitleRef.current,
-      { xPercent: 0, x: 75, yPercent: 28, scale: 0.85, autoAlpha: 0 },
-      { xPercent: 0, x: 0, yPercent: 0, scale: 1, autoAlpha: 1, duration: 0.46, ease: "power3.out", immediateRender: false },
-      "logoZoom+=0.36"
+      { y: 70, scale: 1, autoAlpha: 0 },
+      { y: 0, scale: 1, autoAlpha: 1, duration: 0.52, ease: "power3.out", immediateRender: false },
+      "logoZoom+=0.30"
     );
   }
 
-  // "all limits" opens to bottom-right from the eye portal
+  // Divider glides up smoothly
+  const dividerEl = beyondWorldRef?.current?.querySelector(".beyondDivider");
+  if (dividerEl) {
+    master.fromTo(
+      dividerEl,
+      { y: 50, scaleX: 0.85, autoAlpha: 0 },
+      { y: 0, scaleX: 1, autoAlpha: 1, duration: 0.50, ease: "power3.out", immediateRender: false },
+      "logoZoom+=0.33"
+    );
+  }
+
+  // Supporting statement & metrics glide up smoothly from bottom with staggered timing
   if (limitsTitleRef?.current) {
     master.fromTo(
       limitsTitleRef.current,
-      { xPercent: 0, x: -75, yPercent: -28, scale: 0.85, autoAlpha: 0 },
-      { xPercent: 0, x: 0, yPercent: 0, scale: 1, autoAlpha: 1, duration: 0.46, ease: "power3.out", immediateRender: false },
+      { y: 70, scale: 1, autoAlpha: 0 },
+      { y: 0, scale: 1, autoAlpha: 1, duration: 0.54, ease: "power3.out", immediateRender: false },
       "logoZoom+=0.36"
     );
   }
@@ -439,84 +509,134 @@ export const buildCinematicTimeline = ({
         yPercent: 0,
         autoAlpha: 1,
         filter: "none",
-        duration: 0.85,
+        duration: 0.5,
         ease: "power2.inOut"
       },
       "projects"
     );
   }
 
-  const projectCards = projectTrackRef?.current
-    ? Array.from(projectTrackRef.current.querySelectorAll(".projectPanel"))
-    : [];
-  const numProjectSteps = Math.max(1, projectCards.length - 1);
-  const panStart = 7.0;
-  const panEnd = 8.7;
-  const stepDuration = (panEnd - panStart) / numProjectSteps;
-  const getStepX = (stepIdx) => () => -(getProjectDistance() * (stepIdx / numProjectSteps));
-
+  // Slow, silky-smooth card entrance: Card 0 glides gracefully from the right side into center
   if (projectTrackRef?.current) {
-    for (let s = 0; s < numProjectSteps; s++) {
-      const stepStartTime = panStart + s * stepDuration;
-      const nextCardIdx = s + 1;
-
-      master.to(
-        projectTrackRef.current,
-        {
-          x: getStepX(nextCardIdx),
-          duration: stepDuration * 0.85,
-          ease: "power2.inOut"
-        },
-        stepStartTime
-      );
-    }
-
-    master.to(projectTrackRef.current, { x: getStepX(4), duration: 0.7 }, 8.7);
+    master.fromTo(
+      projectTrackRef.current,
+      { x: () => (getProjectEnterX ? getProjectEnterX() : Math.round(window.innerWidth * 0.65)) },
+      {
+        x: 0,
+        duration: 1.05,
+        ease: "power2.inOut",
+        immediateRender: false
+      },
+      "projects"
+    );
   }
 
+  const panStart = 7.82;
+  const stepDuration = 0.60;
+  const getStepX = (stepIdx) => () => {
+    const cardEl = projectTrackRef?.current?.querySelector(".projectPanel");
+    if (!cardEl) return 0;
+    const cardW = cardEl.offsetWidth;
+    const gap = window.innerWidth <= 768 ? 14 : 28;
+    return -stepIdx * (cardW + gap);
+  };
+
+  if (projectTrackRef?.current) {
+    // Step from Card 0 (Brand & Identity) -> Card 1 (E-commerce Development)
+    master.to(
+      projectTrackRef.current,
+      { x: getStepX(1), duration: 0.52, ease: "power2.inOut" },
+      "projectsStart+=0.04"
+    );
+
+    // Step from Card 1 (E-commerce Development) -> Card 2 (Cloud & Infrastructure)
+    master.to(
+      projectTrackRef.current,
+      { x: getStepX(2), duration: 0.52, ease: "power2.inOut" },
+      "projCard1+=0.04"
+    );
+
+    // Step from Card 2 (Cloud & Infrastructure) -> Card 3 (Software Engineering)
+    master.to(
+      projectTrackRef.current,
+      { x: getStepX(3), duration: 0.52, ease: "power2.inOut" },
+      "projectsMid+=0.04"
+    );
+
+    // Step from Card 3 (Software Engineering) -> Card 4 (ERP & Business Systems)
+    master.to(
+      projectTrackRef.current,
+      { x: getStepX(4), duration: 0.52, ease: "power2.inOut" },
+      "projCard3+=0.04"
+    );
+
+    // First image section moves smoothly to the left as second image section enters
+    master.to(
+      projectTrackRef.current,
+      {
+        x: () => {
+          const cardEl = projectTrackRef?.current?.querySelector(".projectPanel");
+          const cardW = cardEl ? cardEl.offsetWidth : 440;
+          const gap = window.innerWidth <= 768 ? 14 : 28;
+          return -6.5 * (cardW + gap) - window.innerWidth * 0.4;
+        },
+        duration: 0.85,
+        ease: "power2.inOut"
+      },
+      "gallery1"
+    );
+  }
+
+  // First image section track moves smoothly to the left, world layer fades cleanly without translating
   if (projectsWorldRef?.current) {
     master.to(
       projectsWorldRef.current,
       {
-        xPercent: -100,
-        yPercent: 100,
-        rotationZ: -5,
-        scale: 0.85,
         autoAlpha: 0,
-        filter: "none",
         duration: 0.85,
         ease: "power2.inOut"
       },
-      9.4
+      "gallery1"
+    );
+    master.set(
+      projectsWorldRef.current,
+      { display: "none" },
+      "gallery1Hold"
     );
   }
 
-  // --- SCENE 8: Spatial Gallery Batch 1 & Batch 2 (9.40 -> 12.35) ---
+  // --- SCENE 8: Gallery world fades in full-screen (NO sliding box or boundary cut) ---
   const b1Nodes = (batch1NodesRef?.current || []).filter(Boolean);
 
   if (galleryWorldRef?.current) {
     master
-      .set(galleryWorldRef.current, { autoAlpha: 1, filter: "none" }, 9.4)
-      .fromTo(
+      .set(
         galleryWorldRef.current,
         {
-          xPercent: 100,
-          yPercent: -100,
-          scale: 1,
-          autoAlpha: 1,
-          filter: "none"
-        },
-        {
+          display: "block",
+          x: 0,
+          y: 0,
           xPercent: 0,
           yPercent: 0,
           scale: 1,
+          filter: "none"
+        },
+        "gallery1"
+      )
+      .fromTo(
+        galleryWorldRef.current,
+        {
+          autoAlpha: 0,
+          filter: "none"
+        },
+        {
           autoAlpha: 1,
           filter: "none",
-          duration: 0.85,
+          duration: 0.75,
           ease: "power2.out",
           immediateRender: false
         },
-        9.4
+        "gallery1"
       );
   }
 
@@ -525,7 +645,7 @@ export const buildCinematicTimeline = ({
     if (!node) return;
     const preset = B1_ENTRANCE_OFFSETS[i] || { x: 50, y: -40, z: -80, rotZ: 0, scale: 0.85 };
     const cfg = B1_LEVEL_CONFIG[i] || { rotY: 0, rotX: 0, rotZ: 0, z: 0 };
-    const staggerDelay = (i % 4) * 0.04 + Math.floor(i / 4) * 0.05;
+    const staggerDelay = (i % 4) * 0.03 + Math.floor(i / 4) * 0.03;
     master.fromTo(
       node,
       {
@@ -549,11 +669,11 @@ export const buildCinematicTimeline = ({
         scale: 1,
         opacity: 1,
         filter: "none",
-        duration: 0.85,
-        ease: "power3.out",
+        duration: 0.82,
+        ease: "power2.out",
         immediateRender: false
       },
-      9.4 + staggerDelay
+      `gallery1+=${staggerDelay}`
     );
   });
 
@@ -573,28 +693,34 @@ export const buildCinematicTimeline = ({
       scale: 1.0
     });
 
-    master.set(faceFront, { xPercent: 0, yPercent: 0, opacity: 1, autoAlpha: 1, scale: 1 }, 9.4);
-    master.set(faceBack, { xPercent: -110, yPercent: -110, opacity: 0, autoAlpha: 0, scale: 0.92 }, 9.4);
+    master.set(faceFront, { xPercent: 0, yPercent: 0, opacity: 1, autoAlpha: 1, scale: 1 }, "gallery1");
+    master.set(faceBack, { xPercent: -110, yPercent: -110, opacity: 0, autoAlpha: 0, scale: 0.92 }, "gallery1");
 
-    // Smooth camera dolly into the curved spatial amphitheater
+    // Smooth glide from top-right into the spatial amphitheater (cards only, transparent stage)
     master.fromTo(
       editorialStage,
       {
-        rotationY: -3,
-        rotationX: 2.5,
-        z: -60,
-        scale: 0.96
+        xPercent: 40,
+        yPercent: -28,
+        rotationY: -5,
+        rotationX: 3.5,
+        z: -80,
+        scale: 0.92,
+        autoAlpha: 0
       },
       {
+        xPercent: 0,
+        yPercent: 0,
         rotationY: 0,
         rotationX: 0,
         z: 0,
         scale: 1.0,
-        duration: 0.95,
+        autoAlpha: 1,
+        duration: 0.85,
         ease: "power2.out",
         immediateRender: false
       },
-      9.4
+      "gallery1"
     );
 
     master.to(
@@ -605,10 +731,10 @@ export const buildCinematicTimeline = ({
         opacity: 0,
         autoAlpha: 0,
         scale: 0.9,
-        duration: 1.35,
+        duration: 0.90,
         ease: "power2.inOut"
       },
-      10.7
+      "gallery2"
     );
 
     master.fromTo(
@@ -626,11 +752,11 @@ export const buildCinematicTimeline = ({
         opacity: 1,
         autoAlpha: 1,
         scale: 1,
-        duration: 1.35,
+        duration: 0.90,
         ease: "power2.out",
         immediateRender: false
       },
-      10.8
+      "gallery2+=0.04"
     );
 
     master.to(
@@ -641,10 +767,10 @@ export const buildCinematicTimeline = ({
         rotationZ: 0,
         z: 0,
         scale: 1,
-        duration: 1.35,
+        duration: 0.90,
         ease: "power2.out"
       },
-      10.8
+      "gallery2+=0.04"
     );
 
     const backLeftContent = faceBack.querySelector(".finalLeftContent");
@@ -652,8 +778,8 @@ export const buildCinematicTimeline = ({
       master.fromTo(
         backLeftContent,
         { opacity: 0, y: 35 },
-        { opacity: 1, y: 0, duration: 0.55, ease: "power2.out", immediateRender: false },
-        11.6
+        { opacity: 1, y: 0, duration: 0.65, ease: "power2.out", immediateRender: false },
+        "gallery2+=0.35"
       );
     }
 
@@ -662,8 +788,8 @@ export const buildCinematicTimeline = ({
       master.fromTo(
         backRightContent,
         { opacity: 0, x: 45, scale: 0.96 },
-        { opacity: 1, x: 0, scale: 1, duration: 0.65, ease: "power2.out", immediateRender: false },
-        11.65
+        { opacity: 1, x: 0, scale: 1, duration: 0.70, ease: "power2.out", immediateRender: false },
+        "gallery2+=0.40"
       );
     }
 
@@ -676,7 +802,7 @@ export const buildCinematicTimeline = ({
         autoAlpha: 1,
         scale: 1
       },
-      12.15
+      "gallery2Hold"
     );
     master.set(
       editorialStage,
@@ -687,7 +813,7 @@ export const buildCinematicTimeline = ({
         z: 0,
         scale: 1
       },
-      12.15
+      "gallery2Hold"
     );
   }
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import hauloLogoText from "../assets/HAULO-LOGO-TEXT.png";
 
 export function Header({ isDark = false, activeSection = "service" }) {
   const headerRef = useRef(null);
@@ -25,12 +26,12 @@ export function Header({ isDark = false, activeSection = "service" }) {
   }, []);
 
   const getNavLinkClass = (sectionKey) => {
-    // Only SERVICE navlink is active across all sections
-    const isActive = sectionKey === "service";
-    const baseClass = "headerNavLink font-mono text-[11px] sm:text-xs md:text-[13px] tracking-[0.14em] font-semibold transition-all duration-300 py-1.5 px-1 cursor-pointer select-none";
+    // Only SERVICE is active across all sections because the entire showcase is the service page
+    const isActive = sectionKey === 'service';
+    const baseClass = "headerNavLink font-mono text-[11px] sm:text-xs md:text-[13px] tracking-[0.06em] font-semibold transition-all duration-300 py-1.5 px-1 cursor-pointer select-none";
 
     if (isActive) {
-      return `${baseClass} ${isDark ? 'text-white opacity-100' : 'text-black opacity-100'}`;
+      return `${baseClass} ${isDark ? 'text-white opacity-100 font-bold' : 'text-black opacity-100 font-bold'}`;
     }
     return `${baseClass} ${isDark ? 'text-white/60 hover:text-white hover:opacity-100' : 'text-black/60 hover:text-black hover:opacity-100'}`;
   };
@@ -38,7 +39,7 @@ export function Header({ isDark = false, activeSection = "service" }) {
   return (
     <header
       ref={headerRef}
-      className="fixed top-0 left-0 right-0 h-16 sm:h-20 px-6 sm:px-10 md:px-11 flex items-center justify-between z-50 pointer-events-none pt-[env(safe-area-inset-top,0)] transition-colors duration-300"
+      className="fixed top-0 left-0 right-0 h-16 sm:h-20 px-6 sm:px-10 md:px-11 flex items-center justify-between z-[100] pointer-events-none pt-[env(safe-area-inset-top,0)] transition-colors duration-300"
     >
       <a
         href="#top"
@@ -50,11 +51,11 @@ export function Header({ isDark = false, activeSection = "service" }) {
         aria-label="HAULO Home"
       >
         <img
-          src="/HAULO-LOGO-TEXT.png"
+          src={hauloLogoText}
           alt="HAULO"
-          className="h-[18px] sm:h-[20px] md:h-[22px] w-auto object-contain transition-all duration-300"
+          className="h-[20px] sm:h-[22px] md:h-[24px] w-auto object-contain transition-all duration-300"
           style={{
-            filter: isDark ? 'invert(1) hue-rotate(180deg)' : 'none'
+            filter: isDark ? 'brightness(0) invert(1)' : 'none'
           }}
         />
       </a>

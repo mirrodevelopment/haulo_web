@@ -3,7 +3,7 @@
  * Constants, hold labels, and 3D preset coordinates for the cinematic showcase timeline.
  */
 
-export const TOTAL_TIMELINE_DURATION = 13.6;
+export const TOTAL_TIMELINE_DURATION = 14.2;
 
 export const SECTION_HOLD_LABELS = [
   "portalStart",    // 0: HAULO SERVICE Intro
@@ -20,8 +20,7 @@ export const SECTION_HOLD_LABELS = [
   "projCard3",      // 11: Projects Track - Card 3: Software Engineering
   "projectsEnd",    // 12: Projects Track - Card 4: ERP & Business Systems
   "gallery1Hold",   // 13: Spatial Gallery Batch 1 (Assembled)
-  "gallery2Hold",   // 14: Spatial Gallery Batch 2 (Assembled)
-  "finalHold"       // 15: Final "Build beyond" Section
+  "gallery2Hold"    // 14: Spatial Gallery Face 2 ("Build beyond.")
 ];
 
 // Scene 8: Spatial Gallery Presets

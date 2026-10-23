@@ -64,15 +64,18 @@ export const useCinematicTimeline = (refs) => {
           getCachedCardScales,
           getCachedExpandCard,
           getProjectDistance,
+          getProjectEnterX,
           getMarqueeOffset
         } = createMeasurementsManager({
           boxRadius,
           promptsCardRef: refs.promptsCardRef,
+          promptsUiUxCardRef: refs.promptsUiUxCardRef,
           cardGreenPosRef: refs.cardGreenPosRef,
           promptsPinkFillOverlayRef: refs.promptsPinkFillOverlayRef,
           beyondWorldRef: refs.beyondWorldRef,
           batch2NodesRef: refs.batch2NodesRef,
           projectTrackRef: refs.projectTrackRef,
+          marqueeWorldRef: refs.marqueeWorldRef,
           marqueeRef: refs.marqueeRef
         });
 
@@ -85,7 +88,8 @@ export const useCinematicTimeline = (refs) => {
           promptsUiUxOffset,
           renderOrbit,
           getCachedExpandCard,
-          getMarqueeOffset
+          getMarqueeOffset,
+          getProjectEnterX
         });
 
         updateCachedMeasurements();
@@ -100,7 +104,7 @@ export const useCinematicTimeline = (refs) => {
             start: "top top",
             end: "+=9600",
             pin: stageRef.current,
-            scrub: 0.55,
+            scrub: 0.28,
             invalidateOnRefresh: true,
             onRefreshInit: updateCachedMeasurements,
             onUpdate: (self) => {
@@ -108,17 +112,33 @@ export const useCinematicTimeline = (refs) => {
               beyondVisibilityRef.current = t >= 4.8 && t <= 6.95 ? 1 : 0;
 
               // Scene 8 Three.js Gallery scroll progress
-              if (t >= 9.2 && t <= 12.5) {
-                window.__galleryScrollProgress = Math.max(0, Math.min(1, (t - 9.4) / (12.35 - 9.4)));
+              if (t >= 10.7 && t <= 14.0) {
+                window.__galleryScrollProgress = Math.max(0, Math.min(1, (t - 10.82) / (13.15 - 10.82)));
               } else {
                 window.__galleryScrollProgress = 0;
               }
 
-              // Once intro logo-zoom completes, permanently hide PortalIntro
-              if (!introState.hasPassed && t >= 0.48) {
-                introState.hasPassed = true;
+              // Real-time synchronization of header & rails theme with timeline progress
+              window.__onTimelineProgress?.(self.progress);
+
+              // Intro portal visibility management: Only show ONCE per page refresh/load!
+              if (!introState.hasPassed) {
+                if (t >= 0.45) {
+                  introState.hasPassed = true;
+                  if (portalWorldRef.current) {
+                    gsap.set(portalWorldRef.current, { autoAlpha: 0, display: "none" });
+                  }
+                } else if (portalWorldRef.current) {
+                  gsap.set(portalWorldRef.current, { autoAlpha: 1, display: "flex" });
+                }
+              } else {
+                // Once passed, intro never shows again during scroll
                 if (portalWorldRef.current) {
                   gsap.set(portalWorldRef.current, { autoAlpha: 0, display: "none" });
+                }
+                // Ensure hero section is 100% visible and never blank
+                if (refs.promptsWorldRef?.current && t <= 1.05) {
+                  gsap.set(refs.promptsWorldRef.current, { autoAlpha: 1 });
                 }
               }
             }
@@ -130,10 +150,13 @@ export const useCinematicTimeline = (refs) => {
           ...refs,
           boxRadius,
           perspScale,
+          promptsUiUxOffset,
           orbit,
           renderOrbit,
           getCachedCardScales,
-          getProjectDistance
+          getProjectDistance,
+          getProjectEnterX,
+          getMarqueeOffset
         });
 
         // 3. Step Navigation Controller

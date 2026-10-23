@@ -88,7 +88,7 @@
 }
 
 
-/* CARD 0: UI/UX & Digital Experience */
+/* CARD 0: Web Development */
 .rockCardFace {
   position: absolute;
   inset: 0;
@@ -96,18 +96,11 @@
   height: 100%;
   border-radius: 22px;
   overflow: hidden;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.4) 0%,
-    rgba(255, 255, 255, 0.15) 30%,
-    rgba(192, 132, 252, 0.18) 70%,
-    rgba(255, 255, 255, 0.25) 100%
-  );
-  backdrop-filter: blur(32px) saturate(190%);
-  -webkit-backdrop-filter: blur(32px) saturate(190%);
-  border: 1.5px solid rgba(255, 255, 255, 0.75);
-  border-top: 2px solid rgba(255, 255, 255, 0.95);
-  border-left: 1.5px solid rgba(255, 255, 255, 0.85);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.12) 0%, transparent 60%),
+    radial-gradient(circle at 50% 36%, #151826 0%, #0c0d16 60%, #050508 100%) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.45);
   box-shadow: none !important;
   transform-style: preserve-3d;
   backface-visibility: hidden;
@@ -123,15 +116,12 @@
   inset: 0;
   border-radius: inherit;
   background: linear-gradient(
-    125deg,
-    rgba(255, 255, 255, 0.4) 0%,
-    rgba(255, 255, 255, 0.1) 32%,
-    rgba(255, 255, 255, 0) 55%,
-    rgba(192, 132, 252, 0.1) 100%
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 45%
   );
   pointer-events: none;
-  z-index: 2;
-  box-shadow: none !important;
+  z-index: 3;
 }
 
 .rockImg {
@@ -145,13 +135,17 @@
 
 .orbitCardImg {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  top: 41%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 98%;
+  height: 68%;
+  object-fit: contain;
   display: block;
-  border-radius: inherit;
-  z-index: 1;
+  border-radius: 0;
+  z-index: 2;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.65));
+  pointer-events: none;
 }
 
 .orbitCardBottom {
@@ -160,12 +154,7 @@
   left: 0;
   right: 0;
   padding: clamp(14px, 2.5vw, 24px) clamp(16px, 3vw, 26px);
-  background: linear-gradient(
-    to top,
-    rgba(2, 2, 6, 0.94) 0%,
-    rgba(2, 2, 6, 0.6) 45%,
-    transparent 100%
-  );
+  background: transparent !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -174,12 +163,14 @@
 }
 
 .orbitCardWord {
-  font-size: clamp(15px, 2vw, 24px);
-  font-weight: 200;
-  letter-spacing: 0.16em;
+  font-size: clamp(14px, 1.8vw, 22px);
+  font-weight: 200 !important;
+  letter-spacing: 0.14em;
+  line-height: 1.25;
   text-transform: uppercase;
   color: #ffffff;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95);
+  text-align: center;
 }
 
 /* Plain Color Cards */
@@ -218,18 +209,11 @@
   height: 100%;
   border-radius: 22px;
   overflow: hidden;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.45) 0%,
-    rgba(255, 255, 255, 0.15) 30%,
-    rgba(147, 197, 253, 0.18) 65%,
-    rgba(192, 132, 252, 0.22) 100%
-  );
-  backdrop-filter: blur(32px) saturate(190%);
-  -webkit-backdrop-filter: blur(32px) saturate(190%);
-  border: 1.5px solid rgba(255, 255, 255, 0.75);
-  border-top: 2px solid rgba(255, 255, 255, 0.95);
-  border-left: 1.5px solid rgba(255, 255, 255, 0.85);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.12) 0%, transparent 60%),
+    radial-gradient(circle at 50% 36%, #151826 0%, #0c0d16 60%, #050508 100%) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.45);
   box-shadow: none !important;
   transform-style: preserve-3d;
   backface-visibility: hidden;
@@ -245,15 +229,12 @@
   inset: 0;
   border-radius: inherit;
   background: linear-gradient(
-    125deg,
-    rgba(255, 255, 255, 0.42) 0%,
-    rgba(255, 255, 255, 0.1) 32%,
-    rgba(255, 255, 255, 0) 55%,
-    rgba(147, 197, 253, 0.12) 100%
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 45%
   );
   pointer-events: none;
-  z-index: 2;
-  box-shadow: none !important;
+  z-index: 3;
 }
 
 .greenImg {
@@ -265,7 +246,7 @@
   border-radius: inherit;
 }
 
-/* CARD 2: Web Development */
+/* CARD 2: UI/UX Design */
 .webDevCardFace {
   position: absolute;
   inset: 0;
@@ -273,18 +254,11 @@
   height: 100%;
   border-radius: 22px;
   overflow: hidden;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.4) 0%,
-    rgba(255, 255, 255, 0.15) 30%,
-    rgba(59, 130, 246, 0.18) 70%,
-    rgba(255, 255, 255, 0.25) 100%
-  );
-  backdrop-filter: blur(32px) saturate(190%);
-  -webkit-backdrop-filter: blur(32px) saturate(190%);
-  border: 1.5px solid rgba(255, 255, 255, 0.75);
-  border-top: 2px solid rgba(255, 255, 255, 0.95);
-  border-left: 1.5px solid rgba(255, 255, 255, 0.85);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.12) 0%, transparent 60%),
+    radial-gradient(circle at 50% 36%, #151826 0%, #0c0d16 60%, #050508 100%) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.45);
   box-shadow: none !important;
   transform-style: preserve-3d;
   backface-visibility: hidden;
@@ -300,15 +274,12 @@
   inset: 0;
   border-radius: inherit;
   background: linear-gradient(
-    125deg,
-    rgba(255, 255, 255, 0.4) 0%,
-    rgba(255, 255, 255, 0.1) 32%,
-    rgba(255, 255, 255, 0) 55%,
-    rgba(59, 130, 246, 0.1) 100%
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 45%
   );
   pointer-events: none;
-  z-index: 2;
-  box-shadow: none !important;
+  z-index: 3;
 }
 
 .webDevCardImg {
@@ -320,16 +291,19 @@
   border-radius: inherit;
 }
 
-/* CARD 3: Haulo Animated Logo Card */
+/* CARD 3: Haulo Animated Logo Card (Unified Obsidian Black + Subtle Depth) */
 .logoCardFace {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   border-radius: 22px;
-  overflow: visible;
-  background: transparent;
-  border: none;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.12) 0%, transparent 60%),
+    radial-gradient(circle at 50% 36%, #151826 0%, #0c0d16 60%, #050508 100%) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.45);
   box-shadow: none !important;
   transform-style: preserve-3d;
   backface-visibility: hidden;
@@ -342,39 +316,16 @@
   box-sizing: border-box;
 }
 
-.logoCardBg {
-  position: absolute;
-  inset: 0;
-  border-radius: 22px;
-  background: linear-gradient(
-    145deg,
-    rgba(95, 78, 120, 0.96) 0%,
-    rgba(28, 14, 48, 0.97) 42%,
-    rgba(8, 4, 18, 0.99) 100%
-  );
-  border: 1.5px solid rgba(255, 255, 255, 0.75);
-  border-top: 2px solid rgba(255, 255, 255, 0.95);
-  border-left: 1.5px solid rgba(255, 255, 255, 0.85);
-  box-shadow: none !important;
-  pointer-events: none;
-  z-index: 1;
+.logoCardFace::before {
+  display: none !important;
 }
 
-.logoCardBg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(
-    125deg,
-    rgba(255, 255, 255, 0.38) 0%,
-    rgba(255, 255, 255, 0.08) 32%,
-    rgba(255, 255, 255, 0) 55%,
-    rgba(168, 85, 247, 0.15) 100%
-  );
-  pointer-events: none;
-  z-index: 2;
-  box-shadow: none !important;
+.logoCardBg,
+.logoCardNebula,
+.cardStar,
+.cardOrbitRing,
+.cardLogoGlow {
+  display: none !important;
 }
 
 .logoCardFace::after {
@@ -397,68 +348,29 @@
 }
 
 .logoCardBadge {
-  padding: 6px 14px;
+  padding: 6px 16px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: #09090b;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  font-weight: 200 !important;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
   will-change: opacity, transform;
-}
-
-/* Dual Orbital Energy Rings for Center Card (matching Scene 6 Beyond Section) */
-.cardOrbitRing {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  transform-origin: center center;
-}
-
-.cardOrbitRing.outerRing {
-  width: 140%;
-  height: 140%;
-  border: 1px dashed rgba(163, 230, 53, 0.45);
-  box-shadow: 0 0 20px rgba(163, 230, 53, 0.22);
-  animation: orbitSpinCW 24s linear infinite;
-}
-
-.cardOrbitRing.innerRing {
-  width: 112%;
-  height: 112%;
-  border: 1px solid rgba(56, 189, 248, 0.35);
-  border-top-color: rgba(163, 230, 53, 0.85);
-  border-bottom-color: rgba(56, 189, 248, 0.85);
-  animation: orbitSpinCCW 16s linear infinite;
-}
-
-.cardLogoGlow {
-  position: absolute;
-  width: 155%;
-  height: 155%;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(163, 230, 53, 0.45) 0%,
-    rgba(56, 189, 248, 0.25) 45%,
-    transparent 72%
-  );
-  filter: blur(20px);
-  pointer-events: none;
-  animation: cleanGlowPulse 4s ease-in-out infinite alternate;
 }
 
 .logoCardCenterContainer {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 96px;
-  height: 96px;
-  margin-top: -48px;
-  margin-left: -48px;
+  width: 116px;
+  height: 116px;
+  margin-top: -58px;
+  margin-left: -58px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -468,14 +380,29 @@
   animation: cleanLogoFloat 4.2s ease-in-out infinite;
 }
 
+.logoCardCenterContainer::before {
+  content: "";
+  position: absolute;
+  inset: -16px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0.12) 50%,
+    transparent 72%
+  );
+  filter: blur(16px);
+  pointer-events: none;
+  z-index: -1;
+}
+
 .logoCardImg {
   width: 100%;
   height: 100%;
-  max-width: 88px;
-  max-height: 88px;
+  max-width: 106px;
+  max-height: 106px;
   object-fit: contain;
-  filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.75))
-    drop-shadow(0 0 32px rgba(168, 85, 247, 0.75));
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.16));
 }
 
 .logoCardBottom {
@@ -489,17 +416,18 @@
 
 .logoCardTitle {
   font-size: 22px;
-  font-weight: 900;
+  font-weight: 200 !important;
   letter-spacing: 0.08em;
-  color: #ffffff;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6) !important;
 }
 
 .logoCardSubtitle {
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 200 !important;
   letter-spacing: 0.14em;
-  color: rgba(216, 180, 254, 0.9);
+  color: rgba(255, 255, 255, 0.85) !important;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5) !important;
   text-transform: uppercase;
 }
 

@@ -1,9 +1,10 @@
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
 import hauloIconLogo from "../assets/logo/haulo-icon-logo.png";
-import smallCard1Img from "../assets/gallery/Small-Card-1.png";
-import smallCard2Img from "../assets/gallery/Small-Card-2.png";
-import smallCard3Img from "../assets/gallery/Small-Card-3.png";
+import cardBoxImg1 from "../assets/cardBoxImg/CardBoxOrbit-1.png";
+import cardBoxImg2 from "../assets/cardBoxImg/CardBoxOrbit-2.png";
+import cardBoxImg3 from "../assets/cardBoxImg/CardBoxOrbit-3.png";
+import ButtonBorderTrace from "./ButtonBorderTrace";
 
 export const CardBoxOrbit = ({
   cardTransitionWorldRef,
@@ -21,13 +22,13 @@ export const CardBoxOrbit = ({
         {/* CARD 0: Creative (Front 0°) */}
         <div ref={cardGreenPosRef} className="cardPosition">
           <div className="rockCardFace cardFaceFront">
-            <img src={smallCard1Img} alt="Creative" className="orbitCardImg" />
+            <img src={cardBoxImg1} alt="Web Development" className="orbitCardImg" />
             <div className="orbitCardBottom">
               <span className="orbitCardWord">WEB DEVELOPMENT</span>
             </div>
           </div>
           <div className="rockCardFace cardFaceBack">
-            <img src={smallCard1Img} alt="Creative" className="orbitCardImg" />
+            <img src={cardBoxImg1} alt="Web Development" className="orbitCardImg" />
             <div className="orbitCardBottom">
               <span className="orbitCardWord">WEB DEVELOPMENT</span>
             </div>
@@ -37,13 +38,13 @@ export const CardBoxOrbit = ({
         {/* CARD 1: Innovation (Right 90°) */}
         <div ref={cardPurplePosRef} className="cardPosition">
           <div className="greenCardFace cardFaceFront">
-            <img src={smallCard2Img} alt="Innovation" className="orbitCardImg" />
+            <img src={cardBoxImg2} alt="Mobile Development" className="orbitCardImg" />
             <div className="orbitCardBottom">
               <span className="orbitCardWord">MOBILE DEVELOPMENT</span>
             </div>
           </div>
           <div className="greenCardFace cardFaceBack">
-            <img src={smallCard2Img} alt="Innovation" className="orbitCardImg" />
+            <img src={cardBoxImg2} alt="Mobile Development" className="orbitCardImg" />
             <div className="orbitCardBottom">
               <span className="orbitCardWord">MOBILE DEVELOPMENT</span>
             </div>
@@ -53,13 +54,13 @@ export const CardBoxOrbit = ({
         {/* CARD 2: Digital (Back 180°) */}
         <div ref={cardRockPosRef} className="cardPosition">
           <div className="webDevCardFace cardFaceFront">
-            <img src={smallCard3Img} alt="Digital" className="orbitCardImg" />
+            <img src={cardBoxImg3} alt="UI/UX Design" className="orbitCardImg" />
             <div className="orbitCardBottom">
               <span className="orbitCardWord">UI/UX DESIGN</span>
             </div>
           </div>
           <div className="webDevCardFace cardFaceBack">
-            <img src={smallCard3Img} alt="Digital" className="orbitCardImg" />
+            <img src={cardBoxImg3} alt="UI/UX Design" className="orbitCardImg" />
             <div className="orbitCardBottom">
               <span className="orbitCardWord">UI/UX DESIGN</span>
             </div>
@@ -69,18 +70,13 @@ export const CardBoxOrbit = ({
         {/* CARD 3: Haulo Animated Logo Card (Left 270°) */}
         <div ref={cardNeuralPosRef} className="cardPosition">
           <div className="logoCardFace cardFaceFront">
-            <div className="logoCardBg" />
-            <div className="logoCardGlow" />
             <div className="logoCardContent">
               {/* Badge — Tailwind responsive sizing */}
               <div className="logoCardBadge text-[8px] sm:text-[10px] tracking-[0.12em] sm:tracking-[0.14em]">
-                HAULO ECOSYSTEM
+                HAULO 
               </div>
 
               <div className="logoCardCenterContainer" ref={neuralStarRef}>
-                <div className="cardOrbitRing outerRing" />
-                <div className="cardOrbitRing innerRing" />
-                <div className="cardLogoGlow" />
                 <img
                   src={hauloIconLogo}
                   alt="Haulo Icon"
@@ -92,11 +88,11 @@ export const CardBoxOrbit = ({
 
               <div className="logoCardBottom">
                 {/* Title — Tailwind responsive */}
-                <span className="logoCardTitle text-base sm:text-[22px] font-black tracking-[0.08em] text-white [text-shadow:0_2px_10px_rgba(0,0,0,0.5)]">
+                <span className="logoCardTitle text-base sm:text-[22px] font-[200] tracking-[0.08em] text-white">
                   HAULO
                 </span>
                 {/* Subtitle — Tailwind responsive */}
-                <span className="logoCardSubtitle text-[9px] sm:text-[11px] font-semibold tracking-[0.14em] text-purple-200/90 uppercase">
+                <span className="logoCardSubtitle text-[9px] sm:text-[11px] font-[200] tracking-[0.14em] text-white/85 uppercase">
                   INTELLIGENCE, BEYOND LIMITS
                 </span>
               </div>
@@ -104,16 +100,11 @@ export const CardBoxOrbit = ({
           </div>
 
           <div className="logoCardFace cardFaceBack">
-            <div className="logoCardBg" />
-            <div className="logoCardGlow" />
             <div className="logoCardContent">
               <div className="logoCardBadge text-[8px] sm:text-[10px] tracking-[0.12em] sm:tracking-[0.14em]">
-                HAULO ECOSYSTEM
+                HAULO
               </div>
               <div className="logoCardCenterContainer">
-                <div className="cardOrbitRing outerRing" />
-                <div className="cardOrbitRing innerRing" />
-                <div className="cardLogoGlow" />
                 <img
                   src={hauloIconLogo}
                   alt="Haulo Icon"
@@ -123,10 +114,10 @@ export const CardBoxOrbit = ({
                 />
               </div>
               <div className="logoCardBottom">
-                <span className="logoCardTitle text-base sm:text-[22px] font-black tracking-[0.08em] text-white [text-shadow:0_2px_10px_rgba(0,0,0,0.5)]">
+                <span className="logoCardTitle text-base sm:text-[22px] font-[200] tracking-[0.08em] text-white">
                   HAULO
                 </span>
-                <span className="logoCardSubtitle text-[9px] sm:text-[11px] font-semibold tracking-[0.14em] text-purple-200/90 uppercase">
+                <span className="logoCardSubtitle text-[9px] sm:text-[11px] font-[200] tracking-[0.14em] text-white/85 uppercase">
                   INTELLIGENCE, BEYOND LIMITS
                 </span>
               </div>
@@ -137,7 +128,9 @@ export const CardBoxOrbit = ({
 
       {/* Orbit CTA — responsive via CSS @media */}
       <button ref={cardOrbitCtaRef} className="cardOrbitCta">
-        Explore the collection <ArrowUpRight size={14} />
+        <span>Explore the collection</span>
+        <ArrowUpRight size={14} />
+        <ButtonBorderTrace />
       </button>
     </div>
   );

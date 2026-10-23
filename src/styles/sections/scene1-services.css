@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    SCENE 1: SERVICES HERO PANEL
    ========================================================= */
 .promptsCard {
@@ -257,6 +257,21 @@
   pointer-events: none;
   will-change: opacity, transform;
   box-shadow: none !important;
+}
+
+.promptsUiUxContainer .orbitCardBottom {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.promptsUiUxContainer .orbitCardImg {
+  top: 50% !important;
+  left: 50% !important;
+  width: 98% !important;
+  height: 85% !important;
+  transform: translate(-50%, -50%) scale(1.04, 1.32) !important;
+  object-fit: contain !important;
 }
 
 @media (max-width: 600px) {

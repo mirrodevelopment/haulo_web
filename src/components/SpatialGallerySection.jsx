@@ -20,10 +20,11 @@ import digitalTransformCardImg from "../assets/cards/digital-transformation.png"
 import crmCustomerPlatformsImg from "../assets/projects/crm-customer-platforms.jpg";
 import galleryCard9Img from "../assets/gallery/Card-9.jpg";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import spaceImg from "../assets/space-img/space-img.png";
 import { GalleryStarfieldCanvas } from "./GalleryStarfieldCanvas";
 import { ThreeEditorialWorld } from "./ThreeEditorialWorld";
+import ButtonBorderTrace from "./ButtonBorderTrace";
 
 export const SpatialGallerySection = ({
   galleryWorldRef,
@@ -69,7 +70,7 @@ export const SpatialGallerySection = ({
             FACE 1: BALANCED 3-COLUMN EDITORIAL SHOWCASE
             ============================================================== */}
         <div className="editorialFace editorialFaceFront">
-          {/* 1. Left Column: Vertical Athlete Card + WORK */}
+          {/* 1. Left Column: Vertical Athlete Card + SELECTED WORK */}
           <div
             ref={(el) => (batch1NodesRef.current[0] = el)}
             className="editorialElement editorialLevel1 editorialLeftRunnerCard"
@@ -79,10 +80,10 @@ export const SpatialGallerySection = ({
             <div className="editorialCardFrame editorialLeftFrame">
               <img src={leftVerticalRunner} alt="Athlete" className="editorialImg" />
             </div>
-            <div className="editorialAlphaflyTitle">WORK</div>
+            <div className="editorialAlphaflyTitle">SELECTED WORK</div>
           </div>
 
-          {/* 2. Bottom Skater + Giant 'R' */}
+          {/* 2. Bottom Skater + CREATE */}
           <div
             ref={(el) => (batch1NodesRef.current[1] = el)}
             className="editorialElement editorialLevel1 editorialBottomSkaterCard"
@@ -91,7 +92,7 @@ export const SpatialGallerySection = ({
             <div className="editorialCardFrame skaterFrame">
               <img src={bottomSkater} alt="Skater" className="editorialImg" />
             </div>
-            <div className="editorialGiantR">R</div>
+            <div className="editorialGiantR">CREATE</div>
           </div>
 
           {/* 3. Center Column (Top): Electric Blue Runner Card */}
@@ -106,7 +107,7 @@ export const SpatialGallerySection = ({
             </div>
           </div>
 
-          {/* 4. Center Column (Bottom): Field Report Card */}
+          {/* 4. Center Column (Bottom): Digital Project Card */}
           <div
             ref={(el) => (batch1NodesRef.current[10] = el)}
             className="editorialElement editorialLevel2 editorialBottomCenterCard"
@@ -114,19 +115,19 @@ export const SpatialGallerySection = ({
           >
             <div className="editorialCornerTick bottomCenterTick" />
             <div className="editorialCardFrame bottomCenterFrame">
-              <img src={card6Img} alt="Field Report" className="editorialImg" />
+              <img src={card6Img} alt="Digital Project" className="editorialImg" />
             </div>
             <div className="editorialScanline bottomCenterScan" />
-            <div className="editorialFieldReportTag">FIELD REPORT // 004</div>
+            <div className="editorialFieldReportTag">DIGITAL PROJECT / 004</div>
           </div>
 
-          {/* 5. Right-Center: INNOVATION + 2 Yellow Thumbnails */}
+          {/* 5. Right-Center: DIGITAL INNOVATION + 2 Yellow Thumbnails */}
           <div
             ref={(el) => (batch1NodesRef.current[5] = el)}
             className="editorialElement editorialLevel3 editorialInnovationBlock"
             style={{ top: "14vh", left: "54vw" }}
           >
-            <h2 className="editorialHeadline">INNOVATION</h2>
+            <h2 className="editorialHeadline">DIGITAL INNOVATION</h2>
             <div className="editorialYellowRow">
               <div className="editorialYellowThumb">
                 <img src={yellowThumb1} alt="Innovation 1" className="editorialImg" />
@@ -137,18 +138,18 @@ export const SpatialGallerySection = ({
             </div>
           </div>
 
-          {/* 6. Main Hero Orange Card: VISION ON WORD */}
+          {/* 6. Main Hero Orange Card: VISION INTO REALITY */}
           <div
             ref={(el) => (batch1NodesRef.current[6] = el)}
             className="editorialElement editorialLevel3 editorialHeroOrangeBlock"
             style={{ top: "28vh", left: "54vw" }}
           >
-            <h2 className="editorialVisionTitle">VISION ON WORD</h2>
+            <h2 className="editorialVisionTitle">VISION INTO REALITY</h2>
             <div className="editorialHeroCardWrapper">
               <div className="editorialCardFrame heroFrame">
-                <img src={heroOrangeRunner} alt="Vision On Air" className="editorialImg" />
+                <img src={heroOrangeRunner} alt="Vision Into Reality" className="editorialImg" />
               </div>
-              <div className="editorialVerticalCreate">CREATE / DESIGN / INSPIRE</div>
+              <div className="editorialVerticalCreate">IMAGINE / DESIGN / BUILD</div>
             </div>
             <p className="editorialIdeasText">
               IDEAS THAT MOVE PEOPLE, BRANDS, CULTURE, THROUGH CREATIVITY.
@@ -162,9 +163,8 @@ export const SpatialGallerySection = ({
             style={{ top: "74vh", left: "54vw" }}
           >
             <div className="editorialBiggerDreams">
-              BIGGER DREAMS,<br />
-              BOLDER MOVES,<br />
-              REAL IMPACT.
+              BOLD IDEAS.<br />
+              BETTER EXPERIENCES.
             </div>
             <div className="editorialRedNeonFrame">
               <div className="editorialCornerBracket bracketTL" />
@@ -183,7 +183,7 @@ export const SpatialGallerySection = ({
             <div className="editorialCardFrame farRightTopFrame">
               <img src={card10Img} alt="Cyber Protocol" className="editorialImg" />
             </div>
-            <div className="editorialMicroTag">#09 / ACCEL</div>
+            <div className="editorialMicroTag">PROJECT / 009</div>
           </div>
 
           {/* 9. Far-Right Middle: Kinetic Runner Card */}
@@ -198,13 +198,13 @@ export const SpatialGallerySection = ({
               <img src={card7Img} alt="Kinetic Runner" className="editorialImg" />
               <div className="editorialCornerBracket bracketBR" />
             </div>
-            <div className="editorialVerticalKinetic">KINETIC / VELOCITY</div>
-            <div className="editorialHighVoltageTitle">HIGH VOLTAGE</div>
+            <div className="editorialVerticalKinetic">MOTION / INTERACTION</div>
+            <div className="editorialHighVoltageTitle">CREATIVE ENERGY</div>
           </div>
         </div>
 
         {/* ==============================================================
-            FACE 2: SECOND IMAGE SECTION ("Build beyond" Purple Showcase)
+            FACE 2: SECOND IMAGE SECTION ("BUILD BEYOND." Showcase)
             ============================================================== */}
         <div className="editorialFace editorialFaceBack">
           <div className="finalScreenCard">
@@ -212,22 +212,32 @@ export const SpatialGallerySection = ({
             <div className="finalCardAmbient" />
 
             <div className="finalLeftContent">
-              <h2 className="finalTitle text-[clamp(32px,5.2vw,84px)] font-medium leading-[0.95] tracking-[-0.04em] text-white m-0">
-                Build beyond
-              </h2>
+              <span className="finalEyebrow">HAULO / BEYOND THE ORDINARY</span>
 
-              <p className="finalBody text-[13.5px] sm:text-[15.5px] text-white/85 leading-relaxed mt-4 sm:mt-5 max-w-[260px] sm:max-w-xs md:max-w-[440px] m-0">
-                Brand identity, digital design language and visual systems
+              <h2 className="finalTitle">BUILD BEYOND.</h2>
+
+              <p className="finalTagline">Think bigger. Create what's next.</p>
+
+              <p className="finalBody">
+                From brand identity and digital experiences to intelligent, scalable systems, we bring ambitious ideas to life through design and technology.
               </p>
 
               <button
                 onClick={() => {
                   window.location.href = "mailto:hello@haulo.com?subject=Project%20Inquiry%20via%20HAULO";
                 }}
-                className="finalCtaBtn inline-flex items-center gap-2 sm:gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-white text-[#06020e] text-[12.5px] sm:text-sm font-bold mt-6 sm:mt-9 w-max cursor-pointer border-none shadow-[0_4px_20px_rgba(0,0,0,0.35)] hover:-translate-y-0.5 transition-transform duration-200"
+                className="finalCtaBtn"
               >
-                Get started <ArrowRight size={14} />
+                <span>Start a Project</span>
+                <span className="finalCtaIconBadge">
+                  <ArrowUpRight size={14} strokeWidth={2.5} />
+                </span>
+                <ButtonBorderTrace />
               </button>
+
+              <div className="finalPillars">
+                STRATEGY · DESIGN · TECHNOLOGY
+              </div>
             </div>
 
             {/* Right side: Futuristic sci-fi space station */}

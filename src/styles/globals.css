@@ -1,4 +1,4 @@
-@import './variables.css';
+﻿@import './variables.css';
 
 @tailwind base;
 @tailwind components;
@@ -138,4 +138,237 @@ section[data-theme="dark"] {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+
+/* =========================================================
+   MINIMALIST HOLLOW RING CURSOR (Rolls-Royce Style)
+   ========================================================= */
+@media (hover: hover) and (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+
+.customCursorFollower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999999;
+  will-change: transform;
+  opacity: 0;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  mix-blend-mode: difference;
+}
+
+.customCursorFollower.visible {
+  opacity: 1;
+}
+
+/* Elegant hollow circular ring */
+.customCursorRing {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1.25px solid #ffffff;
+  background-color: transparent;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  transition: width 0.26s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.26s cubic-bezier(0.16, 1, 0.3, 1),
+              border-width 0.26s ease,
+              transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Gracefully expands over clickable links/buttons/cards */
+.customCursorRing.hovered {
+  width: 40px;
+  height: 40px;
+  border-width: 1.5px;
+}
+
+/* Tactile contraction on click */
+.customCursorRing.clicked {
+  transform: translate(-50%, -50%) scale(0.82);
+}
+
+@media (hover: none) or (pointer: coarse) {
+  .customCursorFollower {
+    display: none !important;
+  }
+}
+
+/* =========================================================
+   ALL BUTTONS: LUXURY TRAVELLING BORDER LINE (Rolls-Royce style)
+   ========================================================= */
+
+/* Base button setup for flow buttons */
+.promptsPrimaryBtn,
+.promptsSecondaryBtn,
+.finalCtaBtn {
+  position: relative;
+  overflow: visible !important;
+  isolation: isolate;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease !important;
+}
+
+.promptsPrimaryBtn:hover,
+.promptsSecondaryBtn:hover,
+.finalCtaBtn:hover {
+  transform: translateY(-2px);
+}
+
+/* Orbit CTA button: preserve its original absolute positioning & horizontal centering */
+.cardOrbitCta {
+  overflow: visible !important;
+  isolation: isolate;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease !important;
+}
+
+.cardOrbitCta:hover {
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.promptsPrimaryBtn > *:not(.buttonBorderTrace),
+.promptsSecondaryBtn > *:not(.buttonBorderTrace),
+.cardOrbitCta > *:not(.buttonBorderTrace),
+.finalCtaBtn > *:not(.buttonBorderTrace) {
+  position: relative;
+  z-index: 2;
+}
+
+/* Traveling SVG Border Trace */
+.buttonBorderTrace {
+  position: absolute;
+  inset: -1.5px;
+  width: calc(100% + 3px);
+  height: calc(100% + 3px);
+  pointer-events: none;
+  fill: none;
+  overflow: visible;
+  border-radius: inherit;
+  z-index: 3;
+}
+
+.buttonBorderTrace rect {
+  x: 0.75px;
+  y: 0.75px;
+  width: calc(100% - 1.5px);
+  height: calc(100% - 1.5px);
+  rx: 9999px;
+  ry: 9999px;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-dasharray: 42 58;
+  stroke-dashoffset: 0;
+  pathLength: 100;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+/* Hover Animation: single line travels around the border */
+.promptsPrimaryBtn:hover .buttonBorderTrace rect,
+.promptsSecondaryBtn:hover .buttonBorderTrace rect,
+.cardOrbitCta:hover .buttonBorderTrace rect,
+.finalCtaBtn:hover .buttonBorderTrace rect {
+  opacity: 1;
+  animation: buttonTraceTravel 2.4s linear infinite;
+}
+
+@keyframes buttonTraceTravel {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -100;
+  }
+}
+
+/* 1. Primary Dark Button (.promptsPrimaryBtn) */
+.promptsPrimaryBtn {
+  background: #0a0a0c !important;
+  color: #ffffff !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.16) !important;
+}
+
+.promptsPrimaryBtn .buttonBorderTrace rect {
+  stroke: #ffffff;
+}
+
+.promptsPrimaryBtn:hover {
+  background: #000000 !important;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.32) !important;
+}
+
+.promptsPrimaryBtn svg:not(.buttonBorderTrace) {
+  transition: transform 0.25s ease;
+}
+
+.promptsPrimaryBtn:hover svg:not(.buttonBorderTrace) {
+  transform: translateX(3px);
+}
+
+/* 2. Secondary Light Button (.promptsSecondaryBtn) */
+.promptsSecondaryBtn {
+  background: rgba(0, 0, 0, 0.05) !important;
+  color: #000000 !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.12) !important;
+}
+
+.promptsSecondaryBtn .buttonBorderTrace rect {
+  stroke: #000000;
+}
+
+.promptsSecondaryBtn:hover {
+  background: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* 3. Carousel Orbit CTA Button (.cardOrbitCta) */
+.cardOrbitCta {
+  background: #020203 !important;
+  color: #ffffff !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+.cardOrbitCta .buttonBorderTrace rect {
+  stroke: #ffffff;
+}
+
+.cardOrbitCta:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45) !important;
+}
+
+.cardOrbitCta svg:not(.buttonBorderTrace) {
+  transition: transform 0.25s ease;
+}
+
+.cardOrbitCta:hover svg:not(.buttonBorderTrace) {
+  transform: translate(2px, -2px);
+}
+
+/* 4. Final CTA Button (.finalCtaBtn) */
+.finalCtaBtn {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.14) !important;
+}
+
+.finalCtaBtn .buttonBorderTrace rect {
+  stroke: #000000;
+}
+
+.finalCtaBtn:hover {
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18) !important;
+}
+
+.finalCtaBtn .finalCtaIconBadge {
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.finalCtaBtn:hover .finalCtaIconBadge {
+  transform: translate(2px, -2px);
 }

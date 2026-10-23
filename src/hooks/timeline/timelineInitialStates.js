@@ -47,7 +47,8 @@ export const setupInitialStates = ({
   promptsUiUxOffset,
   renderOrbit,
   getCachedExpandCard,
-  getMarqueeOffset
+  getMarqueeOffset,
+  getProjectEnterX
 }) => {
   // Pre-decode all images inside stage so GPU textures are warm before scrolling
   if (stageRef?.current) {
@@ -78,7 +79,7 @@ export const setupInitialStates = ({
   if (bgLightRef?.current) gsap.set(bgLightRef.current, { autoAlpha: 1 });
 
   // Scene 0: HAULO SERVICE Intro
-  if (portalWorldRef?.current) gsap.set(portalWorldRef.current, { autoAlpha: 1 });
+  if (portalWorldRef?.current) gsap.set(portalWorldRef.current, { autoAlpha: 1, display: "flex" });
   if (portalGlowRef?.current) gsap.set(portalGlowRef.current, { scale: 1, scaleX: 1, scaleY: 1, opacity: 0.9 });
   if (portalTextRef?.current) {
     gsap.set(portalTextRef.current, {
@@ -123,7 +124,7 @@ export const setupInitialStates = ({
   if (heroTextTargets.length) {
     gsap.set(heroTextTargets, {
       opacity: 0,
-      y: 40
+      y: 65
     });
   }
   if (promptsUiUxCardRef?.current) {
@@ -133,16 +134,26 @@ export const setupInitialStates = ({
       x: promptsUiUxOffset,
       y: 80,
       rotationZ: 0,
-      scale: perspScale,
+      scale: 1,
       opacity: 0,
       autoAlpha: 0
     });
+    const heroCardBottomEl = promptsUiUxCardRef.current.querySelector('.orbitCardBottom');
+    if (heroCardBottomEl) {
+      gsap.set(heroCardBottomEl, { opacity: 0, autoAlpha: 0, display: "none" });
+    }
   }
 
   // Scene 2-5: Marquee & 3D Box Cards
   if (cardTransitionWorldRef?.current) gsap.set(cardTransitionWorldRef.current, { opacity: 0, visibility: "visible" });
   if (marqueeWorldRef?.current) gsap.set(marqueeWorldRef.current, { autoAlpha: 0 });
-  if (marqueeRef?.current) gsap.set(marqueeRef.current, { x: () => (getMarqueeOffset ? getMarqueeOffset(0) : 0), xPercent: 0 });
+  if (marqueeRef?.current) {
+    const getInitialMarqueeX = () => {
+      const base0 = getMarqueeOffset ? getMarqueeOffset(0) : 0;
+      return base0 + Math.round(window.innerWidth * 0.55);
+    };
+    gsap.set(marqueeRef.current, { x: getInitialMarqueeX, xPercent: 0 });
+  }
   if (cardOrbitCtaRef?.current) gsap.set(cardOrbitCtaRef.current, { autoAlpha: 0 });
   if (transitionRigRef?.current) {
     gsap.set(transitionRigRef.current, {
@@ -160,21 +171,23 @@ export const setupInitialStates = ({
     ? Array.from(cardNeuralPosRef.current.querySelectorAll(".logoCardBadge, .logoCardBottom, .logoCardBg"))
     : [];
   if (neuralStarRef?.current) {
-    gsap.set(neuralStarRef.current, { scale: 1, x: 0, y: 0, rotationZ: 0 });
+    gsap.set(neuralStarRef.current, { scale: 1, x: 0, y: 0, rotationZ: 0, transformOrigin: "50% 50%" });
   }
   if (logoCardDecorEls.length) {
     gsap.set(logoCardDecorEls, { opacity: 1, y: 0 });
   }
   renderOrbit();
 
-  // Scene 6: Beyond World
+  // Scene 6: Beyond World (Iris circle originates from mascot left eye)
   if (beyondWorldRef?.current) {
     gsap.set(beyondWorldRef.current, { autoAlpha: 0, scale: 1, yPercent: 0, clipPath: "circle(0% at 50% 50%)" });
     const eyeRingInit = beyondWorldRef.current.querySelector(".beyondEyeIrisRing");
     if (eyeRingInit) gsap.set(eyeRingInit, { scale: 0.15, opacity: 0 });
   }
-  if (beyondTitleRef?.current) gsap.set(beyondTitleRef.current, { xPercent: 0, x: 75, yPercent: 28, scale: 0.85, autoAlpha: 0 });
-  if (limitsTitleRef?.current) gsap.set(limitsTitleRef.current, { xPercent: 0, x: -75, yPercent: -28, scale: 0.85, autoAlpha: 0 });
+  if (beyondTitleRef?.current) gsap.set(beyondTitleRef.current, { x: 0, y: 70, scale: 1, autoAlpha: 0 });
+  if (limitsTitleRef?.current) gsap.set(limitsTitleRef.current, { x: 0, y: 70, scale: 1, autoAlpha: 0 });
+  const dividerInit = beyondWorldRef?.current?.querySelector(".beyondDivider");
+  if (dividerInit) gsap.set(dividerInit, { y: 50, scaleX: 0.85, autoAlpha: 0 });
   if (beyondStarRef?.current) gsap.set(beyondStarRef.current, { scale: 0.55, rotationZ: 0, yPercent: 0, autoAlpha: 0 });
 
   // Scene 7: Projects Horizontal Track
@@ -196,7 +209,8 @@ export const setupInitialStates = ({
     });
   }
   if (projectTrackRef?.current) {
-    gsap.set(projectTrackRef.current, { x: 0 });
+    const enterX = getProjectEnterX ? getProjectEnterX() : Math.round(window.innerWidth * 0.65);
+    gsap.set(projectTrackRef.current, { x: enterX });
   }
   if (projectCards.length) {
     gsap.set(projectCards, { y: 0, scale: 1, rotationZ: 0, rotationX: 0, rotationY: 0 });
@@ -242,7 +256,30 @@ export const setupInitialStates = ({
 
   if (batch2NodesRef?.current) setBatch2EntranceState(batch2NodesRef.current);
   if (batch1NodesRef?.current) setBatch1EntranceState(batch1NodesRef.current);
-  if (galleryWorldRef?.current) gsap.set(galleryWorldRef.current, { autoAlpha: 0, xPercent: 100, yPercent: -100, filter: "none" });
+  if (galleryWorldRef?.current) {
+    gsap.set(galleryWorldRef.current, {
+      autoAlpha: 0,
+      display: "none",
+      x: 0,
+      y: 0,
+      xPercent: 0,
+      yPercent: 0,
+      scale: 1,
+      filter: "none"
+    });
+    const stage = galleryWorldRef.current.querySelector(".editorialStage");
+    if (stage) {
+      gsap.set(stage, {
+        xPercent: 40,
+        yPercent: -28,
+        rotationY: -5,
+        rotationX: 3.5,
+        z: -80,
+        scale: 0.92,
+        autoAlpha: 0
+      });
+    }
+  }
 
   // Scene 9: Final Panel
   if (finalWorldRef?.current) gsap.set(finalWorldRef.current, { autoAlpha: 0 });
