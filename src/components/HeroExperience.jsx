@@ -32,17 +32,17 @@ function catmullRom(p0, p1, p2, p3, u) {
 // =============================================================================
 const WORD_WAYPOINTS = [
   { t: -0.08, xPct: 114.0, yPct: 112.0, z: -100, scale: 0.88, rotY: -35.0, rotZ: 0.0 },
-  { t:  0.00, xPct: 106.0, yPct: 102.0, z:  -80, scale: 0.90, rotY: -32.0, rotZ: 0.0 },
-  { t:  0.18, xPct:  88.0, yPct:  76.0, z:  -45, scale: 0.94, rotY: -24.0, rotZ: 0.0 },
-  { t:  0.34, xPct:  69.0, yPct:  50.0, z:  -18, scale: 0.97, rotY: -12.0, rotZ: 0.0 },
-  { t:  0.46, xPct:  54.0, yPct:  32.5, z:    5, scale: 0.99, rotY:  -3.0, rotZ: 0.0 },
-  { t:  0.50, xPct:  50.0, yPct:  29.5, z:   10, scale: 1.00, rotY:   0.0, rotZ: 0.0 },
-  { t:  0.54, xPct:  46.0, yPct:  29.6, z:    5, scale: 0.99, rotY:   5.0, rotZ: 0.0 },
-  { t:  0.66, xPct:  34.0, yPct:  30.0, z:  -20, scale: 0.96, rotY:  24.0, rotZ: 0.0 },
-  { t:  0.80, xPct:  18.0, yPct:  30.5, z:  -55, scale: 0.91, rotY:  52.0, rotZ: 0.0 },
-  { t:  0.94, xPct:  -8.0, yPct:  30.8, z:  -95, scale: 0.82, rotY:  76.0, rotZ: 0.0 },
-  { t:  1.00, xPct: -32.0, yPct:  31.0, z: -120, scale: 0.74, rotY:  84.0, rotZ: 0.0 },
-  { t:  1.08, xPct: -52.0, yPct:  31.2, z: -140, scale: 0.66, rotY:  88.0, rotZ: 0.0 }
+  { t: 0.00, xPct: 106.0, yPct: 102.0, z: -80, scale: 0.90, rotY: -32.0, rotZ: 0.0 },
+  { t: 0.18, xPct: 88.0, yPct: 76.0, z: -45, scale: 0.94, rotY: -24.0, rotZ: 0.0 },
+  { t: 0.34, xPct: 69.0, yPct: 50.0, z: -18, scale: 0.97, rotY: -12.0, rotZ: 0.0 },
+  { t: 0.46, xPct: 54.0, yPct: 32.5, z: 5, scale: 0.99, rotY: -3.0, rotZ: 0.0 },
+  { t: 0.50, xPct: 50.0, yPct: 29.5, z: 10, scale: 1.00, rotY: 0.0, rotZ: 0.0 },
+  { t: 0.54, xPct: 46.0, yPct: 29.6, z: 5, scale: 0.99, rotY: 5.0, rotZ: 0.0 },
+  { t: 0.66, xPct: 34.0, yPct: 30.0, z: -20, scale: 0.96, rotY: 24.0, rotZ: 0.0 },
+  { t: 0.80, xPct: 18.0, yPct: 30.5, z: -55, scale: 0.91, rotY: 52.0, rotZ: 0.0 },
+  { t: 0.94, xPct: -8.0, yPct: 30.8, z: -95, scale: 0.82, rotY: 76.0, rotZ: 0.0 },
+  { t: 1.00, xPct: -32.0, yPct: 31.0, z: -120, scale: 0.74, rotY: 84.0, rotZ: 0.0 },
+  { t: 1.08, xPct: -52.0, yPct: 31.2, z: -140, scale: 0.66, rotY: 88.0, rotZ: 0.0 }
 ];
 
 // Technical callout annotations synchronized with the 5 conveyor words
@@ -59,7 +59,7 @@ const WORD_CALLOUTS = [
     trPath: 'M4 36 L34 10 L100 10',
     trStartDot: { cx: 4, cy: 36 },
     trEndDot: { cx: 100, cy: 10 },
-    trPos: { top: 'clamp(95px, 15vh, 145px)', right: 'clamp(38px, 8vw, 135px)' },
+    trPos: { top: 'clamp(62px, 9.5vh, 92px)', right: 'clamp(38px, 8vw, 135px)' },
     blPath: 'M4 106 L34 106 L96 18 L96 4',
     blStartDot: { cx: 4, cy: 106 },
     blEndDot: { cx: 96, cy: 4 },
@@ -81,7 +81,7 @@ const WORD_CALLOUTS = [
     trPath: 'M4 42 L36 12 L96 12',
     trStartDot: { cx: 4, cy: 42 },
     trEndDot: { cx: 96, cy: 12 },
-    trPos: { top: 'clamp(105px, 16.5vh, 160px)', right: 'clamp(48px, 10vw, 160px)' },
+    trPos: { top: 'clamp(48px, 7vh, 80px)', right: 'clamp(48px, 10vw, 160px)' },
     blPath: 'M4 96 L28 96 L88 12',
     blStartDot: { cx: 4, cy: 96 },
     blEndDot: { cx: 88, cy: 12 },
@@ -103,7 +103,7 @@ const WORD_CALLOUTS = [
     trPath: 'M4 38 L32 10 L96 10',
     trStartDot: { cx: 4, cy: 38 },
     trEndDot: { cx: 96, cy: 10 },
-    trPos: { top: 'clamp(90px, 14.5vh, 145px)', right: 'clamp(42px, 8.5vw, 140px)' },
+    trPos: { top: 'clamp(44px, 6.5vh, 75px)', right: 'clamp(42px, 8.5vw, 140px)' },
     blPath: 'M4 92 L32 92 L92 8',
     blStartDot: { cx: 4, cy: 92 },
     blEndDot: { cx: 92, cy: 8 },
@@ -125,7 +125,7 @@ const WORD_CALLOUTS = [
     trPath: 'M4 36 L34 10 L96 10',
     trStartDot: { cx: 4, cy: 36 },
     trEndDot: { cx: 96, cy: 10 },
-    trPos: { top: 'clamp(85px, 14vh, 140px)', right: 'clamp(42px, 8.5vw, 140px)' },
+    trPos: { top: 'clamp(42px, 6vh, 70px)', right: 'clamp(42px, 8.5vw, 140px)' },
     blPath: 'M4 88 L34 88 L90 12',
     blStartDot: { cx: 4, cy: 88 },
     blEndDot: { cx: 90, cy: 12 },
@@ -147,7 +147,7 @@ const WORD_CALLOUTS = [
     trPath: 'M4 36 L32 10 L96 10',
     trStartDot: { cx: 4, cy: 36 },
     trEndDot: { cx: 96, cy: 10 },
-    trPos: { top: 'clamp(85px, 14vh, 140px)', right: 'clamp(42px, 8.5vw, 140px)' },
+    trPos: { top: 'clamp(42px, 6vh, 70px)', right: 'clamp(42px, 8.5vw, 140px)' },
     blPath: 'M4 86 L32 86 L86 14',
     blStartDot: { cx: 4, cy: 86 },
     blEndDot: { cx: 86, cy: 14 },
@@ -275,11 +275,11 @@ function evaluateTrack(t, width, height) {
 const SPLINE_NODES = [
   { t: 0.00, xVw: 0.0, yVh: -85.0, zPx: -55, scale: 0.90, rotX: 0.0, rotY: 0.0, rotZ: 0.0, cylRotY: 0.0 },
   { t: 0.15, xVw: 0.0, yVh: -55.0, zPx: -35, scale: 0.94, rotX: 0.0, rotY: 0.0, rotZ: 0.0, cylRotY: 0.0 },
-  { t: 0.30, xVw: 0.0, yVh: -26.0, zPx:  -5, scale: 0.98, rotX: 0.0, rotY: 0.0, rotZ: 0.0, cylRotY: 0.0 },
-  { t: 0.50, xVw: 0.0, yVh:   0.0, zPx:  15, scale: 1.00, rotX: 0.0, rotY: 0.0, rotZ: 0.0, cylRotY: 0.0 },
-  { t: 0.70, xVw: 0.0, yVh:  26.0, zPx:  -5, scale: 0.98, rotX: 0.0, rotY: 0.0, rotZ: 0.0, cylRotY: 0.0 },
-  { t: 0.85, xVw: 0.0, yVh:  55.0, zPx: -35, scale: 0.94, rotX: 0.0, rotY: 0.0, rotZ: 0.0, cylRotY: 0.0 },
-  { t: 1.00, xVw: 0.0, yVh:  85.0, zPx: -55, scale: 0.90, rotX: 0.0, rotY: 0.0, rotZ: 0.0, cylRotY: 0.0 }
+  { t: 0.30, xVw: 0.0, yVh: -26.0, zPx: -5, scale: 0.98, rotX: 0.0, rotY: 0.0, rotZ: 0.0, cylRotY: 0.0 },
+  { t: 0.50, xVw: 0.0, yVh: 0.0, zPx: 15, scale: 1.00, rotX: 0.0, rotY: 0.0, rotZ: 0.0, cylRotY: 0.0 },
+  { t: 0.70, xVw: 0.0, yVh: 26.0, zPx: -5, scale: 0.98, rotX: 0.0, rotY: 0.0, rotZ: 0.0, cylRotY: 0.0 },
+  { t: 0.85, xVw: 0.0, yVh: 55.0, zPx: -35, scale: 0.94, rotX: 0.0, rotY: 0.0, rotZ: 0.0, cylRotY: 0.0 },
+  { t: 1.00, xVw: 0.0, yVh: 85.0, zPx: -55, scale: 0.90, rotX: 0.0, rotY: 0.0, rotZ: 0.0, cylRotY: 0.0 }
 ];
 
 function paceRingProgress(t) {
@@ -433,10 +433,7 @@ export const HeroExperience = forwardRef(function HeroExperience(
 
   // Grounded frog preview refs for each word
   const hauloFrogRef = useRef(null);
-  const designFrogRef = useRef(null);
-  const thinkFrogRef = useRef(null);
-  const buildFrogRef = useRef(null);
-  const evolveFrogRef = useRef(null);
+  const frogFacingRef = useRef(null);
 
 
 
@@ -602,7 +599,7 @@ export const HeroExperience = forwardRef(function HeroExperience(
       window.addEventListener('resize', refreshDims);
       const dimTimer = setTimeout(refreshDims, 150);
       if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(refreshDims).catch(() => {});
+        document.fonts.ready.then(refreshDims).catch(() => { });
       }
 
       // CACHED GSAP QUICKSETTERS FOR 60FPS PERFORMANCE
@@ -618,39 +615,23 @@ export const HeroExperience = forwardRef(function HeroExperience(
         visibility: gsap.quickSetter(el, 'visibility')
       }));
 
-      // Grounded frog preview setters
-      const frogElements = [
-        hauloFrogRef.current,
-        designFrogRef.current,
-        thinkFrogRef.current,
-        buildFrogRef.current,
-        evolveFrogRef.current
-      ];
-
-      const frogSetters = frogElements.map((el) =>
-        el
-          ? {
-              x: gsap.quickSetter(el, 'x', 'px'),
-              y: gsap.quickSetter(el, 'y', 'px'),
-              scaleX: gsap.quickSetter(el, 'scaleX'),
-              scaleY: gsap.quickSetter(el, 'scaleY'),
-              rotation: gsap.quickSetter(el, 'rotation', 'deg'),
-              opacity: gsap.quickSetter(el, 'opacity')
-            }
-          : null
-      );
-
-      const frogShadowSetters = frogElements.map((el) => {
-        const shadow = el ? el.querySelector('.frog-floor-shadow') : null;
-        return shadow
-          ? {
-              y: gsap.quickSetter(shadow, 'y', 'px'),
-              scaleX: gsap.quickSetter(shadow, 'scaleX'),
-              scaleY: gsap.quickSetter(shadow, 'scaleY'),
-              opacity: gsap.quickSetter(shadow, 'opacity')
-            }
-          : null;
-      });
+      // One live frog, smoothly repositioned between the five headline stages.
+      const frogEl = hauloFrogRef.current;
+      const frogSet = frogEl ? {
+        x: gsap.quickSetter(frogEl, 'x', 'px'),
+        y: gsap.quickSetter(frogEl, 'y', 'px'),
+        scaleX: gsap.quickSetter(frogEl, 'scaleX'),
+        scaleY: gsap.quickSetter(frogEl, 'scaleY'),
+        rotation: gsap.quickSetter(frogEl, 'rotation', 'deg'),
+        opacity: gsap.quickSetter(frogEl, 'opacity')
+      } : null;
+      const shadowEl = frogEl?.querySelector('.frog-floor-shadow');
+      const frogShadowSet = shadowEl ? {
+        y: gsap.quickSetter(shadowEl, 'y', 'px'),
+        scaleX: gsap.quickSetter(shadowEl, 'scaleX'),
+        scaleY: gsap.quickSetter(shadowEl, 'scaleY'),
+        opacity: gsap.quickSetter(shadowEl, 'opacity')
+      } : null;
 
       const worldSetters = {
         x: gsap.quickSetter(worldEl, 'x', 'px'),
@@ -803,7 +784,8 @@ export const HeroExperience = forwardRef(function HeroExperience(
 
       // 3) Continuous 3D Space Spline Conveyor (NextSection.jsx: comes from top side into clear stage)
       const SPACE_START = 0.53; // Space activates after Editorial Hero exits cleanly
-      const SPACE_FOCUS_START = 0.60; // Ring 0 lands in center focus
+      const SPACE_FOCUS_START = 0.60; // Ring 0 lands in focus
+      const CENTER_RINGS_START = 0.695; // Ring 1 arrives in center alignment
       const SPACE_END = 0.98;
       // Purposeful, generous gaps between space projects:
       // Ring 0 (0-space-portfolio intro): 0.00
@@ -897,7 +879,25 @@ export const HeroExperience = forwardRef(function HeroExperience(
         }
       };
 
+      let lastScrollProgress = 0;
+      let scrollDirection = 1;
+      let currentDirTurn = 0; // 0 = forward facing, 1 = backward facing
+
       function updateConveyor(globalProgress) {
+        const deltaProgress = globalProgress - lastScrollProgress;
+        if (globalProgress <= 0.005) {
+          scrollDirection = 1;
+        } else if (deltaProgress > 0.0001) {
+          scrollDirection = 1;
+        } else if (deltaProgress < -0.0001) {
+          scrollDirection = -1;
+        }
+        lastScrollProgress = globalProgress;
+
+        // Smoothly rotate frog when reversing scroll direction (forward <-> backward)
+        const targetDirTurn = scrollDirection === -1 ? 1 : 0;
+        currentDirTurn += (targetDirTurn - currentDirTurn) * 0.18;
+
         if (progressMarkerRef.current?.updateProgress) {
           progressMarkerRef.current.updateProgress(globalProgress);
         } else if (progressSetter) {
@@ -914,7 +914,6 @@ export const HeroExperience = forwardRef(function HeroExperience(
         let activeHeroLocalT = 0.50;
         let minHeroDist = 999;
         let lastWordDownEase = 0;
-        const frogProxByIndex = {};
 
         wordElements.forEach((el, index) => {
           let localProgress = globalProgress * (TOTAL_HERO_TRAVEL / TYPO_END) - WORD_OFFSETS[index] + 0.50;
@@ -932,7 +931,6 @@ export const HeroExperience = forwardRef(function HeroExperience(
           if (localProgress < 0.00 || localProgress > 1.00 || globalProgress > CONVEYOR_SCENE_END) {
             wordSetters[index].opacity(0);
             wordSetters[index].visibility('hidden');
-            frogProxByIndex[index] = 0;
             return;
           }
 
@@ -942,11 +940,11 @@ export const HeroExperience = forwardRef(function HeroExperience(
           const pacedT = paceProgress(localProgress);
           const tf = evaluateTrack(pacedT, cachedDims[index].width, cachedDims[index].height);
 
-          // Word 0 (HAULO) sits at natural height; words 1-4 centered gracefully behind the frog
+          // Word 0 (HAULO) sits slightly above for breathing room; words 1-4 centered gracefully behind the frog
           if (index === 0) {
-            tf.y += window.innerHeight * (geo.isMobile ? 0.04 : 0.038);
+            tf.y -= window.innerHeight * (geo.isMobile ? 0.012 : 0.015);
           } else {
-            tf.y += window.innerHeight * (geo.isMobile ? 0.06 : 0.16);
+            tf.y += window.innerHeight * (geo.isMobile ? 0.06 : 0.115);
           }
 
           // Last word (AND EVOLVE): moves to DOWN SIDE with size decreasing equal to scroll
@@ -996,119 +994,206 @@ export const HeroExperience = forwardRef(function HeroExperience(
             wordSetters[index].visibility(wordAlpha > 0.005 ? 'visible' : 'hidden');
           }
 
-          // Crossfade the grounded frog preview by proximity of its word to viewport center
-          const frogSpacing = WORD_SPACING;
-          const frogP = Math.max(0, 1 - dist / frogSpacing);
-          const frogSmooth = frogP * frogP * (3 - 2 * frogP);
-          let lastWordFrogFade = 1;
-          if (index === 4 && lastWordDownEase > 0) {
-            // Keep frog fully visible throughout upward jump into NextSection.jsx, fade out at top boundary
-            const frogTopFade = Math.max(0, (lastWordDownEase - 0.88) / 0.12);
-            lastWordFrogFade = Math.max(0, 1 - frogTopFade * frogTopFade);
-          }
-          frogProxByIndex[index] = frogSmooth * lastWordFrogFade;
         });
 
         // ---------------------------------------------------------------------
-        // FROG JUMP KINEMATICS & BALLISTIC TRAJECTORY (1.0s JUMP BETWEEN WORDS)
-        // Whenever transitioning to next word, the mechanical frog vaults into
-        // the air, morphs mid-flight, and lands as the next word arrives in center.
+        // FROG PHYSICAL JUMP KINEMATICS
+        // The HTML canvas container remains grounded on the floor baseline (NO 2D box hopping).
+        // The 3D frog model physically launches, arcs, and bounces natively in 3D WebGL space.
         // ---------------------------------------------------------------------
-        let frogJumpY = 0;
-        let frogScaleX = 1.0;
-        let frogScaleY = 1.0;
-        let frogRot = 0;
+        let jumpFrac = 0;
 
         if (globalProgress <= TYPO_END) {
           const pRel = globalProgress / WORD_STEP;
           const baseStep = Math.floor(pRel);
           if (baseStep < 4) {
-            const frac = Math.max(0, Math.min(1, pRel - baseStep));
-            const jumpSin = Math.sin(Math.PI * frac);
-
-            // Ballistic vertical jump arc (vaults up into the air)
-            const jumpHeight = Math.min(230, window.innerHeight * 0.26);
-            frogJumpY = -jumpHeight * Math.pow(jumpSin, 0.85);
-
-            // Dynamic rotation: pitch up during launch, pitch down into landing
-            frogRot = -7 * Math.sin(Math.PI * (frac - 0.22) * 1.4) * jumpSin;
-
-            // Character squash & stretch
-            if (frac < 0.14) {
-              // Crouch anticipation
-              const crouchP = Math.sin((frac / 0.14) * Math.PI);
-              frogScaleX = 1.0 + 0.07 * crouchP;
-              frogScaleY = 1.0 - 0.09 * crouchP;
-            } else if (frac > 0.86) {
-              // Landing impact squash
-              const landP = Math.sin(((frac - 0.86) / 0.14) * Math.PI);
-              frogScaleX = 1.0 + 0.08 * landP;
-              frogScaleY = 1.0 - 0.10 * landP;
+            const stepFrac = pRel - baseStep;
+            // Synchronized with background text transition:
+            // Immediate takeoff as outgoing word moves, flight apex midway, landing as incoming word centers
+            if (stepFrac <= 0.015 || stepFrac >= 0.985) {
+              jumpFrac = 0;
             } else {
-              // In-flight aerodynamic stretch
-              frogScaleX = 1.0 - 0.05 * jumpSin;
-              frogScaleY = 1.0 + 0.09 * jumpSin;
+              const leapT = (stepFrac - 0.015) / (0.985 - 0.015);
+              jumpFrac = scrollDirection === -1 ? (1 - leapT) : leapT;
             }
+          } else {
+            jumpFrac = 0;
           }
         }
 
-        // Apply physical jump transforms & crossfade to every grounded frog preview
-        frogSetters.forEach((frogSet, index) => {
-          if (!frogSet) return;
-          const alpha = frogProxByIndex[index] || 0;
-          let currentFrogY = frogJumpY;
-          let currentScaleX = frogScaleX;
-          let currentScaleY = frogScaleY;
-          let currentRot = frogRot;
+        // Calibrated landing layouts for the 5 typography sections (slightly reduced size)
+        const frogLayouts = [
+          { x: 0, y: 0, sx: 0.89, sy: 0.89, yaw: -0.70 }, // 0: HAULO
+          { x: 16, y: 27, sx: 0.87, sy: 0.85, yaw: -0.65 }, // 1: DESIGN TO
+          { x: 38, y: 24, sx: 0.82, sy: 0.84, yaw: -0.60 }, // 2: THINK
+          { x: 10, y: 31, sx: 0.91, sy: 0.87, yaw: -0.66 }, // 3: BUILD
+          { x: 18, y: 26, sx: 0.96, sy: 0.87, yaw: -0.62 }, // 4: AND EVOLVE
+        ];
+        const pRel = Math.max(0, Math.min(4, globalProgress / WORD_STEP));
+        const layoutIndex = Math.min(3, Math.floor(pRel));
+        const layoutT = pRel >= 4 ? 1 : pRel - layoutIndex;
+        const smoothLayoutT = layoutT * layoutT * (3 - 2 * layoutT);
+        const layoutA = frogLayouts[layoutIndex];
+        const layoutB = frogLayouts[Math.min(4, layoutIndex + 1)];
+        const mix = (key) => layoutA[key] + (layoutB[key] - layoutA[key]) * smoothLayoutT;
+        const frogPlacementDown = -Math.round(window.innerHeight * (geo.isMobile ? 0.065 : 0.076));
+        const frogPlacementRight = Math.round(window.innerWidth * (geo.isMobile ? 0.015 : 0.022));
+        let currentFrogX = mix('x') + frogPlacementRight;
+        let currentFrogY = mix('y') + frogPlacementDown;
+        let currentScaleX = mix('sx');
+        let currentScaleY = mix('sy');
+        // Directional Facing: forward yaw vs backward yaw (turns ~180° to face leftwards destination when moving backward)
+        const forwardYaw = mix('yaw');
+        const backwardYaw = -(Math.PI - Math.abs(forwardYaw));
+        // Main 1st area (Word 0: HAULO) is always right-side facing wherever entered
+        const area1DirBlend = Math.max(0, Math.min(1, pRel));
+        const effectiveDirTurn = currentDirTurn * area1DirBlend;
+        let currentYaw = forwardYaw + (backwardYaw - forwardYaw) * effectiveDirTurn;
+        let currentPRelValue = pRel;
+        let frogAlpha = 1;
+        let shadowOffsetY = 0;
 
-          // For the final frog transitioning to NextSection.jsx:
-          if (index === 4 && lastWordDownEase > 0) {
-            // Frog ONLY jumps to top (vaults upward through top of screen into NextSection.jsx)
-            currentFrogY = -lastWordDownEase * (window.innerHeight * 1.45);
-            if (lastWordDownEase < 0.14) {
-              const crouch = Math.sin((lastWordDownEase / 0.14) * Math.PI);
-              currentScaleX = 1.0 + 0.12 * crouch;
-              currentScaleY = 1.0 - 0.15 * crouch;
-              currentRot = 4 * crouch;
-            } else {
-              const leapSin = Math.sin(Math.min(1, (lastWordDownEase - 0.14) / 0.86) * Math.PI);
-              currentScaleX = 1.0 - 0.14 * leapSin;
-              currentScaleY = 1.0 + 0.28 * leapSin;
-              currentRot = -10 * leapSin;
-            }
+        if (globalProgress > TYPO_END && globalProgress <= HERO_HOLD_END) {
+          // Continuous smooth 3D leap from "AND EVOLVE" across to Editorial Hero right-side floor
+          const tHeroTrans = Math.max(0, Math.min(1, (globalProgress - TYPO_END) / (0.46 - TYPO_END)));
+          const smoothHeroT = tHeroTrans * tHeroTrans * (3 - 2 * tHeroTrans);
+
+          // Jump leg action keyframes: crouch -> launch -> airborne flight -> touchdown cushion
+          if (tHeroTrans <= 0.08 || tHeroTrans >= 0.92) {
+            jumpFrac = 0;
+          } else {
+            const leapProgress = (tHeroTrans - 0.08) / (0.92 - 0.08);
+            jumpFrac = scrollDirection === -1 ? (1 - leapProgress) : leapProgress;
           }
 
-          frogSet.x(0);
+          // Horizontal trajectory: arcs from center across to right side of viewport
+          const startX = frogLayouts[4].x + frogPlacementRight;
+          const targetX = Math.round(window.innerWidth * (geo.isMobile ? 0.02 : 0.21));
+          currentFrogX = startX + (targetX - startX) * smoothHeroT;
+
+          // Vertical parabolic leap arc in 3D space (calibrated so frog stays completely inside and visible on screen)
+          const jumpArc = Math.sin(Math.PI * (jumpFrac > 0 ? jumpFrac : smoothHeroT));
+          const jumpApex = window.innerHeight * (geo.isMobile ? 0.03 : 0.045);
+          const startFloorY = frogLayouts[4].y + frogPlacementDown;
+          const targetFloorY = 26 + frogPlacementDown;
+          const currentFloorY = startFloorY + (targetFloorY - startFloorY) * smoothHeroT;
+          currentFrogY = currentFloorY - jumpArc * jumpApex;
+
+          // Shadow stays directly on floor while model is airborne
+          shadowOffsetY = jumpArc * jumpApex;
+
+          // Directional Facing for Section 2 transition:
+          // Leaping forward into Editorial Hero lands at -2.48.
+          // Leaping backward towards Stage 4 lands facing Stage 4 backward yaw (-2.52) so it continues hopping leftward!
+          const startYaw = frogLayouts[4].yaw; // -0.62
+          const targetYaw = -2.48; // Front-left side facing towards headline
+          const forwardStage4Yaw = startYaw;
+          const backwardStage4Yaw = -(Math.PI - Math.abs(startYaw));
+          const effectiveStage4Yaw = forwardStage4Yaw + (backwardStage4Yaw - forwardStage4Yaw) * currentDirTurn;
+          currentYaw = effectiveStage4Yaw + (targetYaw - effectiveStage4Yaw) * smoothHeroT;
+
+          // Scale (slightly reduced for 2nd section)
+          const targetScaleX = geo.isMobile ? 0.86 : 0.95;
+          const targetScaleY = geo.isMobile ? 0.86 : 0.92;
+          currentScaleX = frogLayouts[4].sx + (targetScaleX - frogLayouts[4].sx) * smoothHeroT;
+          currentScaleY = frogLayouts[4].sy + (targetScaleY - frogLayouts[4].sy) * smoothHeroT;
+
+          currentPRelValue = 4 + smoothHeroT;
+          frogAlpha = 1;
+        } else if (globalProgress > HERO_HOLD_END && globalProgress <= SPACE_FOCUS_START) {
+          // Frog floating smoothly from Editorial Hero floor into the center hole of the mechanical space ring
+          const tFloat = (globalProgress - HERO_HOLD_END) / (SPACE_FOCUS_START - HERO_HOLD_END);
+          const easeFloat = tFloat * tFloat * (3 - 2 * tFloat);
+
+          const startX = Math.round(window.innerWidth * (geo.isMobile ? 0.02 : 0.21));
+          const startY = 26 + frogPlacementDown;
+          const startScaleX = geo.isMobile ? 0.86 : 0.95;
+          const startScaleY = geo.isMobile ? 0.86 : 0.92;
+          const startYaw = -2.48;
+
+          const targetRingX = -Math.round(window.innerWidth * (geo.isMobile ? 0.05 : 0.115));
+          const targetRingY = Math.round(window.innerHeight * 0.01);
+          const ring0ScaleX = geo.isMobile ? 0.54 : 0.62;
+          const ring0ScaleY = geo.isMobile ? 0.54 : 0.62;
+          const targetYaw = -1.85 - (currentDirTurn * 0.25);
+
+          currentFrogX = startX + (targetRingX - startX) * easeFloat;
+          currentFrogY = startY + (targetRingY - startY) * easeFloat;
+          currentScaleX = startScaleX + (ring0ScaleX - startScaleX) * easeFloat;
+          currentScaleY = startScaleY + (ring0ScaleY - startScaleY) * easeFloat;
+          currentYaw = startYaw + (targetYaw - startYaw) * easeFloat;
+          currentPRelValue = 5;
+          frogAlpha = 1;
+          jumpFrac = 0.35 * Math.sin(easeFloat * Math.PI);
+        } else if (globalProgress > SPACE_FOCUS_START && globalProgress <= CENTER_RINGS_START) {
+          // Smooth animation movement from Ring 0 (left-aligned, scale 0.62) into center alignment for the 4 centered rings (scale 0.70)
+          const tToCenter = (globalProgress - SPACE_FOCUS_START) / (CENTER_RINGS_START - SPACE_FOCUS_START);
+          const easeCenter = tToCenter * tToCenter * (3 - 2 * tToCenter);
+
+          const ring0X = -Math.round(window.innerWidth * (geo.isMobile ? 0.05 : 0.115));
+          const centerRingX = 0; // Exactly centered alignment for the 4 centered rings
+
+          const ring0Scale = geo.isMobile ? 0.54 : 0.62;
+          const centerScale = geo.isMobile ? 0.60 : 0.70;
+
+          currentFrogX = ring0X + (centerRingX - ring0X) * easeCenter;
+          currentFrogY = Math.round(window.innerHeight * 0.01);
+          currentScaleX = ring0Scale + (centerScale - ring0Scale) * easeCenter;
+          currentScaleY = ring0Scale + (centerScale - ring0Scale) * easeCenter;
+          currentYaw = -1.85 - (currentDirTurn * 0.25);
+          currentPRelValue = 5;
+          frogAlpha = 1;
+          jumpFrac = 0;
+        } else if (globalProgress > CENTER_RINGS_START) {
+          // Centered alignment for the 4 showcase rings (Theory of Bloom, Stakor, AWKN, Truly Bare)
+          currentFrogX = 0;
+          currentFrogY = Math.round(window.innerHeight * 0.01);
+          currentScaleX = geo.isMobile ? 0.60 : 0.70;
+          currentScaleY = geo.isMobile ? 0.60 : 0.70;
+          currentYaw = -1.85 - (currentDirTurn * 0.25);
+          currentPRelValue = 5;
+          frogAlpha = 1;
+          jumpFrac = 0;
+        }
+
+        if (frogSet) {
+          const isSpaceRingActive = globalProgress > HERO_HOLD_END;
+
+          frogSet.x(currentFrogX);
           frogSet.y(currentFrogY);
-          frogSet.scaleX(currentScaleX);
-          frogSet.scaleY(currentScaleY);
-          frogSet.rotation(currentRot);
-          frogSet.opacity(alpha);
-
-          // Counter-translate the floor shadow so it remains grounded on the floor while frog is airborne
-          const shadowSet = frogShadowSetters[index];
-          if (shadowSet) {
-            shadowSet.y(-currentFrogY);
-
-            // Calculate jump elevation ratio for realistic shadow diffusion
-            const maxElevation = Math.max(1, Math.min(230, window.innerHeight * 0.26));
-            const elevationFrac = Math.max(0, Math.min(1, Math.abs(currentFrogY) / maxElevation));
-
-            // Shadow contracts slightly and softens when frog is high in the air
-            let shadowScale = 1.0 - 0.22 * elevationFrac;
-            let shadowAlpha = 1.0 - 0.40 * elevationFrac;
-
-            if (index === 4 && lastWordDownEase > 0) {
-              // As the last frog leaves into space, its floor shadow fades out
-              shadowAlpha *= Math.max(0, 1.0 - lastWordDownEase * 2.5);
-              shadowScale *= Math.max(0.2, 1.0 - lastWordDownEase * 0.8);
-            }
-
-            shadowSet.scaleX(shadowScale);
-            shadowSet.scaleY(shadowScale);
-            shadowSet.opacity(shadowAlpha);
+          if (isSpaceRingActive) {
+            // In ring sections only: frame is kept full width & full height (scale 1.0) to fit screen without clipping legs
+            frogSet.scaleX(1.0);
+            frogSet.scaleY(1.0);
+          } else {
+            frogSet.scaleX(currentScaleX);
+            frogSet.scaleY(currentScaleY);
           }
-        });
+          frogSet.rotation(0);
+          frogSet.opacity(frogAlpha);
+          let spaceScrollPhase = 0;
+          if (globalProgress > HERO_HOLD_END && globalProgress <= SPACE_FOCUS_START) {
+            spaceScrollPhase = (globalProgress - HERO_HOLD_END) / (SPACE_FOCUS_START - HERO_HOLD_END);
+          } else if (globalProgress > SPACE_FOCUS_START) {
+            spaceScrollPhase = 1.0 + (globalProgress - SPACE_FOCUS_START) * 8.0;
+          }
+          frogFacingRef.current?.(currentYaw, currentPRelValue, jumpFrac, isSpaceRingActive, spaceScrollPhase, currentScaleX, currentDirTurn, scrollDirection);
+        }
+
+        // Keep the contact shadow on the floor and soften it when the 3D model is in the air.
+        if (frogShadowSet) {
+          frogShadowSet.y(shadowOffsetY);
+          const jumpSin = Math.sin(Math.PI * jumpFrac);
+          const shadowScale = (1.0 - 0.28 * jumpSin) * currentScaleX;
+          let shadowAlpha = (1.0 - 0.45 * jumpSin) * frogAlpha;
+          if (globalProgress > HERO_HOLD_END) {
+            const tH = (globalProgress - HERO_HOLD_END) / (HERO_EXIT_END - HERO_HOLD_END);
+            shadowAlpha *= Math.max(0, 1.0 - tH * 3.2);
+          }
+          frogShadowSet.scaleX(shadowScale);
+          frogShadowSet.scaleY((1.0 - 0.28 * jumpSin) * currentScaleY);
+          frogShadowSet.opacity(shadowAlpha);
+        }
 
         // ---------------------------------------------------------------------
         // 2) HAULO EDITORIAL HERO
@@ -1143,8 +1228,8 @@ export const HeroExperience = forwardRef(function HeroExperience(
         if (globalProgress <= HERO_HOLD_END) {
           if (heroCopyEl) gsap.set(heroCopyEl, { yPercent: 0, autoAlpha: 1 });
           if (heroDecoEl) gsap.set(heroDecoEl, { yPercent: 0, autoAlpha: 1 });
-          if (heroFrogEl) gsap.set(heroFrogEl, { xPercent: 0, y: 0, scale: 1, rotation: 0, autoAlpha: 1 });
-          if (heroFrogShadowEl) gsap.set(heroFrogShadowEl, { y: 0, opacity: 1, scale: 1 });
+          if (heroFrogEl) gsap.set(heroFrogEl, { autoAlpha: 0 });
+          if (heroFrogShadowEl) gsap.set(heroFrogShadowEl, { opacity: 0 });
         } else if (globalProgress <= HERO_EXIT_END) {
           // Frog swimming into space! Copy sinks to down side!
           const tHandoff = Math.min(1, (globalProgress - HERO_HOLD_END) / (HERO_EXIT_END - HERO_HOLD_END));
@@ -1163,27 +1248,8 @@ export const HeroExperience = forwardRef(function HeroExperience(
             });
           }
           if (heroFrogEl) {
-            // Frog swims / undulates diagonally and upward into space!
-            const swimStroke = Math.sin(tHandoff * Math.PI * 3.5);
-            const swimKick = Math.sin(tHandoff * Math.PI * 7.0);
-            const frogSwimY = -window.innerHeight * 1.25 * easeHandoff + 22 * swimStroke;
-            gsap.set(heroFrogEl, {
-              xPercent: -35 * easeHandoff,
-              y: frogSwimY,
-              scale: (1.0 - 0.48 * easeHandoff) * (1.0 + 0.04 * swimKick),
-              rotation: -14 + 8 * swimStroke,
-              autoAlpha: Math.max(0, 1 - Math.max(0, (tHandoff - 0.88) / 0.12))
-            });
-
-            if (heroFrogShadowEl) {
-              const shadowAlpha = Math.max(0, 1.0 - tHandoff * 3.2);
-              const shadowScale = Math.max(0.1, 1.0 - tHandoff * 1.5);
-              gsap.set(heroFrogShadowEl, {
-                y: -frogSwimY,
-                opacity: shadowAlpha,
-                scale: shadowScale
-              });
-            }
+            gsap.set(heroFrogEl, { autoAlpha: 0 });
+            if (heroFrogShadowEl) gsap.set(heroFrogShadowEl, { opacity: 0 });
           }
         }
 
@@ -1587,12 +1653,13 @@ export const HeroExperience = forwardRef(function HeroExperience(
       ];
       let isWordAnimating = false;
 
-      const animateToScrollY = (targetY) => {
+      const animateToScrollY = (targetY, duration) => {
         isWordAnimating = true;
+        const jumpDuration = typeof duration === 'number' ? duration : 1.20;
         if (window.lenis) {
           window.lenis.scrollTo(targetY, {
-            duration: 0.95,
-            easing: (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2),
+            duration: jumpDuration,
+            easing: (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2),
             lock: true,
             force: true,
             onComplete: () => {
@@ -1605,8 +1672,8 @@ export const HeroExperience = forwardRef(function HeroExperience(
           const scrollProxy = { y: window.scrollY };
           gsap.to(scrollProxy, {
             y: targetY,
-            duration: 0.95,
-            ease: 'power3.inOut',
+            duration: jumpDuration,
+            ease: 'power2.inOut',
             overwrite: 'auto',
             onUpdate: () => {
               window.scrollTo(0, scrollProxy.y);
@@ -1642,19 +1709,23 @@ export const HeroExperience = forwardRef(function HeroExperience(
 
           if (e.deltaY > 0) {
             // Scrolling DOWN: find next step
+            scrollDirection = 1;
             const nextStep = SNAP_STEPS.find((s) => s > currentProgress + 0.012);
             if (nextStep !== undefined) {
               e.preventDefault();
               const targetY = startY + nextStep * totalDist;
-              animateToScrollY(targetY);
+              const isRingFlight = (currentProgress >= 0.40 && nextStep >= 0.55);
+              animateToScrollY(targetY, isRingFlight ? 1.75 : 1.20);
             }
           } else if (e.deltaY < 0) {
             // Scrolling UP: find previous step
+            scrollDirection = -1;
             const prevStep = [...SNAP_STEPS].reverse().find((s) => s < currentProgress - 0.012);
             if (prevStep !== undefined) {
               e.preventDefault();
               const targetY = startY + prevStep * totalDist;
-              animateToScrollY(targetY);
+              const isRingFlight = (currentProgress >= 0.55 && prevStep <= 0.48);
+              animateToScrollY(targetY, isRingFlight ? 1.75 : 1.20);
             }
           }
         }
@@ -1689,19 +1760,23 @@ export const HeroExperience = forwardRef(function HeroExperience(
 
           if (deltaY > 0) {
             // Swipe UP -> scroll DOWN
+            scrollDirection = 1;
             const nextStep = SNAP_STEPS.find((s) => s > currentProgress + 0.012);
             if (nextStep !== undefined) {
               e.preventDefault();
               const targetY = startY + nextStep * totalDist;
-              animateToScrollY(targetY);
+              const isRingFlight = (currentProgress >= 0.40 && nextStep >= 0.55);
+              animateToScrollY(targetY, isRingFlight ? 1.75 : 1.20);
             }
           } else if (deltaY < 0) {
             // Swipe DOWN -> scroll UP
+            scrollDirection = -1;
             const prevStep = [...SNAP_STEPS].reverse().find((s) => s < currentProgress - 0.012);
             if (prevStep !== undefined) {
               e.preventDefault();
               const targetY = startY + prevStep * totalDist;
-              animateToScrollY(targetY);
+              const isRingFlight = (currentProgress >= 0.55 && prevStep <= 0.48);
+              animateToScrollY(targetY, isRingFlight ? 1.75 : 1.20);
             }
           }
         }
@@ -1756,170 +1831,163 @@ export const HeroExperience = forwardRef(function HeroExperience(
       <section className="hero-scroll" ref={heroRef}>
         <div className="hero-pin" ref={pinRef}>
 
-        {/* ROTATING 3D CAMERA WORLD */}
-        <div className="hero-camera">
-          <div className="hero-world" ref={worldRef}>
-            {/* PERSISTENT CLEAN WHITE ENVIRONMENT */}
-            <UnderwaterBackground
-              bgGridRef={bgGridRef}
-              causticsRef={causticsRef}
-              currentsRef={currentsRef}
-            />
+          {/* ROTATING 3D CAMERA WORLD */}
+          <div className="hero-camera">
+            <div className="hero-world" ref={worldRef}>
+              {/* PERSISTENT CLEAN WHITE ENVIRONMENT */}
+              <UnderwaterBackground
+                bgGridRef={bgGridRef}
+                causticsRef={causticsRef}
+                currentsRef={currentsRef}
+              />
 
-            {/* FOREGROUND HERO VISUALS (Explicitly hidden during splash & journey to prevent transparent canvas overlay stacked text) */}
-            <div
-              className={`hero-foreground-visuals ${hideHeroVisuals ? 'hero-during-journey' : ''}`}
-              style={{
-                visibility: hideHeroVisuals ? 'hidden' : 'visible',
-                opacity: hideHeroVisuals ? 0 : 1,
-                pointerEvents: hideHeroVisuals ? 'none' : 'auto',
-                transition: 'opacity 0.35s ease, visibility 0.35s ease',
-              }}
-            >
+              {/* FOREGROUND HERO VISUALS (Explicitly hidden during splash & journey to prevent transparent canvas overlay stacked text) */}
+              <div
+                className={`hero-foreground-visuals ${hideHeroVisuals ? 'hero-during-journey' : ''}`}
+                style={{
+                  visibility: hideHeroVisuals ? 'hidden' : 'visible',
+                  opacity: hideHeroVisuals ? 0 : 1,
+                  pointerEvents: hideHeroVisuals ? 'none' : 'auto',
+                  transition: 'opacity 0.35s ease, visibility 0.35s ease',
+                }}
+              >
 
-              {/* 12 Floating Abstract Shards */}
-              <FloatingFragments ref={fragmentsRef} />
+                {/* 12 Floating Abstract Shards */}
+                <FloatingFragments ref={fragmentsRef} />
 
-              {/* 1. OPENING SCENE (Section 01 — original flying-word conveyor) */}
-              <div className="hero-scene hero-scene--conveyor" ref={conveyorSceneRef}>
-                <TypographyStage
-                  hauloRef={hauloRef}
-                  designRef={designRef}
-                  thinkRef={thinkRef}
-                  buildRef={buildRef}
-                  evolveRef={evolveRef}
-                  hauloFrogRef={hauloFrogRef}
-                  designFrogRef={designFrogRef}
-                  thinkFrogRef={thinkFrogRef}
-                  buildFrogRef={buildFrogRef}
-                  evolveFrogRef={evolveFrogRef}
+                {/* 1. OPENING SCENE (Section 01 — original flying-word conveyor) */}
+                <div className="hero-scene hero-scene--conveyor" ref={conveyorSceneRef}>
+                  <TypographyStage
+                    hauloRef={hauloRef}
+                    designRef={designRef}
+                    thinkRef={thinkRef}
+                    buildRef={buildRef}
+                    evolveRef={evolveRef}
+                    hauloFrogRef={hauloFrogRef}
+                    frogFacingRef={frogFacingRef}
+                  />
+                </div>
+
+                {/* 2. OUTGOING HERO SCENE (Section 01b — HAULO editorial hero) */}
+                <div className="hero-scene hero-scene--editorial" ref={heroSceneRef}>
+                  <EditorialHero ref={heroSectionRef} deferIntro />
+                </div>
+
+                {/* 3. CONTINUOUS 3D SPACE MECH RING SPLINE CONVEYOR */}
+                <NextSection
+                  stageRef={spaceWorldRef}
+                  ringRefs={ringRefs}
+                  cylinderRefs={cylinderRefs}
+                  badgeRefs={badgeRefs}
+                  onRingMouseEnter={(idx) => { hoveredRingIndexRef.current = idx; }}
+                  onRingMouseLeave={() => { hoveredRingIndexRef.current = -1; }}
                 />
+
+
               </div>
 
-              {/* 2. OUTGOING HERO SCENE (Section 01b — HAULO editorial hero) */}
-              <div className="hero-scene hero-scene--editorial" ref={heroSceneRef}>
-                <EditorialHero ref={heroSectionRef} deferIntro />
-              </div>
-
-              {/* 3. CONTINUOUS 3D SPACE MECH RING SPLINE CONVEYOR */}
-              <NextSection
-                stageRef={spaceWorldRef}
-                ringRefs={ringRefs}
-                cylinderRefs={cylinderRefs}
-                badgeRefs={badgeRefs}
-                onRingMouseEnter={(idx) => { hoveredRingIndexRef.current = idx; }}
-                onRingMouseLeave={() => { hoveredRingIndexRef.current = -1; }}
-              />
-
-
-            </div>
-
-          </div>
-        </div>
-
-        {/* PERSISTENT SCREEN-LOCKED HUD ELEMENTS */}
-        <div
-          className={`hero-hud-layer ${hideHeroVisuals ? 'hero-during-journey' : ''}`}
-          style={{
-            visibility: hideHeroVisuals ? 'hidden' : 'visible',
-            opacity: hideHeroVisuals ? 0 : 1,
-            pointerEvents: 'none',
-            transition: 'opacity 0.35s ease, visibility 0.35s ease',
-          }}
-        >
-          {/* VIEWPORT CORNER RETICLES / CURSORS (PERSISTENT ACROSS ALL SECTIONS) */}
-          <span className="corner-cursor corner-cursor--tl" aria-hidden="true" />
-          <span className="corner-cursor corner-cursor--tr" aria-hidden="true" />
-          <span className="corner-cursor corner-cursor--bl" aria-hidden="true" />
-          <span className="corner-cursor corner-cursor--br" aria-hidden="true" />
-
-          {/* PURPOSEFUL TECHNICAL CALLOUTS WITH PINK LEADER LINES (EXACT REFERENCE PARITY) */}
-          <div className="hero-callout hero-callout--tr" ref={calloutTrRef}>
-            <svg className="callout-leader-line callout-leader-line--tr" width="108" height="78" viewBox="0 0 108 78" fill="none" aria-hidden="true">
-              <path
-                ref={trLinePathRef}
-                className="pink-leader-path"
-                d="M4 36 L34 10 L100 10"
-                stroke="#000000"
-                strokeWidth="1.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <circle ref={trStartDotRef} className="pink-leader-dot" cx="4" cy="36" r="2.5" fill="#d64cff" />
-              <circle ref={trEndDotRef} className="pink-leader-end" cx="100" cy="10" r="2.5" fill="#d64cff" />
-            </svg>
-            <div className="callout-text-group" ref={trTextGroupRef}>
-              <div className="callout-header-row">
-                <span className="callout-title">EST.2024</span>
-              </div>
-              <div className="callout-subtitle" ref={calloutTrSubRef}>SF / LDN / TYO</div>
             </div>
           </div>
 
-          <div className="hero-callout hero-callout--bl" ref={calloutBlRef}>
-            <div className="callout-text-group" ref={blTextGroupRef}>
-              <div className="callout-header-row">
-                <span className="callout-title">
-                  <span ref={calloutBlBrandRef}>HAULO</span>
-                  <sup ref={calloutBlSupRef}>TM</sup>
-                </span>
+          {/* PERSISTENT SCREEN-LOCKED HUD ELEMENTS */}
+          <div
+            className={`hero-hud-layer ${hideHeroVisuals ? 'hero-during-journey' : ''}`}
+            style={{
+              visibility: hideHeroVisuals ? 'hidden' : 'visible',
+              opacity: hideHeroVisuals ? 0 : 1,
+              pointerEvents: 'none',
+              transition: 'opacity 0.35s ease, visibility 0.35s ease',
+            }}
+          >
+
+
+            {/* PURPOSEFUL TECHNICAL CALLOUTS WITH PINK LEADER LINES (EXACT REFERENCE PARITY) */}
+            <div className="hero-callout hero-callout--tr" ref={calloutTrRef}>
+              <svg className="callout-leader-line callout-leader-line--tr" width="108" height="78" viewBox="0 0 108 78" fill="none" aria-hidden="true">
+                <path
+                  ref={trLinePathRef}
+                  className="pink-leader-path"
+                  d="M4 36 L34 10 L100 10"
+                  stroke="#000000"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <circle ref={trStartDotRef} className="pink-leader-dot" cx="4" cy="36" r="2.5" fill="#d64cff" />
+                <circle ref={trEndDotRef} className="pink-leader-end" cx="100" cy="10" r="2.5" fill="#d64cff" />
+              </svg>
+              <div className="callout-text-group" ref={trTextGroupRef}>
+                <div className="callout-header-row">
+                  <span className="callout-title">EST.2024</span>
+                </div>
+                <div className="callout-subtitle" ref={calloutTrSubRef}>SF / LDN / TYO</div>
               </div>
-              <div className="callout-subtitle" ref={calloutBlLine1Ref}>DIGITAL / PHYSICAL / AI</div>
-              <div className="callout-detail" ref={calloutBlLine2Ref}>FOR A BRIGHTER TOMORROW.</div>
-              <div className="callout-hash-row">
-                <svg className="callout-hash-stripes-svg" width="38" height="10" viewBox="0 0 38 10" fill="none" aria-hidden="true">
-                  <path d="M6 0h3L3 10H0z M11 0h3L8 10H5z M16 0h3L13 10h-3z M21 0h3L18 10h-3z M26 0h3L23 10h-3z M31 0h3L28 10h-3z M36 0h3L33 10h-3z" fill="#000000" />
-                </svg>
-                <div className="callout-color-bar" ref={calloutBlColorBarRef} aria-hidden="true">
-                  <span className="color-bar-cyan" ref={calloutBlBar1Ref} />
-                  <span className="color-bar-pink" ref={calloutBlBar2Ref} />
+            </div>
+
+            <div className="hero-callout hero-callout--bl" ref={calloutBlRef}>
+              <div className="callout-text-group" ref={blTextGroupRef}>
+                <div className="callout-header-row">
+                  <span className="callout-title">
+                    <span ref={calloutBlBrandRef}>HAULO</span>
+                    <sup ref={calloutBlSupRef}>TM</sup>
+                  </span>
+                </div>
+                <div className="callout-subtitle" ref={calloutBlLine1Ref}>DIGITAL / PHYSICAL / AI</div>
+                <div className="callout-detail" ref={calloutBlLine2Ref}>FOR A BRIGHTER TOMORROW.</div>
+                <div className="callout-hash-row">
+                  <svg className="callout-hash-stripes-svg" width="38" height="10" viewBox="0 0 38 10" fill="none" aria-hidden="true">
+                    <path d="M6 0h3L3 10H0z M11 0h3L8 10H5z M16 0h3L13 10h-3z M21 0h3L18 10h-3z M26 0h3L23 10h-3z M31 0h3L28 10h-3z M36 0h3L33 10h-3z" fill="#000000" />
+                  </svg>
+                  <div className="callout-color-bar" ref={calloutBlColorBarRef} aria-hidden="true">
+                    <span className="color-bar-cyan" ref={calloutBlBar1Ref} />
+                    <span className="color-bar-pink" ref={calloutBlBar2Ref} />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="hero-callout hero-callout--br" ref={calloutBrRef}>
-            <svg className="callout-leader-line callout-leader-line--br" width="88" height="54" viewBox="0 0 88 54" fill="none" aria-hidden="true">
-              <path
-                ref={brLinePathRef}
-                className="pink-leader-path"
-                d="M4 48 L46 12 L84 12"
-                stroke="#000000"
-                strokeWidth="1.3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <circle ref={brStartDotRef} className="pink-leader-dot" cx="4" cy="48" r="2.5" fill="#d64cff" />
-              <circle ref={brEndDotRef} className="pink-leader-end" cx="84" cy="12" r="2.5" fill="#d64cff" />
-            </svg>
-            <div className="callout-text-group" ref={brTextGroupRef}>
-              <div className="callout-hash-row">
-                <svg className="callout-hash-stripes-svg callout-hash-stripes-svg--br" width="63" height="10" viewBox="0 0 63 10" fill="none" aria-hidden="true">
-                  <path d="M6 0h3L3 10H0z M11 0h3L8 10H5z M16 0h3L13 10h-3z M21 0h3L18 10h-3z M26 0h3L23 10h-3z M31 0h3L28 10h-3z M36 0h3L33 10h-3z M41 0h3L38 10h-3z M46 0h3L43 10h-3z M51 0h3L48 10h-3z M56 0h3L53 10h-3z M61 0h3L58 10h-3z" fill="#000000" />
-                </svg>
+            <div className="hero-callout hero-callout--br" ref={calloutBrRef}>
+              <svg className="callout-leader-line callout-leader-line--br" width="88" height="54" viewBox="0 0 88 54" fill="none" aria-hidden="true">
+                <path
+                  ref={brLinePathRef}
+                  className="pink-leader-path"
+                  d="M4 48 L46 12 L84 12"
+                  stroke="#000000"
+                  strokeWidth="1.3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <circle ref={brStartDotRef} className="pink-leader-dot" cx="4" cy="48" r="2.5" fill="#d64cff" />
+                <circle ref={brEndDotRef} className="pink-leader-end" cx="84" cy="12" r="2.5" fill="#d64cff" />
+              </svg>
+              <div className="callout-text-group" ref={brTextGroupRef}>
+                <div className="callout-hash-row">
+                  <svg className="callout-hash-stripes-svg callout-hash-stripes-svg--br" width="63" height="10" viewBox="0 0 63 10" fill="none" aria-hidden="true">
+                    <path d="M6 0h3L3 10H0z M11 0h3L8 10H5z M16 0h3L13 10h-3z M21 0h3L18 10h-3z M26 0h3L23 10h-3z M31 0h3L28 10h-3z M36 0h3L33 10h-3z M41 0h3L38 10h-3z M46 0h3L43 10h-3z M51 0h3L48 10h-3z M56 0h3L53 10h-3z M61 0h3L58 10h-3z" fill="#000000" />
+                  </svg>
+                </div>
+                <div className="callout-subtitle">OBJECT_001</div>
+                <div className="callout-title">HAULO FROG</div>
+                <div className="callout-detail">V1.0 // 2024</div>
               </div>
-              <div className="callout-subtitle">OBJECT_001</div>
-              <div className="callout-title">HAULO FROG</div>
-              <div className="callout-detail">V1.0 // 2024</div>
+            </div>
+
+            <div ref={headerContainerRef} style={{ width: '100%', pointerEvents: 'none' }}>
+              <Header />
+            </div>
+            <div ref={leftRailContainerRef} style={{ position: 'absolute', top: 0, left: 0, height: '100%', pointerEvents: 'none' }}>
+              <LeftRail ref={leftProgressMarkerRef} />
+            </div>
+            <div ref={rightRailContainerRef} style={{ position: 'absolute', top: 0, right: 0, height: '100%', pointerEvents: 'none' }}>
+              <RightRail ref={progressMarkerRef} />
+            </div>
+            <div ref={bottomCaptionContainerRef} style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', pointerEvents: 'none', zIndex: 100 }}>
+              <BottomCaption ref={bottomCaptionRef} />
             </div>
           </div>
-
-          <div ref={headerContainerRef} style={{ width: '100%', pointerEvents: 'none' }}>
-            <Header />
-          </div>
-          <div ref={leftRailContainerRef} style={{ position: 'absolute', top: 0, left: 0, height: '100%', pointerEvents: 'none' }}>
-            <LeftRail ref={leftProgressMarkerRef} />
-          </div>
-          <div ref={rightRailContainerRef} style={{ position: 'absolute', top: 0, right: 0, height: '100%', pointerEvents: 'none' }}>
-            <RightRail ref={progressMarkerRef} />
-          </div>
-          <div ref={bottomCaptionContainerRef} style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', pointerEvents: 'none', zIndex: 100 }}>
-            <BottomCaption ref={bottomCaptionRef} />
-          </div>
         </div>
-      </div>
-    </section>
-  </div>
+      </section>
+    </div>
   );
 });
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { WordLayer } from './WordLayer';
+import Frog3D from '../frog_3D/Frog3DModel';
 
 export function TypographyStage({
   hauloRef,
@@ -7,12 +8,8 @@ export function TypographyStage({
   thinkRef,
   buildRef,
   evolveRef,
-  
   hauloFrogRef,
-  designFrogRef,
-  thinkFrogRef,
-  buildFrogRef,
-  evolveFrogRef,
+  frogFacingRef,
 }) {
   return (
     <div className="typography-stage">
@@ -23,26 +20,10 @@ export function TypographyStage({
       <WordLayer word="BUILD" className="word-build" ref={buildRef} />
       <WordLayer word="AND EVOLVE" className="word-evolve" ref={evolveRef} />
 
-      {/* Grounded frog previews for each word */}
-      <div className="word-frog word-frog-haulo" ref={hauloFrogRef}>
+      {/* One shared 3D frog travels through every typography stage. */}
+      <div className="word-frog word-frog-haulo word-frog-shared" ref={hauloFrogRef}>
         <div className="frog-floor-shadow" aria-hidden="true" />
-        <img className="word-frog__img" src="/Frog_Img/1_Haulo_Img.png" alt="Haulo Frog" draggable={false} />
-      </div>
-      <div className="word-frog word-frog-design" ref={designFrogRef}>
-        <div className="frog-floor-shadow" aria-hidden="true" />
-        <img className="word-frog__img" src="/Frog_Img/2_DesignTo_Img.png" alt="Design To Frog" draggable={false} />
-      </div>
-      <div className="word-frog word-frog-think" ref={thinkFrogRef}>
-        <div className="frog-floor-shadow" aria-hidden="true" />
-        <img className="word-frog__img" src="/Frog_Img/3_Think_Img.png" alt="Think Frog" draggable={false} />
-      </div>
-      <div className="word-frog word-frog-build" ref={buildFrogRef}>
-        <div className="frog-floor-shadow" aria-hidden="true" />
-        <img className="word-frog__img" src="/Frog_Img/build_Img.png" alt="Build Frog" draggable={false} />
-      </div>
-      <div className="word-frog word-frog-evolve" ref={evolveFrogRef}>
-        <div className="frog-floor-shadow" aria-hidden="true" />
-        <img className="word-frog__img" src="/Frog_Img/4_AndEvolve_Img.png" alt="And Evolve Frog" draggable={false} />
+        <Frog3D wordIndex={0} facingRef={frogFacingRef} />
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import React, {
   useRef
 } from 'react';
 import { gsap } from 'gsap';
+import Frog3D from '../frog_3D/Frog3DModel';
 import '../styles/hero-section.css';
 
 export const EditorialHero = forwardRef(function EditorialHero(props, ref) {
@@ -98,16 +99,11 @@ export const EditorialHero = forwardRef(function EditorialHero(props, ref) {
         </h1>
       </div>
 
-      {/* RIGHT — EXISTING MECH FROG ON THE FLOOR */}
-      <div className="haulo-hero__frog">
+      {/* RIGHT — 3D MECH FROG (Shared continuous model from conveyor leaps here) */}
+      {/* <div className="haulo-hero__frog">
         <div className="haulo-hero__frog-shadow" aria-hidden="true" />
-        <img
-          className="haulo-hero__frog-img"
-          src="/Frog_Img/Frog_Mech_rotated.png"
-          alt="HAULO mech frog — digital, physical and intelligent systems"
-          draggable={false}
-        />
-      </div>
+        <Frog3D wordIndex={4} className="haulo-hero__frog-3d" />
+      </div> */}
 
       {/* BOTTOM TECHNICAL DECORATION */}
       {/* <div className="haulo-hero__deco" ref={decoRef} aria-hidden="true">

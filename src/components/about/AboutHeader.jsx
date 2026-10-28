@@ -26,14 +26,26 @@ export function AboutHeader() {
         <img src="/HAULO-LOGO.png" alt="HAULO" className="header-logo-img" />
       </Link>
       <nav className="header-nav">
-        <Link to="/work" className={`nav-link ${isWork ? 'nav-link-active' : ''}`}>
-          [WORK]
+        <Link
+          to="/work"
+          className={`nav-link ${isWork ? 'nav-link-active' : ''}`}
+          style={{ fontFamily: "'Space Mono', monospace", fontWeight: 600 }}
+        >
+          [ WORK ]
         </Link>
-        <Link to="/about" className={`nav-link ${isAbout ? 'nav-link-active' : ''}`}>
-          [ABOUT]
+        <Link
+          to="/about"
+          className={`nav-link ${isAbout ? 'nav-link-active' : ''}`}
+          style={{ fontFamily: "'Space Mono', monospace", fontWeight: 600 }}
+        >
+          [ ABOUT ]
         </Link>
-        <Link to="/contact" className={`nav-link ${isContact ? 'nav-link-active' : ''}`}>
-          [CONTACT]
+        <Link
+          to="/contact"
+          className={`nav-link ${isContact ? 'nav-link-active' : ''}`}
+          style={{ fontFamily: "'Space Mono', monospace", fontWeight: 600 }}
+        >
+          [ CONTACT ]
         </Link>
       </nav>
     </header>

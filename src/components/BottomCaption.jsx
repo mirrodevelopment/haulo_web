@@ -23,12 +23,6 @@ export const BottomCaption = forwardRef(function BottomCaption(props, ref) {
         onViewWork={handleWorkClick}
         onExplore={handleServicesClick}
       />
-
-      {/* Bottom Hero Text */}
-      <div className="hero-bottom-text">
-        <h2>WE BUILD WHAT'S NEXT.</h2>
-        <div className="hero-bottom-plus" aria-hidden="true">+</div>
-      </div>
     </div>
   );
 });

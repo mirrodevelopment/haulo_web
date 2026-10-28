@@ -20,9 +20,27 @@ html, body {
   color: var(--text-primary);
   font-family: var(--font-mono);
   overflow-x: hidden;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+/* Hide native scrollbar across all engines (Chrome, Safari, Edge, Firefox) */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+#root::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+* {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
 }
 
 /* Universal responsive container and media guarantees */
@@ -136,3 +154,200 @@ h1, h2, h3, h4, h5, h6, p, span, a {
 .about-page .floor-layer {
   z-index: -1;
 }
+
+/* ==========================================================================
+   MINIMALIST HOLLOW RING CURSOR (Rolls-Royce Style)
+   ========================================================================== */
+@media (hover: hover) and (pointer: fine) {
+  /* Hide standard cursor completely on desktop when custom cursor is active */
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+
+.customCursorFollower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999999;
+  will-change: transform;
+  opacity: 0;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  mix-blend-mode: difference;
+}
+
+.customCursorFollower.visible {
+  opacity: 1;
+}
+
+/* Elegant hollow circular ring */
+.customCursorRing {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1.25px solid #ffffff;
+  background-color: transparent;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  transition: width 0.26s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.26s cubic-bezier(0.16, 1, 0.3, 1),
+              border-width 0.26s ease,
+              transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Gracefully expands over clickable links/buttons/cards */
+.customCursorRing.hovered {
+  width: 40px;
+  height: 40px;
+  border-width: 1.5px;
+}
+
+/* Tactile contraction on click */
+.customCursorRing.clicked {
+  transform: translate(-50%, -50%) scale(0.82);
+}
+
+@media (hover: none) or (pointer: coarse) {
+  .customCursorFollower {
+    display: none !important;
+  }
+}
+
+/* =========================================================
+   HEADER COMPONENT STYLING
+   Font: 'Space Mono', monospace | Font-weight: 600
+========================================================= */
+header.fixed,
+header.header-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: clamp(60px, 8vh, 80px);
+  padding: 0 clamp(24px, 4vw, 44px);
+  padding-top: env(safe-area-inset-top, 0);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 99999;
+  pointer-events: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header.fixed a,
+header.fixed nav {
+  pointer-events: auto;
+}
+
+header.fixed nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 1.8vw, 20px);
+}
+
+.headerNavLink {
+  font-family: 'Space Mono', monospace !important;
+  font-size: clamp(11px, 1.2vw, 13px);
+  letter-spacing: 0.02em !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease;
+  padding: 6px 4px;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.headerNavLink.text-black,
+.headerNavLink.opacity-100 {
+  color: #050505;
+  opacity: 1;
+}
+
+.headerNavLink.text-black\/60 {
+  color: rgba(5, 5, 5, 0.6);
+  opacity: 0.6;
+}
+
+.headerNavLink.text-white {
+  color: #ffffff;
+  opacity: 1;
+}
+
+.headerNavLink.text-white\/60 {
+  color: rgba(255, 255, 255, 0.6);
+  opacity: 0.6;
+}
+
+.headerNavLink:hover {
+  opacity: 1 !important;
+}
+
+/* Header Text Logo / Brand */
+.header-brand,
+header .header-brand,
+header a[aria-label="HAULO Home"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  flex-shrink: 0 !important;
+}
+
+.header-logo-img,
+header .header-brand img,
+header a[aria-label="HAULO Home"] img {
+  height: clamp(18px, 2.2vw, 22px) !important;
+  max-height: 24px !important;
+  width: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+}
+
+header .header-nav .nav-link,
+.header-container .nav-link,
+.about-header .nav-link {
+  font-family: 'Space Mono', monospace !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* Viewport Corner Reticles (Top-Left, Top-Right, Bottom-Left, Bottom-Right Brackets Removed) */
+.corner-cursor,
+.corner-cursor--tl,
+.corner-cursor--tr,
+.corner-cursor--bl,
+.corner-cursor--br {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* HUD Rails Edge Gap (Matching Image 2 / Reference) */
+.hero-pin .left-rail,
+.left-rail {
+  left: clamp(20px, 1.8vw, 24px) !important;
+  border-left: none !important;
+}
+
+.hero-pin .left-rail-line,
+.left-rail-line {
+  left: 0 !important;
+  width: 1px !important;
+  background: rgba(17, 17, 17, 0.32) !important;
+}
+
+.hero-pin .right-rail,
+.right-rail {
+  right: clamp(20px, 1.8vw, 24px) !important;
+  border-right: none !important;
+}
+
+
+
+
+

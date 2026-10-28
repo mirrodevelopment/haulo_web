@@ -17,7 +17,7 @@
    hero is the FOREGROUND. Only the stacking is set here.
    --------------------------------------------------------------- */
 .hero-scene--conveyor {
-  z-index: 1;
+  z-index: 3;
 }
 
 .hero-scene--editorial {
@@ -162,14 +162,14 @@
   z-index: 1;
 }
 
-.haulo-hero__frog-img {
+.haulo-hero__frog-img,
+.haulo-hero__frog-3d {
   position: relative;
   z-index: 2;
   display: block;
   height: min(54vh, 38vw);
   max-height: 520px;
-  width: auto;
-  object-fit: contain;
+  width: clamp(320px, 38vw, 560px);
   filter: none !important;
 }
 
@@ -400,7 +400,7 @@
 .hero-pin .bottom-caption-container {
   left: 0;
   right: 0;
-  bottom: clamp(14px, 2.5vh, 28px);
+  bottom: clamp(48px, 6vh, 64px);
   width: 90%;
   max-width: 680px;
   margin-inline: auto;
@@ -430,7 +430,7 @@
    ========================================================================== */
 .hero-pin .left-rail {
   position: absolute;
-  left: 2.2vw;
+  left: clamp(20px, 1.8vw, 24px);
   top: 17%;
   bottom: 18%;
   width: 46px;
@@ -536,7 +536,7 @@
    ========================================================================== */
 .hero-pin .right-rail {
   position: absolute;
-  right: 3vw;
+  right: clamp(20px, 1.8vw, 24px);
   top: 17%;
   bottom: 18%;
   width: 30px;
