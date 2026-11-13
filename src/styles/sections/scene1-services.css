@@ -1,4 +1,4 @@
-﻿/* =========================================================
+/* =========================================================
    SCENE 1: SERVICES HERO PANEL
    ========================================================= */
 .promptsCard {
@@ -64,34 +64,94 @@
   font-family: var(--font-main);
 }
 
+
 /* 1. First Div: Prompts Heading ("Prompts that think ahead") */
 .promptsFirstDiv {
   width: 100%;
   margin: 0;
   padding: 0;
   will-change: opacity, transform;
+  opacity: 0;
+  transform: translateY(35px);
 }
 
-.promptsTopHeading {
+.promptsTopHeading,
+.hero-heading {
   position: relative;
   top: auto;
   left: auto;
   width: 100%;
-  font-family: var(--font-main);
+  font-family: "Inter", sans-serif;
   font-size: clamp(38px, 4.2vw, 68px);
-  font-weight: 200;
-  line-height: 0.98;
-  letter-spacing: -0.04em;
-  color: #0a0a0c;
+  font-weight: 400;
+  line-height: 0.88;
+  letter-spacing: -0.5px;
+  text-transform: none;
+  color: #111116;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
-.promptsTopHeading .promptsHeadingAccent {
+.hero-heading-top {
   display: block;
-  color: #2563eb;
-  font-weight: 200;
-  letter-spacing: -0.04em;
-  opacity: 0.95;
+  font-size: clamp(20px, 2.6vw, 42px);
+  font-weight: 500;
+  line-height: 1.6;
+  margin-bottom: 2px;
+}
+
+.promptsTopHeading .gradient-text,
+.gradient-text {
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: clamp(38px, 5.2vw, 72px);
+  line-height: 0.88;
+  letter-spacing: -0.6px;
+  text-transform: uppercase;
+  color: #0f172a;
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: #0f172a;
+}
+
+.promptsTopHeading .forward-text {
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: clamp(52px, 8vw, 110px);
+  line-height: 0.86;
+  letter-spacing: -0.6px;
+  text-transform: uppercase;
+  color: #20aef3;
+  margin-top: 8px;
+  background: linear-gradient(90deg,
+      #20aef3 0%,
+      #20aef3 50%,
+      #7a7777 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  max-width: 100%;
+}
+
+.gradient-text-lime {
+  background: linear-gradient(90deg,
+      #e8ff2e 0%,
+      /* Light sheen highlight */
+      #bbfb03 40%,
+      /* Signature HAULO neon lime */
+      #7cdb00 100%
+      /* Vibrant chartreuse */
+    );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  filter: drop-shadow(0 2px 12px rgba(187, 251, 3, 0.4));
 }
 
 .promptsLineMask {
@@ -116,21 +176,22 @@
 .promptsParagraph {
   font-family: var(--font-main);
   font-size: clamp(13px, 1.1vw, 14.5px);
-  font-weight: 300;
-  color: #374151;
+  font-weight: 400;
+  color: #475569;
   line-height: 1.55;
   margin: 0;
   max-width: 500px;
 }
 
-/* 3. Third Div: Two Buttons & Bottom Text */
+/* 3. Third Div: Two Buttons */
 .promptsThirdDiv {
   width: 100%;
-  margin-top: clamp(14px, 3.5vh, 35px);
+  margin-top: clamp(24px, 3.8vh, 42px);
   display: flex;
   flex-direction: column;
-  gap: clamp(10px, 1.4vh, 19px);
   will-change: opacity, transform;
+  opacity: 0;
+  transform: translateY(35px);
 }
 
 .promptsBtnRow {
@@ -143,25 +204,29 @@
 
 @media (max-width: 768px) {
   .promptsLeftCol {
-    top: 50%;
+    top: clamp(160px, 21vh, 210px);
     left: clamp(20px, 5vw, 36px);
     right: clamp(20px, 5vw, 36px);
     width: auto;
     height: auto;
     max-width: calc(100% - 40px);
-    transform: translateY(-50%);
+    transform: none;
   }
+
   .promptsFirstDiv {
     margin-bottom: 0;
   }
+
   .promptsTopHeading {
     font-size: clamp(32px, 7vw, 46px);
     line-height: 1.02;
   }
+
   .promptsSecondDiv {
     margin-top: 14px;
     margin-bottom: 0;
   }
+
   .promptsThirdDiv {
     margin-top: 24px;
     gap: 14px;
@@ -170,44 +235,79 @@
 
 .promptsSecondaryBtn {
   font-family: var(--font-main);
-  padding: 11px 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 36px;
   border-radius: var(--radius-pill);
   background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  color: #0a0a0c;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  color: #111111;
   font-size: 13px;
-  font-weight: 200;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
   cursor: pointer;
-  letter-spacing: -0.01em;
-  transition: background 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
+  transition: color 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
 }
 
 .promptsSecondaryBtn:hover {
+  color: #000000;
+  border-color: rgba(0, 0, 0, 0.32);
   background: rgba(0, 0, 0, 0.09);
-  border-color: rgba(0, 0, 0, 0.2);
 }
 
 .promptsPrimaryBtn {
   font-family: var(--font-main);
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 11px 24px;
+  justify-content: center;
+  padding: 16px 40px;
   border-radius: var(--radius-pill);
-  background: #0a0a0c;
-  color: #ffffff;
+  background: #ffffff;
+  color: #111111;
   font-size: 13px;
-  font-weight: 200;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  line-height: 1;
   cursor: pointer;
-  letter-spacing: -0.01em;
-  border: none;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.16);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  white-space: nowrap;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.promptsPrimaryBtn .btnText {
+  display: inline-block;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.promptsPrimaryBtn .btnArrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 0;
+  opacity: 0;
+  margin-left: 0;
+  transform: translateX(-4px);
+  overflow: hidden;
+  transition: max-width 0.28s ease, opacity 0.24s ease, transform 0.28s ease, margin-left 0.28s ease;
 }
 
 .promptsPrimaryBtn:hover {
-  background: #000000;
-  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.22);
+  background: #e8e8ea;
+  border-color: rgba(0, 0, 0, 0.24);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+}
+
+.promptsPrimaryBtn:hover .btnArrow {
+  max-width: 24px;
+  opacity: 1;
+  margin-left: 10px;
+  transform: translateX(0);
 }
 
 .promptsSocialProof {
@@ -216,9 +316,10 @@
   align-items: center;
   gap: 10px;
   font-size: 12px;
-  font-weight: 200;
-  color: #4b5563;
+  font-weight: 500;
+  color: #64748b;
   letter-spacing: -0.01em;
+  margin-top: clamp(14px, 2vh, 24px);
 }
 
 .avatarStack {
@@ -249,15 +350,87 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 270px;
-  height: 405px;
+  width: 293px !important;
+  height: 457px !important;
+  aspect-ratio: 293 / 457 !important;
   transform: translate(-50%, -50%);
   transform-origin: center center;
   z-index: 6;
   pointer-events: none;
   will-change: opacity, transform;
   box-shadow: none !important;
+  /* Multi-stop volumetric elevation shadow conforming to 3D frame alpha contour (#080B0C) */
+  filter: drop-shadow(0 6px 12px rgba(8, 11, 12, 0.09))
+          drop-shadow(0 20px 32px rgba(8, 11, 12, 0.14))
+          drop-shadow(0 42px 64px rgba(8, 11, 12, 0.16)) !important;
+  opacity: 0;
 }
+
+/* =========================================================
+   PHOTOREALISTIC GROUND CONTACT SHADOW POD
+   Directly beneath the floating cyber frame
+   ========================================================= */
+.frameGroundShadowPod {
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 270px;
+  height: 38px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Wide diffused ambient floor penumbra */
+.frameShadowDiffuse {
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  height: 32px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(8, 11, 12, 0.40) 0%, rgba(8, 11, 12, 0.18) 36%, rgba(8, 11, 12, 0.05) 65%, transparent 75%);
+  filter: blur(10px);
+}
+
+/* Tight dark contact core shadow directly under bottom chassis */
+.frameShadowCore {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(8, 11, 12, 0.68) 0%, rgba(8, 11, 12, 0.35) 45%, transparent 80%);
+  filter: blur(4px);
+}
+
+/* Subtle neon lime LED floor reflection bounce */
+.frameShadowFloorGlow {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 210px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(198, 255, 0, 0.20) 0%, rgba(125, 255, 0, 0.08) 45%, transparent 72%);
+  filter: blur(8px);
+}
+
+/* Center card contact shadow pod for Scene 2 (with marquee) */
+.centerFrameShadow {
+  position: absolute;
+  top: calc(50% + 228.5px - 6px);
+  bottom: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+
+
 
 .promptsUiUxContainer .orbitCardBottom {
   display: none !important;
@@ -265,18 +438,26 @@
   visibility: hidden !important;
 }
 
-.promptsUiUxContainer .orbitCardImg {
+.promptsUiUxContainer .orbitCardImg,
+.promptsUiUxContainer .rockCardFace .orbitCardImg {
+  position: absolute;
   top: 50% !important;
   left: 50% !important;
-  width: 98% !important;
-  height: 85% !important;
-  transform: translate(-50%, -50%) scale(1.04, 1.32) !important;
-  object-fit: contain !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  transform: translate(-50%, -50%) !important;
+  object-fit: fill !important;
+  box-shadow: none !important;
+  filter: none !important;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .cardPosition.promptsUiUxContainer,
   .promptsUiUxContainer {
-    display: none;
+    width: clamp(180px, 50vw, 230px) !important;
+    height: clamp(240px, 67vw, 305px) !important;
+    display: block !important;
+    pointer-events: auto;
   }
 }
-

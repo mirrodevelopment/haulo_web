@@ -1,0 +1,442 @@
+/* =========================================================
+   CYBER 3D CARD FRAME & EMBEDDED LED SYSTEM
+   ========================================================= */
+
+.cyberCardContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+/* Inner card screen placed within the chamfered chassis window */
+.cyberCardInnerScreen {
+  position: absolute;
+  top: 4.8%;
+  bottom: 4.8%;
+  left: 6.0%;
+  right: 6.0%;
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 2;
+  background: #06080c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(
+    14px 0%,
+    calc(100% - 14px) 0%,
+    100% 14px,
+    100% calc(100% - 14px),
+    calc(100% - 14px) 100%,
+    14px 100%,
+    0% calc(100% - 14px),
+    0% 14px
+  );
+}
+
+.cyberCardInnerScreen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+/* Bezel Frame Graphic Overlay (High-res 2nd image asset) */
+.cyberFrameOverlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+  z-index: 5;
+  filter: none !important;
+  box-shadow: none !important;
+  will-change: transform;
+}
+
+/* Three.js 3D Model & Real-time WebGL canvas */
+.cyberFrame3DCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none;
+  z-index: 6;
+  border-radius: inherit;
+}
+
+/* Active 3D Model loaded indicator pill (subtle debug/readiness info for developers & 3D team) */
+.cyber3DReadyBadge {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-family: monospace;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  color: #c8ff00;
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(200, 255, 0, 0.4);
+  padding: 1px 6px;
+  border-radius: 999px;
+  z-index: 10;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+
+/* Ambient Pulsing Neon Lime LEDs (#c8ff00) matching the 8 bezel slots */
+.cyberLedLuminescence {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 7;
+  overflow: hidden;
+}
+
+.cyberLedPoint {
+  position: absolute;
+  background: radial-gradient(circle, rgba(200, 255, 0, 0.95) 0%, rgba(163, 230, 53, 0.5) 45%, rgba(200, 255, 0, 0) 75%);
+  border-radius: 999px;
+  filter: blur(1.5px);
+  animation: cyberLedPulse 2.8s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+/* Top corner diagonal LEDs */
+.cyberLed-tl {
+  top: 2.2%;
+  left: 10.2%;
+  width: 7.2%;
+  height: 3.2%;
+  transform: rotate(-45deg);
+  animation-delay: 0s;
+}
+
+.cyberLed-tr {
+  top: 2.2%;
+  right: 6.8%;
+  width: 7.2%;
+  height: 3.2%;
+  transform: rotate(45deg);
+  animation-delay: 0.4s;
+}
+
+/* Side vertical slot LEDs */
+.cyberLed-l-top {
+  top: 17.5%;
+  left: 8.5%;
+  width: 3.0%;
+  height: 8.5%;
+  animation-delay: 0.8s;
+}
+
+.cyberLed-l-mid {
+  top: 41.5%;
+  left: 8.5%;
+  width: 3.0%;
+  height: 8.5%;
+  animation-delay: 1.2s;
+}
+
+.cyberLed-r-top {
+  top: 17.5%;
+  right: 8.5%;
+  width: 3.0%;
+  height: 8.5%;
+  animation-delay: 1.6s;
+}
+
+.cyberLed-r-mid {
+  top: 41.5%;
+  right: 8.5%;
+  width: 3.0%;
+  height: 8.5%;
+  animation-delay: 2.0s;
+}
+
+/* Bottom corner diagonal LEDs */
+.cyberLed-bl {
+  bottom: 2.8%;
+  left: 10.8%;
+  width: 7.2%;
+  height: 3.2%;
+  transform: rotate(45deg);
+  animation-delay: 2.4s;
+}
+
+.cyberLed-br {
+  bottom: 2.8%;
+  right: 6.8%;
+  width: 7.2%;
+  height: 3.2%;
+  transform: rotate(-45deg);
+  animation-delay: 2.8s;
+}
+
+@keyframes cyberLedPulse {
+  0% {
+    opacity: 0.55;
+    filter: blur(1.5px) drop-shadow(0 0 4px rgba(200, 255, 0, 0.4));
+  }
+  50% {
+    opacity: 0.95;
+    filter: blur(1.8px) drop-shadow(0 0 10px rgba(200, 255, 0, 0.85)) drop-shadow(0 0 18px rgba(163, 230, 53, 0.6));
+  }
+  100% {
+    opacity: 0.70;
+    filter: blur(1.5px) drop-shadow(0 0 6px rgba(200, 255, 0, 0.5));
+  }
+}
+
+/* Sub-card bottom label inside 3D frame */
+.cyberCardLabelBar {
+  position: absolute;
+  bottom: 6.5%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.cyberCardWord {
+  font-size: clamp(13px, 1.6vw, 20px);
+  font-weight: 300;
+  letter-spacing: 0.16em;
+  line-height: 1.25;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.95), 0 0 10px rgba(200, 255, 0, 0.25);
+  text-align: center;
+}
+
+/* =========================================================
+   DYNAMIC CYBER CARD SCREEN (Replaces static PNG cards)
+   ========================================================= */
+
+.cyberScreenRoot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 22px;
+  box-sizing: border-box;
+  overflow: hidden;
+  user-select: none;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  z-index: 1;
+}
+
+.cyberScreenBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.cyberScreenGrid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: center center;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.cyberScreenHeader {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.cyberScreenBadge {
+  font-family: monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  padding: 3px 8px;
+  border: 1px solid;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.55);
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+}
+
+.cyberScreenSignal {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: monospace;
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.cyberSignalDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.cyberScreenBody {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.cyberContentBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  max-width: 95%;
+}
+
+.cyberTagline {
+  font-family: monospace;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.cyberTitle {
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.15;
+  text-transform: uppercase;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.95);
+}
+
+.cyberSubtitle {
+  font-size: clamp(11px, 1.2vw, 13px);
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.45;
+  margin: 0;
+  max-width: 260px;
+}
+
+.cyberTagsRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.cyberMetricTag {
+  font-family: monospace;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  padding: 3px 8px;
+  border: 1px solid;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.45);
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+}
+
+.cyberLogoContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.cyberLogoBacklight {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.cyberLogoImg {
+  position: relative;
+  width: clamp(75px, 9vw, 95px);
+  height: auto;
+  filter: drop-shadow(0 0 16px rgba(200, 255, 0, 0.65));
+  z-index: 2;
+  user-select: none;
+}
+
+.cyberLogoLabel {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.cyberLogoLabelMain {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.cyberLogoLabelSub {
+  font-family: monospace;
+  font-size: 8px;
+  letter-spacing: 0.22em;
+  color: rgba(200, 255, 0, 0.85);
+  text-transform: uppercase;
+}
+
+.cyberScreenFooter {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cyberFooterLine {
+  height: 1px;
+  width: 100%;
+}
+
+.cyberFooterRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: monospace;
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+}
+
+

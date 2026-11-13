@@ -1,0 +1,357 @@
+/* =========================================================
+   FROSTED ACRYLIC GLASS SLIDER BUTTON (Figma Master Replica)
+   Master Reference: Aleksey Kharitonov ("Figma — 30 Days")
+   Thumb Position: LEFT SIDE
+   ========================================================= */
+
+/* Stage Container */
+.magma-stage {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  background: transparent;
+  font-family: "Inter", sans-serif;
+}
+
+/* Wrapper allows the 106px glass thumb to overhang the 88px track vertically by 9px top & bottom */
+.magma-btn-wrapper {
+  position: relative;
+  height: 106px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  box-shadow: none;
+  flex-shrink: 0;
+}
+
+/* 1. Recessed Track Bezel & Cavity */
+.magma-track-bezel {
+  position: relative;
+  width: 100%;
+  height: 88px;
+  border-radius: 999px;
+  padding: 5px;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, #23242a 0%, #141518 100%);
+  box-shadow:
+    0 1px 2px rgba(255, 255, 255, 0.08),
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.12);
+}
+
+.magma-track-cavity {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  background: #0e0f12;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  box-shadow:
+    inset 0 8px 18px rgba(0, 0, 0, 0.98),
+    inset 0 2px 6px rgba(0, 0, 0, 0.85),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.05);
+}
+
+/* Crisp Pure White Label on the RIGHT side - enhanced size and punch */
+.magma-label {
+  position: relative;
+  z-index: 4;
+  margin-left: auto;
+  padding-right: 28px;
+  padding-left: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 16.5px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  text-align: right;
+}
+
+/* Ambient light wash bleeding right into the dark track */
+.magma-ambient-glow {
+  position: absolute;
+  top: -30%;
+  bottom: -30%;
+  left: 115px;
+  right: auto;
+  width: 180px;
+  background: radial-gradient(circle at 25% 50%,
+      rgba(255, 95, 0, 0.95) 0%,
+      rgba(230, 60, 0, 0.6) 45%,
+      transparent 80%);
+  filter: blur(14px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Solid glowing core pill peeking from underneath the glass thumb on the left */
+.magma-solid-core {
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  left: 48px;
+  right: auto;
+  width: 160px;
+  border-radius: 999px;
+  background: linear-gradient(270deg, #ff7b00 0%, #f05a00 35%, #d84300 100%);
+  border-right: 2px solid rgba(255, 205, 130, 0.95);
+  box-shadow:
+    10px 0 26px rgba(255, 95, 0, 0.92),
+    inset -4px 0 10px rgba(255, 215, 140, 0.65);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* 2. Overhanging Frosted Acrylic Glass Thumb on the LEFT side */
+.magma-glass-thumb {
+  position: absolute;
+  left: 0;
+  right: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 205px;
+  height: 106px;
+  /* Overhangs the 88px track by 9px top & bottom */
+  border-radius: 999px;
+  box-sizing: border-box;
+  padding: 0 26px 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 5;
+  overflow: hidden;
+
+  /* True translucent frosted acrylic glassmorphism matching Figma Background Blur */
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.22) 0%,
+      rgba(255, 255, 255, 0.08) 45%,
+      rgba(255, 255, 255, 0.03) 75%,
+      rgba(255, 255, 255, 0.12) 100%);
+  backdrop-filter: blur(28px) saturate(180%) brightness(1.06);
+  -webkit-backdrop-filter: blur(28px) saturate(180%) brightness(1.06);
+
+  /* Frosted specular outer border & 3D inner rim */
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  box-shadow:
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.8),
+    inset 0 -2.5px 5px rgba(0, 0, 0, 0.45),
+    inset -4px 0 8px rgba(255, 255, 255, 0.22),
+    inset 4px 0 8px rgba(255, 255, 255, 0.28),
+    0 8px 24px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+}
+
+/* Frosted glass surface reflection sheen */
+.glass-internal-tint {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.16) 0%,
+      rgba(255, 255, 255, 0.02) 40%,
+      rgba(0, 0, 0, 0.08) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 3. Diagonal Striated Concave Lens on the LEFT */
+.glass-concave-lens {
+  position: relative;
+  z-index: 3;
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  box-sizing: border-box;
+
+  /* Frosted concave crater with diagonal micro-grooves */
+  background:
+    repeating-linear-gradient(-45deg,
+      rgba(255, 255, 255, 0.07) 0px,
+      rgba(255, 255, 255, 0.07) 2.5px,
+      rgba(0, 0, 0, 0.05) 2.5px,
+      rgba(0, 0, 0, 0.05) 5px),
+    linear-gradient(135deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(180, 190, 205, 0.25) 100%);
+
+  border: 1.5px solid rgba(255, 255, 255, 0.42);
+  box-shadow:
+    inset 3px 4px 8px rgba(0, 0, 0, 0.48),
+    inset -2.5px -2.5px 6px rgba(255, 255, 255, 0.42),
+    0 1px 2px rgba(255, 255, 255, 0.25);
+}
+
+/* 4. 3x5 Debossed Tactile Grip Dots on the RIGHT of thumb */
+.glass-dot-matrix {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: repeat(5, 7.5px);
+  grid-template-rows: repeat(3, 7.5px);
+  gap: 8px 9px;
+  pointer-events: none;
+}
+
+.grip-dot {
+  width: 7.5px;
+  height: 7.5px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  box-shadow:
+    inset 0 1.5px 2px rgba(0, 0, 0, 0.75),
+    0 1px 1px rgba(255, 255, 255, 0.38);
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   THEME BLUE: Electric / Royal Blue Variant (Button 1)
+   ========================================================= */
+.magma-theme-blue .magma-ambient-glow {
+  background: radial-gradient(circle at 25% 50%,
+      rgba(59, 130, 246, 0.98) 0%,
+      rgba(37, 99, 235, 0.75) 40%,
+      rgba(29, 78, 216, 0.3) 65%,
+      transparent 80%);
+}
+
+.magma-theme-blue .magma-solid-core {
+  background: linear-gradient(270deg, #60a5fa 0%, #3b82f6 35%, #1d4ed8 100%);
+  border-right: 2px solid rgba(219, 234, 254, 0.98);
+  border-left: none;
+  box-shadow:
+    12px 0 30px rgba(59, 130, 246, 0.95),
+    inset -4px 0 10px rgba(191, 219, 254, 0.75);
+}
+
+.magma-theme-blue .magma-glass-thumb {
+  border-color: rgba(191, 219, 254, 0.45);
+  box-shadow:
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.9),
+    inset 0 -2.5px 5px rgba(0, 0, 0, 0.45),
+    inset -4px 0 10px rgba(59, 130, 246, 0.25),
+    inset 4px 0 8px rgba(255, 255, 255, 0.35),
+    0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+/* =========================================================
+   THEME GREEN: Signature HAULO Neon Lime Variant (Button 2)
+   ========================================================= */
+.magma-theme-green .magma-ambient-glow {
+  background: radial-gradient(circle at 25% 50%,
+      rgba(200, 255, 0, 0.98) 0%,
+      rgba(187, 251, 3, 0.8) 40%,
+      rgba(132, 204, 22, 0.3) 65%,
+      transparent 80%);
+}
+
+.magma-theme-green .magma-solid-core {
+  background: linear-gradient(270deg, #f7fee7 0%, #d9f99d 20%, #bbfb03 55%, #65a30d 100%);
+  border-right: 2px solid rgba(254, 255, 240, 0.98);
+  border-left: none;
+  box-shadow:
+    12px 0 30px rgba(187, 251, 3, 0.95),
+    inset -4px 0 10px rgba(247, 254, 231, 0.8);
+}
+
+.magma-theme-green .magma-glass-thumb {
+  border-color: rgba(236, 252, 203, 0.5);
+  box-shadow:
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.9),
+    inset 0 -2.5px 5px rgba(0, 0, 0, 0.45),
+    inset -4px 0 10px rgba(187, 251, 3, 0.28),
+    inset 4px 0 8px rgba(255, 255, 255, 0.35),
+    0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+/* =========================================================
+   THEME PURPLE: Cyber Ultraviolet Variant
+   ========================================================= */
+.magma-theme-purple .magma-ambient-glow {
+  background: radial-gradient(circle at 25% 50%,
+      rgba(168, 85, 247, 0.98) 0%,
+      rgba(124, 58, 237, 0.75) 40%,
+      rgba(109, 40, 217, 0.3) 65%,
+      transparent 80%);
+}
+
+.magma-theme-purple .magma-solid-core {
+  background: linear-gradient(270deg, #c084fc 0%, #a855f7 35%, #7e22ce 100%);
+  border-right: 2px solid rgba(243, 232, 255, 0.98);
+  border-left: none;
+  box-shadow:
+    12px 0 30px rgba(168, 85, 247, 0.95),
+    inset -4px 0 10px rgba(233, 213, 255, 0.75);
+}
+
+.magma-theme-purple .magma-glass-thumb {
+  border-color: rgba(216, 180, 254, 0.45);
+  box-shadow:
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.9),
+    inset 0 -2.5px 5px rgba(0, 0, 0, 0.45),
+    inset -4px 0 10px rgba(168, 85, 247, 0.25),
+    inset 4px 0 8px rgba(255, 255, 255, 0.35),
+    0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+/* Smooth switch slide physics */
+.magma-glass-thumb,
+.magma-solid-core,
+.magma-ambient-glow,
+.magma-label {
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.35, 1),
+    box-shadow 0.35s ease,
+    filter 0.35s ease;
+  will-change: transform;
+}
+
+/* Hover glow pulse */
+.magma-btn-wrapper:hover .magma-ambient-glow {
+  filter: blur(18px);
+  opacity: 1;
+}
+
+/* Switched state enhancement */
+.magma-btn-wrapper.is-switched .magma-glass-thumb {
+  box-shadow:
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.9),
+    inset 0 -2.5px 5px rgba(0, 0, 0, 0.45),
+    inset -4px 0 8px rgba(255, 255, 255, 0.28),
+    inset 4px 0 8px rgba(255, 255, 255, 0.35),
+    0 10px 28px rgba(0, 0, 0, 0.55);
+}
+
+.magma-btn-wrapper:focus,
+.magma-btn-wrapper *:focus {
+  outline: none !important;
+}
+
+/* Adaptive scaling for hero section */
+.hero-magma-btn {
+  zoom: 0.58;
+}
+
+@media (max-width: 1280px) {
+  .hero-magma-btn {
+    zoom: 0.52;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-magma-btn {
+    zoom: 0.46;
+  }
+}

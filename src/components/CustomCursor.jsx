@@ -42,8 +42,9 @@ export const CustomCursor = () => {
         target &&
         target.closest &&
         target.closest(
-          'a, button, [role="button"], input, textarea, select, .cursor-pointer, .projectPanel, .orbitCard, .headerNavLink, .promptsPrimaryBtn, .promptsSecondaryBtn, .finalCtaBtn, [data-cursor-hover], .nav-link, .tech-btn, .work-card-track-item, .card-footer-arrow'
-        )
+          'a, input, textarea, select, .projectPanel, .projectCardHitSurface, .orbitCard, .headerNavLink, [data-cursor-hover], .nav-link, .tech-btn, .work-card-track-item, .card-footer-arrow'
+        ) &&
+        !target.closest('button, [role="button"], .promptsPrimaryBtn, .promptsSecondaryBtn, .cardOrbitCta, .finalCtaBtn, .projectExploreBtn')
       ) {
         setIsHovered(true);
       } else {

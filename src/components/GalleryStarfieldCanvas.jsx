@@ -18,9 +18,9 @@ export const GalleryStarfieldCanvas = () => {
     let animId = null;
     let isMounted = true;
 
-    // Maximum 10 stars as requested by user
-    const count = 10;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // Star count: rich and dense cosmic background starfield with celestial dust
+    const count = 180;
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
 
     let width = window.innerWidth;
     let height = window.innerHeight;
@@ -37,7 +37,15 @@ export const GalleryStarfieldCanvas = () => {
     setupCanvas();
 
     const handleResize = () => {
+      const prevW = width;
+      const prevH = height;
       setupCanvas();
+      if (prevW > 0 && prevH > 0) {
+        stars.forEach((s) => {
+          s.x = (s.x / prevW) * width;
+          s.y = (s.y / prevH) * height;
+        });
+      }
     };
     window.addEventListener("resize", handleResize);
 
@@ -53,42 +61,78 @@ export const GalleryStarfieldCanvas = () => {
     };
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
 
-    // 10 well-distributed coordinates across viewport sectors (avoiding card obstruction)
-    const starSectors = [
-      { xPct: 0.08, yPct: 0.18 },
-      { xPct: 0.22, yPct: 0.10 },
-      { xPct: 0.48, yPct: 0.14 },
-      { xPct: 0.78, yPct: 0.10 },
-      { xPct: 0.94, yPct: 0.28 },
-      { xPct: 0.04, yPct: 0.52 },
-      { xPct: 0.26, yPct: 0.88 },
-      { xPct: 0.52, yPct: 0.82 },
-      { xPct: 0.74, yPct: 0.92 },
-      { xPct: 0.92, yPct: 0.74 }
-    ];
+    // Initialize rich star population with multi-layered depth and twinkling
+    const stars = Array.from({ length: count }, (_, idx) => {
+      // 10% diamond sparkle glints with 4-point diffraction crosses
+      // 25% medium twinkling stars with atmospheric glow halo
+      // 65% tiny ambient background stars providing deep cosmic field
+      const rand = Math.random();
+      let type = 0;
+      let baseRadius = 0.6 + Math.random() * 0.45;
+      let parallaxDepth = 0.25 + Math.random() * 0.35;
+      let minAlpha = 0.15;
+      let maxAlpha = 0.6 + Math.random() * 0.25;
 
-    // Initialize exactly 10 stars
-    const stars = starSectors.map((pos, idx) => ({
-      x: pos.xPct * width,
-      y: pos.yPct * height,
-      baseRadius: idx % 3 === 0 ? 1.6 : idx % 2 === 0 ? 1.2 : 0.9,
-      vx: (Math.random() - 0.5) * 0.08,
-      vy: (Math.random() - 0.5) * 0.08,
-      parallaxDepth: 0.6 + (idx % 3) * 0.35,
-      twinkleSpeed: 0.02 + (idx % 5) * 0.008,
-      twinklePhase: (idx * Math.PI) / 5,
-      minAlpha: 0.25,
-      maxAlpha: idx % 2 === 0 ? 0.95 : 0.8,
-      type: idx % 3 === 0 ? 2 : 1, // subtle sparkle diamond or twinkling star
-      tint: idx % 4 === 0 ? "186, 230, 253" : "255, 255, 255"
-    }));
+      if (rand < 0.10) {
+        type = 2; // Diamond 4-point sparkle cross
+        baseRadius = 1.7 + Math.random() * 0.7;
+        parallaxDepth = 0.85 + Math.random() * 0.5;
+        minAlpha = 0.3;
+        maxAlpha = 0.98;
+      } else if (rand < 0.35) {
+        type = 1; // Medium star with glowing halo
+        baseRadius = 1.1 + Math.random() * 0.45;
+        parallaxDepth = 0.5 + Math.random() * 0.4;
+        minAlpha = 0.25;
+        maxAlpha = 0.88;
+      }
+
+      // Starlight tint variations: crisp white, celestial ice blue, and faint lime-white
+      let tint = "255, 255, 255";
+      const tintRand = Math.random();
+      if (tintRand < 0.22) {
+        tint = "186, 230, 253"; // Soft icy blue
+      } else if (tintRand < 0.34) {
+        tint = "220, 252, 231"; // Soft Haulo lime-emerald tint
+      } else if (tintRand < 0.44) {
+        tint = "241, 245, 249"; // Soft silver white
+      }
+
+      return {
+        x: Math.random() * width,
+        y: Math.random() * height,
+        baseRadius,
+        vx: (Math.random() - 0.5) * 0.05,
+        vy: (Math.random() - 0.5) * 0.05,
+        parallaxDepth,
+        twinkleSpeed: 0.012 + Math.random() * 0.024,
+        twinklePhase: Math.random() * Math.PI * 2,
+        minAlpha,
+        maxAlpha,
+        type,
+        tint
+      };
+    });
 
     let time = 0;
 
-
+    let isVisible = true;
+    const parentEl = canvas.closest('.worldLayer') || canvas;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+      },
+      { threshold: 0.01 }
+    );
+    if (parentEl) observer.observe(parentEl);
 
     const render = () => {
       if (!isMounted) return;
+
+      if (!isVisible) {
+        animId = requestAnimationFrame(render);
+        return;
+      }
 
       // Mouse lerp
       curMouseX += (targetMouseX - curMouseX) * 0.05;
@@ -164,6 +208,7 @@ export const GalleryStarfieldCanvas = () => {
 
     return () => {
       isMounted = false;
+      observer.disconnect();
       if (animId) cancelAnimationFrame(animId);
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);

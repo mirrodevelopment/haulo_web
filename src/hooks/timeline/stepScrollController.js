@@ -10,7 +10,14 @@ import { SECTION_HOLD_LABELS, TOTAL_TIMELINE_DURATION } from "./timelineConstant
 export const setupStepController = ({
   master,
   portalWorldRef,
+  promptsHeadingRef,
+  promptsBottomLeftRef,
+  promptsUiUxCardRef,
+  promptsUiUxOffsetY = 0,
   cardOrbitCtaRef,
+  beyondWorldRef,
+  beyondTitleRef,
+  limitsTitleRef,
   introState,
   updateCachedMeasurements,
   autoAdvanceRef,
@@ -33,9 +40,53 @@ export const setupStepController = ({
   let activeStepIndex = 0;
   let navTimeout = null;
   let lastNavStartTime = 0;
+  let heroEntranceTriggered = false;
+  let heroEntranceTimer = null;
 
-  // Velvety smooth cubic ease: responsive liftoff, fluid cruising, whisper-soft stop
-  const smoothEase = (t) => 1 - Math.pow(1 - t, 3.2);
+  const triggerHeroTextEntrance = (delay = 0.0) => {
+    if (heroEntranceTriggered) return;
+    heroEntranceTriggered = true;
+    clearTimeout(heroEntranceTimer);
+    const execute = () => {
+      const heroTargetsIn = [
+        promptsHeadingRef?.current,
+        promptsBottomLeftRef?.current
+      ].filter(Boolean);
+      const rightCardEl = promptsUiUxCardRef?.current;
+
+      // Ensure left side heading and action buttons are fully visible
+      if (heroTargetsIn.length) {
+        gsap.to(heroTargetsIn, {
+          y: 0,
+          opacity: 1,
+          autoAlpha: 1,
+          duration: 0.45,
+          stagger: 0.08,
+          ease: "power2.out"
+        });
+      }
+
+      // Ensure preview card is fully visible (right on desktop, bottom on mobile)
+      if (rightCardEl) {
+        gsap.to(rightCardEl, {
+          y: promptsUiUxOffsetY,
+          opacity: 1,
+          autoAlpha: 1,
+          duration: 0.45,
+          ease: "power2.out"
+        });
+      }
+    };
+
+    if (delay > 0) {
+      heroEntranceTimer = setTimeout(execute, Math.round(delay * 1000));
+    } else {
+      execute();
+    }
+  };
+
+  // Velvety smooth easeInOutCubic: zero initial jerk, fluid cruising speed, whisper-soft feather stop
+  const smoothEase = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
   const syncClosestStepIndex = (currentY, steps) => {
     const minIdx = introState.hasPassed ? 1 : 0;
@@ -59,11 +110,27 @@ export const setupStepController = ({
     isNavigating = true;
     lastNavStartTime = performance.now();
 
-    // Fluid step duration: responsive and luxurious without locking or sticking
-    const isExpandOrGalleryStep = clampedIdx === 13 || clampedIdx === 14 || clampedIdx === 15;
+    // Fluid step duration: snappy, responsive and cinematic without locking or sluggish delay
+    const isExpandOrGalleryStep = clampedIdx >= 13 && clampedIdx <= 15;
     const isProjectsEntrance = clampedIdx === 8 || (activeStepIndex === 8 && clampedIdx === 7);
+    const isProjectStep = clampedIdx >= 8 && clampedIdx <= 12;
     const isIntroToHero = clampedIdx === 1 && activeStepIndex === 0;
-    const stepDur = isIntroToHero ? 1.85 : isExpandOrGalleryStep ? 1.15 : isProjectsEntrance ? 1.35 : 0.95;
+    const isBeyondPhilosophyStep = clampedIdx === 7;
+    const stepDur = isIntroToHero
+      ? 0.65
+      : isBeyondPhilosophyStep
+      ? 0.72
+      : clampedIdx === 13
+      ? 0.75
+      : clampedIdx === 15
+      ? 0.82 // 3rd scroll: Camera moves inside cosmic-vortex.webp, then opens next section
+      : isExpandOrGalleryStep
+      ? 0.72
+      : isProjectsEntrance
+      ? 0.68
+      : isProjectStep
+      ? 0.62
+      : 0.55;
 
     if (window.__lenis) {
       window.__lenis.scrollTo(targetY, {
@@ -77,6 +144,9 @@ export const setupStepController = ({
             introState.hasPassed = true;
             if (portalWorldRef.current) {
               gsap.set(portalWorldRef.current, { autoAlpha: 0, display: "none" });
+            }
+            if (clampedIdx === 1) {
+              triggerHeroTextEntrance(0.0);
             }
           }
         }
@@ -92,6 +162,9 @@ export const setupStepController = ({
         introState.hasPassed = true;
         if (portalWorldRef.current) {
           gsap.set(portalWorldRef.current, { autoAlpha: 0, display: "none" });
+        }
+        if (clampedIdx === 1) {
+          triggerHeroTextEntrance(0.0);
         }
       }
     }, Math.round(stepDur * 1000));
@@ -149,7 +222,7 @@ export const setupStepController = ({
     const now = performance.now();
 
     // Guard during active navigation: absorb extra wheel ticks/inertia so sections don't skip or rush
-    if (isNavigating || now - lastNavStartTime < 380) {
+    if (isNavigating || now - lastNavStartTime < 240) {
       if (e.cancelable) e.preventDefault();
       if (e.stopImmediatePropagation) e.stopImmediatePropagation();
       return;
@@ -168,13 +241,13 @@ export const setupStepController = ({
   const onTouchMove = (e) => {
     if (touchStartY === null || !e.touches?.length) return;
     const now = performance.now();
-    if (isNavigating || now - lastNavStartTime < 380) {
+    if (isNavigating || now - lastNavStartTime < 240) {
       if (e.cancelable) e.preventDefault();
       if (e.stopImmediatePropagation) e.stopImmediatePropagation();
       return;
     }
     const diff = touchStartY - e.touches[0].clientY;
-    if (Math.abs(diff) < 30) return;
+    if (Math.abs(diff) < 22) return;
     if (handleStepScroll(diff > 0 ? 1 : -1, e)) {
       touchStartY = e.touches[0].clientY;
     }
@@ -182,7 +255,7 @@ export const setupStepController = ({
 
   const onKeyDown = (e) => {
     const now = performance.now();
-    if (isNavigating || now - lastNavStartTime < 380) return;
+    if (isNavigating || now - lastNavStartTime < 240) return;
     if (introState.hasPassed && (e.key === "ArrowUp" || e.key === "PageUp")) {
       const currentY = window.__lenis?.scroll ?? window.scrollY;
       const steps = getSectionSteps();
@@ -221,6 +294,9 @@ export const setupStepController = ({
 
     if (!isNavigating) {
       activeStepIndex = syncClosestStepIndex(scroll, steps);
+      if (activeStepIndex === 1 && !heroEntranceTriggered) {
+        triggerHeroTextEntrance(0.0);
+      }
     }
   };
 
@@ -279,7 +355,7 @@ export const setupStepController = ({
     const targetT = master.labels[projectLabels[idx]] ?? (panStart + idx * stepDuration);
     const targetY = start + (targetT / totalDur) * (end - start);
     if (window.__lenis) {
-      window.__lenis.scrollTo(targetY, { duration: 1.15, lock: true, force: true, easing: smoothEase });
+      window.__lenis.scrollTo(targetY, { duration: 0.65, lock: true, force: true, easing: smoothEase });
     } else {
       window.scrollTo({ top: targetY, behavior: "smooth" });
     }
@@ -308,11 +384,16 @@ export const setupStepController = ({
 
     const targetY = start + (targetT / totalDur) * (end - start);
     if (window.__lenis) {
-      window.__lenis.scrollTo(targetY, { duration: 1.35, lock: true, force: true, easing: smoothEase });
+      window.__lenis.scrollTo(targetY, { duration: 0.72, lock: true, force: true, easing: smoothEase });
     } else {
       window.scrollTo({ top: targetY, behavior: "smooth" });
     }
   };
+
+  // If user refreshed or landed directly at this page
+  if (introState.hasPassed || activeStepIndex === 1) {
+    triggerHeroTextEntrance(0.0);
+  }
 
   return () => {
     window.__hauloScrollTo = null;
@@ -326,5 +407,6 @@ export const setupStepController = ({
     window.removeEventListener("touchmove", onTouchMoveGuard);
     window.removeEventListener("keydown", onKeyDown);
     clearTimeout(navTimeout);
+    clearTimeout(heroEntranceTimer);
   };
 };

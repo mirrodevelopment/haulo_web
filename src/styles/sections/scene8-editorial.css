@@ -1,8 +1,8 @@
-﻿/* =========================================================
+/* =========================================================
    SCENE 8: EDITORIAL POSTER SHOWCASE (Full Screen Edge-to-Edge)
    ========================================================= */
 .editorialGalleryWorld {
-  background: #000000 !important;
+  background: transparent !important;
   overflow: hidden;
   position: absolute;
   inset: 0;
@@ -10,6 +10,7 @@
   height: 100vh;
   perspective: 1400px;
   perspective-origin: center center;
+  pointer-events: none;
 }
 
 .editorialStage {
@@ -19,7 +20,7 @@
   height: 100vh;
   max-width: 100vw;
   max-height: 100vh;
-  pointer-events: auto;
+  pointer-events: none;
   user-select: none;
   isolation: isolate;
   transform-style: preserve-3d;
@@ -36,7 +37,7 @@
   width: 100vw;
   height: 100vh;
   transform-style: preserve-3d;
-  pointer-events: auto;
+  pointer-events: none;
 }
 
 .editorialFaceFront {
@@ -45,7 +46,7 @@
   width: 100vw;
   height: 100vh;
   transform-style: preserve-3d;
-  pointer-events: auto;
+  pointer-events: none;
   opacity: 1;
   will-change: opacity, transform;
 }
@@ -56,16 +57,709 @@
   width: 100vw;
   height: 100vh;
   transform-style: preserve-3d;
-  pointer-events: auto;
+  pointer-events: none;
   opacity: 0;
   will-change: opacity, transform;
 }
 
+.editorialFaceBack .finalScreenCard {
+  pointer-events: auto;
+}
+
 .editorialElement {
   position: absolute;
+  pointer-events: auto;
   will-change: transform, opacity;
   transform-style: preserve-3d;
 }
+
+/* ==============================================================
+   SERVICE UNIVERSE HERO (Face 1: DESIGN. BUILD. CONNECT. SCALE.)
+   ============================================================== */
+.serviceUniverseContainer {
+  position: absolute;
+  left: clamp(28px, 4.2vw, 70px);
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: clamp(320px, 32vw, 480px);
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  pointer-events: auto;
+  user-select: none;
+}
+
+.universeEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.universeEyebrowBar {
+  width: 26px;
+  height: 4px;
+  border-radius: 9999px;
+  background: #c8ff00;
+  box-shadow: 0 0 12px rgba(200, 255, 0, 0.75);
+}
+
+.universeEyebrowText {
+  font-family: 'Space Mono', monospace, ui-monospace;
+  font-size: clamp(11px, 0.88vw, 13px);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.universeHeadline {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 24px 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: clamp(36px, 3.8vw, 62px);
+  font-weight: 800 !important;
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  color: #ffffff !important;
+  text-transform: uppercase;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.95);
+  -webkit-text-stroke: 0.4px rgba(255, 255, 255, 0.9);
+}
+
+.universeHeadline span {
+  display: block;
+  font-weight: 500 !important;
+}
+
+.universeTagline {
+  margin: 0 0 22px 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: clamp(12.5px, 0.95vw, 15px);
+  line-height: 1.5;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  max-width: clamp(270px, 24vw, 340px);
+  font-weight: 500 !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95);
+}
+
+.universeCtaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 28px;
+  border-radius: 9999px;
+  border: 1.8px solid #c8ff00;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #ffffff;
+  font-family: 'Space Mono', monospace, ui-monospace;
+  font-size: clamp(11.5px, 0.88vw, 13.5px);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 0 16px rgba(200, 255, 0, 0.22), inset 0 0 10px rgba(200, 255, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+}
+
+.universeCtaBtn:hover {
+  background: rgba(0, 0, 0, 0.55);
+  color: #ffffff;
+  border-color: #c8ff00;
+  box-shadow: 0 0 16px rgba(200, 255, 0, 0.25), inset 0 0 10px rgba(200, 255, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.universeBtnArrow {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  stroke: currentColor;
+}
+
+.universeCtaBtn:hover .universeBtnArrow {
+  transform: translateX(4px);
+  stroke: currentColor;
+}
+
+/* ==============================================================
+   DEEP SPACE SKY ATMOSPHERE & CELESTIAL VORTEX (Sky Effect)
+   ============================================================== */
+.universeSkyAtmosphere {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.universeSkyNebula {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    /* Top-right subtle cosmic vortex nebula halo */
+    radial-gradient(circle 240px at 91% 18%, rgba(99, 102, 241, 0.14) 0%, rgba(139, 92, 246, 0.06) 45%, transparent 75%),
+    /* Center orbital track celestial stardust glow (compact & subtle) */
+    radial-gradient(ellipse 46% 36% at 56% 54%, rgba(30, 58, 138, 0.14) 0%, rgba(56, 189, 248, 0.05) 45%, transparent 75%),
+    /* Deep mid-space indigo dust */
+    radial-gradient(ellipse 55% 45% at 50% 60%, rgba(15, 23, 42, 0.35) 0%, transparent 80%);
+  pointer-events: none;
+}
+
+.universeSkyVortex {
+  position: absolute;
+  right: 0.5%;
+  top: 1.5%;
+  width: clamp(280px, 28vw, 480px);
+  aspect-ratio: 1 / 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+  opacity: 0.82;
+  filter: drop-shadow(0 0 25px rgba(99, 102, 241, 0.3)) drop-shadow(0 0 50px rgba(59, 130, 246, 0.2));
+  animation: vortexSubtlePulse 9s ease-in-out infinite alternate;
+}
+
+.universeSkyVortexImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  mix-blend-mode: screen;
+}
+
+@keyframes vortexSubtlePulse {
+  0% {
+    transform: scale(0.97) rotate(0deg);
+    opacity: 0.76;
+  }
+
+  50% {
+    transform: scale(1.03) rotate(3deg);
+    opacity: 0.88;
+  }
+
+  100% {
+    transform: scale(0.97) rotate(0deg);
+    opacity: 0.76;
+  }
+}
+
+/* Ceiling Framing Beam */
+.universeTopBeam {
+  position: absolute;
+  left: 43.5%;
+  top: 0;
+  width: clamp(75px, 8.5vw, 130px);
+  height: auto;
+  z-index: 8;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.85));
+  will-change: transform, opacity;
+}
+
+.universeTopBeamImg {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* ==============================================================
+   SERVICE UNIVERSE SPIRAL TRACK RAIL & 11 SERVICE PLATFORMS
+   ============================================================== */
+.universeOrbitSystem {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transform-style: preserve-3d;
+  transform-origin: 51.5% 42.5%;
+  will-change: transform, opacity;
+  z-index: 5;
+}
+
+.universeCenterFrameContainer {
+  position: absolute;
+  left: 58%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+  width: clamp(660px, 69vw, 1300px);
+  aspect-ratio: 1774 / 887;
+  height: auto;
+  z-index: 4;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform, opacity;
+}
+
+/* Left-Bottom Corner Framing Beam */
+.universeCornerBeam {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: clamp(200px, 25vw, 380px);
+  height: auto;
+  z-index: 8;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 0 35px rgba(0, 0, 0, 0.75));
+  -webkit-mask-image: radial-gradient(ellipse 110% 110% at 0% 100%, #000 60%, rgba(0, 0, 0, 0.5) 82%, transparent 98%);
+  mask-image: radial-gradient(ellipse 110% 110% at 0% 100%, #000 60%, rgba(0, 0, 0, 0.5) 82%, transparent 98%);
+  will-change: transform, opacity;
+}
+
+.universeCornerBeamImg {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.universeCenterFrameImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+  filter: drop-shadow(0 0 14px rgba(200, 255, 0, 0.10)) drop-shadow(0 8px 24px rgba(0, 0, 0, 0.45));
+}
+
+@keyframes universeRailFloat {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  50% {
+    transform: translate(-50%, calc(-50% - 8px)) rotate(0.35deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+
+/* ==============================================================
+   11 INTERACTIVE 3D SERVICE PLATFORMS ON ORBITAL TRACK
+   ============================================================== */
+.universeNodesStage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 6;
+  user-select: none;
+  transform-style: preserve-3d;
+}
+
+.serviceTrackNode {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: block;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: filter 0.4s ease;
+  will-change: transform;
+  outline: none;
+}
+
+.serviceNodeInner {
+  position: relative;
+  width: 100%;
+  transform-origin: center center;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, filter 0.4s ease;
+  display: block;
+}
+
+/* Hover preview when no node is selected */
+.serviceTrackNode:not(.is-dimmed):not(.is-selected):hover .serviceNodeInner,
+.serviceTrackNode:not(.is-dimmed):not(.is-selected):focus-visible .serviceNodeInner {
+  transform: translateY(-6px) scale(1.05);
+}
+
+/* ==============================================================
+   CLICKED / SELECTED SERVICE NODE (Increase size)
+   ============================================================== */
+.serviceTrackNode.is-selected {
+  z-index: 99 !important;
+}
+
+.serviceTrackNode.is-selected .serviceNodeInner {
+  transform: translateY(-8px) scale(1.36);
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+.serviceTrackNode.is-selected .serviceNodeBeaconRing {
+  opacity: 1;
+  border-color: rgba(200, 255, 0, 0.95);
+  background: radial-gradient(ellipse at center, rgba(0, 240, 255, 0.22) 0%, rgba(200, 255, 0, 0.30) 55%, rgba(200, 255, 0, 0.95) 100%);
+  animation: beaconSonarPulse 1.3s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+.serviceTrackNode.is-selected .serviceNodeTagBar {
+  width: 24px;
+  background: #c8ff00;
+  box-shadow: 0 0 14px rgba(200, 255, 0, 1);
+}
+
+.serviceTrackNode.is-selected .serviceNodeTagText {
+  color: #c8ff00 !important;
+  -webkit-text-fill-color: #c8ff00;
+  text-shadow: 0 0 12px rgba(200, 255, 0, 0.75), 0 2px 10px rgba(0, 0, 0, 0.95);
+}
+
+.serviceTrackNode.is-selected .serviceNodeTelemetryChip {
+  opacity: 1;
+  transform: translateY(0);
+  border-color: rgba(200, 255, 0, 0.85);
+  background: rgba(200, 255, 0, 0.18);
+  color: #c8ff00;
+  box-shadow: 0 0 10px rgba(200, 255, 0, 0.35);
+}
+
+/* ==============================================================
+   REMAINING NODES (Decrease opacity)
+   ============================================================== */
+.serviceTrackNode.is-dimmed .serviceNodeInner {
+  opacity: 0.18;
+  transform: scale(0.92);
+  filter: grayscale(20%);
+}
+
+.serviceTrackNode.is-dimmed:hover .serviceNodeInner,
+.serviceTrackNode.is-dimmed:focus-visible .serviceNodeInner {
+  opacity: 0.55;
+  transform: scale(0.96);
+  filter: none;
+}
+
+@media (max-width: 768px) {
+  .serviceTrackNode.is-selected .serviceNodeInner {
+    transform: translateY(-4px) scale(1.22);
+  }
+}
+
+/* ==============================================================
+   EXPANDABLE CAPABILITY HUD ON SELECTED SERVICE NODE
+   ============================================================== */
+.serviceNodeExpandedHud {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 6px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: rgba(6, 11, 20, 0.90);
+  border: 1px solid rgba(200, 255, 0, 0.45);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.7), 0 0 14px rgba(200, 255, 0, 0.15);
+  animation: hudReveal 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  pointer-events: none;
+  max-width: 200px;
+}
+
+@keyframes hudReveal {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.hudCategoryLine {
+  font-family: 'Space Mono', 'Inter', monospace;
+  font-size: clamp(6.5px, 0.52vw, 8px);
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  color: #c8ff00;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.hudTagsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.hudCapTag {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: clamp(6px, 0.46vw, 7.5px);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1.5px 5px;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  white-space: nowrap;
+}
+
+/* Ambient Anti-Gravity Idle Levitation for platforms */
+@keyframes antiGravityIdle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.serviceTrackNode:not(.is-selected):not(.is-dimmed) .serviceNodeImg {
+  animation: antiGravityIdle 4.5s ease-in-out infinite;
+}
+
+.serviceTrackNode.is-selected .serviceNodeImg {
+  animation: none !important;
+}
+
+.serviceNode_mobile .serviceNodeImg { animation-delay: 0s; }
+.serviceNode_ecommerce .serviceNodeImg { animation-delay: 0.4s; }
+.serviceNode_web .serviceNodeImg { animation-delay: 0.8s; }
+.serviceNode_ai .serviceNodeImg { animation-delay: 1.2s; }
+.serviceNode_content .serviceNodeImg { animation-delay: 1.6s; }
+.serviceNode_brand .serviceNodeImg { animation-delay: 2.0s; }
+.serviceNode_cloud .serviceNodeImg { animation-delay: 2.4s; }
+.serviceNode_erp .serviceNodeImg { animation-delay: 2.8s; }
+.serviceNode_automation .serviceNodeImg { animation-delay: 3.2s; }
+.serviceNode_seo .serviceNodeImg { animation-delay: 3.6s; }
+.serviceNode_iot .serviceNodeImg { animation-delay: 4.0s; }
+
+.serviceNodeImg {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: none !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.serviceTrackNode:hover .serviceNodeImg,
+.serviceTrackNode:focus-visible .serviceNodeImg {
+  transform: translateY(-4px) scale(1.02);
+  filter: none !important;
+}
+
+/* Cyber Sonar Beacon Ring beneath platform */
+.serviceNodeBeaconRing {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  width: 72%;
+  height: 32%;
+  transform: translate(-50%, 50%) rotateX(68deg);
+  border-radius: 50%;
+  border: 1px solid rgba(200, 255, 0, 0);
+  background: radial-gradient(ellipse at center, rgba(200, 255, 0, 0) 0%, rgba(200, 255, 0, 0) 60%, rgba(200, 255, 0, 0) 100%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease, border-color 0.35s ease;
+  z-index: -1;
+}
+
+.serviceTrackNode:hover .serviceNodeBeaconRing,
+.serviceTrackNode:focus-visible .serviceNodeBeaconRing {
+  opacity: 1;
+  border-color: rgba(200, 255, 0, 0.85);
+  background: radial-gradient(ellipse at center, rgba(0, 240, 255, 0.12) 0%, rgba(200, 255, 0, 0.18) 55%, rgba(200, 255, 0, 0) 100%);
+  animation: beaconSonarPulse 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+@keyframes beaconSonarPulse {
+  0% {
+    transform: translate(-50%, 50%) rotateX(68deg) scale(0.85);
+    box-shadow: 0 0 0 0 rgba(200, 255, 0, 0.65), inset 0 0 8px rgba(0, 240, 255, 0.4);
+    opacity: 0.9;
+  }
+  60% {
+    box-shadow: 0 0 20px 10px rgba(200, 255, 0, 0.2), inset 0 0 16px rgba(0, 240, 255, 0.2);
+  }
+  100% {
+    transform: translate(-50%, 50%) rotateX(68deg) scale(1.4);
+    box-shadow: 0 0 35px 18px rgba(200, 255, 0, 0), inset 0 0 22px rgba(0, 240, 255, 0);
+    opacity: 0;
+  }
+}
+
+/* Floating Sci-Fi Technical Labels */
+.serviceNodeLabel {
+  position: absolute;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  transform: translateY(-50%);
+  z-index: 20;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.serviceNodeTagBar {
+  display: block;
+  width: 15px;
+  height: 2.5px;
+  border-radius: 2px;
+  background: #c8ff00;
+  box-shadow: 0 0 10px rgba(200, 255, 0, 0.95);
+  margin: 0;
+  flex-shrink: 0;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.serviceTrackNode:hover .serviceNodeTagBar,
+.serviceTrackNode:focus-visible .serviceNodeTagBar {
+  width: 20px;
+  box-shadow: 0 0 14px rgba(200, 255, 0, 1);
+}
+
+.serviceNodeTagText {
+  font-family: 'Inter', 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(10px, 0.72vw, 13.5px);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff;
+  line-height: 1.22;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-shadow: 0 1px 4px #000000, 0 2px 8px #000000, 0 0 14px rgba(0, 0, 0, 0.95);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.serviceTrackNode:hover .serviceNodeTagText,
+.serviceTrackNode:focus-visible .serviceNodeTagText {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff;
+  text-shadow: 0 0 10px rgba(200, 255, 0, 0.65), 0 2px 10px rgba(0, 0, 0, 0.95);
+}
+
+.serviceNodeTagLine {
+  display: block;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff;
+  font-weight: 700;
+}
+
+/* Micro-telemetry hover chip */
+.serviceNodeTelemetryChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 3px;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  background: rgba(8, 14, 22, 0.85);
+  border: 1px solid rgba(200, 255, 0, 0.45);
+  backdrop-filter: blur(8px);
+  font-family: 'Space Mono', 'Inter', monospace;
+  font-size: clamp(6.5px, 0.48vw, 8.5px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #c8ff00;
+  text-shadow: 0 0 6px rgba(200, 255, 0, 0.6);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  pointer-events: none;
+}
+
+.serviceTrackNode:hover .serviceNodeTelemetryChip,
+.serviceTrackNode:focus-visible .serviceNodeTelemetryChip {
+  opacity: 1;
+  transform: translateY(0);
+  box-shadow: 0 0 12px rgba(200, 255, 0, 0.35);
+}
+
+.serviceNodeChipIcon {
+  color: #c8ff00;
+  flex-shrink: 0;
+}
+
+/* Distant Perspective Platform Nodes (Automation, SEO, Hardware & IoT) */
+.serviceNode_automation .serviceNodeTagText {
+  font-size: clamp(4.5px, 0.32vw, 5.4px) !important;
+  letter-spacing: 0.06em;
+  font-weight: 600 !important;
+}
+
+.serviceNode_automation .serviceNodeTagLine {
+  font-weight: 600 !important;
+}
+
+.serviceNode_automation .serviceNodeTagBar {
+  width: 7px;
+  height: 1.4px;
+}
+
+.serviceNode_seo .serviceNodeTagText {
+  font-size: clamp(4.2px, 0.28vw, 5.0px) !important;
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+  font-weight: 600 !important;
+}
+
+.serviceNode_seo .serviceNodeTagLine {
+  font-weight: 600 !important;
+}
+
+.serviceNode_seo .serviceNodeTagBar {
+  width: 6px;
+  height: 1.4px;
+}
+
+.serviceNode_iot .serviceNodeTagText {
+  font-size: clamp(4.2px, 0.28vw, 5.0px) !important;
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+  font-weight: 600 !important;
+}
+
+.serviceNode_iot .serviceNodeTagLine {
+  font-weight: 600 !important;
+}
+
+.serviceNode_iot .serviceNodeTagBar {
+  width: 6px;
+  height: 1.4px;
+}
+
+/* Left-aligned label (for Web Development) */
+.labelAlign_left {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.labelAlign_left .serviceNodeTagText {
+  align-items: flex-end;
+}
+
 
 /* ==============================================================
    3-LEVEL PROGRESSIVE SPATIAL ANGLE SYSTEM
@@ -88,13 +782,109 @@
   transform-style: preserve-3d;
 }
 
+/* ==============================================================
+   ZERO-GRAVITY LIVE SPATIAL FLOATING ANIMATION
+   Subtle organic multi-phase levitation across the 3D gallery
+   ============================================================== */
+@keyframes liveSpatialFloatA {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-7px) rotate(0.4deg);
+  }
+}
+
+@keyframes liveSpatialFloatB {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(8px) rotate(-0.5deg);
+  }
+}
+
+@keyframes liveSpatialFloatC {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-6px) rotate(-0.4deg);
+  }
+}
+
+@keyframes liveSpatialFloatD {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(7px) rotate(0.5deg);
+  }
+}
+
+@keyframes liveLetterPulse {
+
+  0%,
+  100% {
+    border-color: rgba(255, 255, 255, 0.5);
+    background-color: transparent;
+  }
+
+  50% {
+    border-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+}
+
+@keyframes liveScanlineSweep {
+  0% {
+    opacity: 0.4;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 0.85;
+    transform: translateY(2px);
+  }
+
+  100% {
+    opacity: 0.4;
+    transform: translateY(0);
+  }
+}
+
 .editorialCardFrame {
   position: relative;
   overflow: hidden;
-  border-radius: 3px;
+  border-radius: 4px;
   background: #080808;
+  border: 1px solid rgba(255, 255, 255, 0.10);
   box-shadow: 0 16px 45px rgba(0, 0, 0, 0.9), 0 0 25px rgba(0, 0, 0, 0.6);
   transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.editorialElement {
+  position: absolute;
+  pointer-events: auto;
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+  cursor: default;
 }
 
 .editorialImg {
@@ -102,6 +892,79 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* Staggered Live Zero-Gravity Floating Assignments */
+.editorialLeftRunnerCard .editorialCardFrame {
+  animation: liveSpatialFloatA 5.4s ease-in-out infinite;
+}
+
+.editorialBottomSkaterCard .editorialCardFrame {
+  animation: liveSpatialFloatB 6.2s ease-in-out infinite 0.4s;
+}
+
+.editorialAmberAuraCard .editorialCardFrame {
+  animation: liveSpatialFloatC 4.8s ease-in-out infinite 0.9s;
+}
+
+.editorialVeryBigHyperCard .editorialCardFrame {
+  animation: liveSpatialFloatD 5.8s ease-in-out infinite 0.2s;
+}
+
+.editorialCenterBlueCard .editorialCardFrame {
+  animation: liveSpatialFloatA 6.1s ease-in-out infinite 1.2s;
+}
+
+.editorialHalfCutPrismCard .editorialCardFrame {
+  animation: liveSpatialFloatB 5.0s ease-in-out infinite 0.6s;
+}
+
+.editorialBottomCenterCard .editorialCardFrame {
+  animation: liveSpatialFloatC 5.6s ease-in-out infinite 1.5s;
+}
+
+.editorialMicroCutVelocityCard .editorialCardFrame {
+  animation: liveSpatialFloatD 4.6s ease-in-out infinite 0.3s;
+}
+
+.editorialYellowThumb {
+  animation: liveSpatialFloatA 5.2s ease-in-out infinite 0.8s;
+  transition: transform 0.35s ease, border-color 0.35s ease;
+}
+
+.editorialHeroOrangeBlock .editorialCardFrame {
+  animation: liveSpatialFloatB 6.4s ease-in-out infinite 0.5s;
+}
+
+.editorialBottomRightBlock .editorialRedNeonFrame {
+  animation: liveSpatialFloatC 5.3s ease-in-out infinite 1.1s;
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.editorialFarRightTopCard .editorialCardFrame {
+  animation: liveSpatialFloatD 5.9s ease-in-out infinite 0.7s;
+}
+
+.editorialFarRightMidCard .editorialCardFrame {
+  animation: liveSpatialFloatA 5.1s ease-in-out infinite 1.4s;
+}
+
+.editorialVectorCard .editorialCardFrame {
+  animation: liveSpatialFloatB 5.7s ease-in-out infinite 0.3s;
+}
+
+.editorialIgniteCard .editorialCardFrame {
+  animation: liveSpatialFloatC 6.3s ease-in-out infinite 1.0s;
+}
+
+/* Badge Letter Tag Live Pulse */
+.editorialLetterTag {
+  animation: liveLetterPulse 3.8s ease-in-out infinite;
+}
+
+/* Scanline Live Motion */
+.editorialScanline {
+  animation: liveScanlineSweep 2.8s ease-in-out infinite;
 }
 
 /* 1. Badge #CREATIVE */
@@ -175,7 +1038,8 @@
 }
 
 .editorialAlphaflyTitle {
-  font-size: clamp(13px, 1.2vw, 17px); white-space: nowrap;
+  font-size: clamp(13px, 1.2vw, 17px);
+  white-space: nowrap;
   font-weight: 600;
   letter-spacing: 0.05em;
   color: #ffffff;
@@ -198,7 +1062,10 @@
 }
 
 .editorialGiantR {
-  font-size: clamp(18px, 1.9vw, 25px); letter-spacing: 0.08em; white-space: nowrap; line-height: 0.95;
+  font-size: clamp(18px, 1.9vw, 25px);
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  line-height: 0.95;
   font-weight: 600;
   line-height: 0.82;
   color: #ffffff;
@@ -275,7 +1142,8 @@
 }
 
 .editorialHeadline {
-  font-size: clamp(15px, 1.45vw, 20px); white-space: nowrap;
+  font-size: clamp(15px, 1.45vw, 20px);
+  white-space: nowrap;
   font-weight: 600;
   letter-spacing: -0.02em;
   color: #ffffff;
@@ -303,11 +1171,12 @@
 .editorialHeroOrangeBlock {
   display: flex;
   flex-direction: column;
-  z-index: 5;
+  z-index: 17;
 }
 
 .editorialVisionTitle {
-  font-size: clamp(14px, 1.35vw, 18px); white-space: nowrap;
+  font-size: clamp(14px, 1.35vw, 18px);
+  white-space: nowrap;
   font-weight: 600;
   letter-spacing: -0.01em;
   color: #ffffff;
@@ -510,3 +1379,450 @@
   margin-top: 6px;
 }
 
+/* ==============================================================
+   NEW ASYMMETRICAL 3D PORTFOLIO CARDS & TYPOGRAPHIC ACCENTS
+   ============================================================== */
+
+/* Typography Accents: One Word + One Letter */
+.editorialBadgeGroup,
+.editorialAlphaflyTitle,
+.editorialGiantR,
+.editorialHeadline,
+.editorialVisionTitle,
+.editorialIdeasText,
+.editorialVerticalCreate,
+.editorialBiggerDreams,
+.editorialMicroTag,
+.editorialFieldReportTag,
+.editorialVerticalKinetic,
+.editorialHighVoltageTitle,
+.editorialVerticalLabel {
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+.editorialBadgeGroup {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  margin-top: 7px;
+  user-select: none;
+  pointer-events: none;
+}
+
+.editorialLetterTag {
+  font-family: inherit;
+  font-size: clamp(15px, 1.4vw, 22px);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
+}
+
+.editorialWordTag {
+  font-family: monospace;
+  font-size: clamp(8.5px, 0.75vw, 10.5px);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* 1. Amber Aura Card (Small-Card-7) */
+.editorialAmberAuraCard {
+  z-index: 8;
+  display: flex;
+  flex-direction: column;
+}
+
+.editorialCardFrame.amberAuraFrame {
+  width: clamp(100px, 10.5vw, 130px);
+  height: clamp(135px, 16vh, 170px);
+}
+
+/* 2. VERY BIG Hero Card (Small-Card-4) */
+.editorialVeryBigHyperCard {
+  z-index: 18;
+  display: flex;
+  flex-direction: column;
+}
+
+.editorialCardFrame.veryBigHyperFrame {
+  width: clamp(165px, 17vw, 220px);
+  height: clamp(205px, 24vh, 260px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95), 0 0 30px rgba(0, 0, 0, 0.7);
+}
+
+/* 3. HALF-CUT Slice Card (Card-10) */
+.editorialHalfCutPrismCard {
+  z-index: 8;
+  display: flex;
+  flex-direction: column;
+}
+
+.editorialCardFrame.halfCutPrismFrame {
+  width: clamp(65px, 6.5vw, 90px);
+  height: clamp(140px, 18vh, 185px);
+}
+
+.editorialCardFrame.halfCutPrismFrame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+}
+
+/* 4. VERY VERY SMALL CUT Micro-Thumbnail (top_blue_runner) */
+.editorialMicroCutVelocityCard {
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+}
+
+.editorialCardFrame.microCutVelocityFrame {
+  width: clamp(48px, 4.5vw, 62px);
+  height: clamp(54px, 5.2vh, 70px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8), 0 0 14px rgba(60, 150, 255, 0.3);
+}
+
+/* 5. Lower-Right Vector Card (Small-Card-8) */
+.editorialVectorCard {
+  z-index: 8;
+  display: flex;
+  flex-direction: column;
+}
+
+.editorialCardFrame.vectorFrame {
+  width: clamp(135px, 14vw, 165px);
+  height: clamp(100px, 12vh, 130px);
+}
+
+/* 6. Far-Right Outer Wing Ignite Card (Small-Card-11) */
+.editorialIgniteCard {
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+}
+
+.editorialCardFrame.igniteFrame {
+  width: clamp(110px, 11vw, 140px);
+  height: clamp(175px, 22vh, 220px);
+}
+
+/* ==============================================================
+   SCENE 8 FACE 2 & FINAL SECTION ("BUILD BEYOND." Showcase)
+   ============================================================== */
+.editorialFaceBack .finalScreenCard,
+.finalWorld .finalScreenCard {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding: clamp(30px, 4.5vh, 50px) clamp(40px, 5vw, 90px) !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: clamp(16px, 2.5vw, 40px) !important;
+  overflow: visible !important;
+  pointer-events: auto !important;
+  box-sizing: border-box !important;
+}
+
+.editorialFaceBack .finalLeftContent,
+.finalWorld .finalLeftContent {
+  position: relative !important;
+  z-index: 10 !important;
+  max-width: clamp(420px, 42vw, 580px) !important;
+  flex-shrink: 0 !important;
+}
+
+.editorialFaceBack .finalRightContent,
+.finalWorld .finalRightContent {
+  position: absolute !important;
+  right: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  height: 100vh !important;
+  width: auto !important;
+  max-width: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+}
+
+.editorialFaceBack .finalSpaceImg,
+.finalWorld .finalSpaceImg,
+.finalSpaceImg {
+  height: 100vh !important;
+  width: auto !important;
+  max-height: 100vh !important;
+  max-width: none !important;
+  object-fit: contain !important;
+  filter: none !important;
+  box-shadow: none !important;
+  animation: none !important;
+  transform: none !important;
+  user-select: none !important;
+  -webkit-user-drag: none !important;
+  pointer-events: none !important;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.6) 4%, #000 10%, #000 90%, rgba(0, 0, 0, 0.6) 96%, transparent 100%) !important;
+  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.6) 4%, #000 10%, #000 90%, rgba(0, 0, 0, 0.6) 96%, transparent 100%) !important;
+}
+
+/* ==============================================================
+   EARTH HORIZON (Bottom-Left / Button Side)
+   ============================================================== */
+.editorialFaceBack .finalEarthContent,
+.finalWorld .finalEarthContent {
+  position: absolute !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  width: clamp(520px, 64vw, 1080px) !important;
+  height: auto !important;
+  max-width: none !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+  user-select: none !important;
+  will-change: transform, opacity;
+  -webkit-mask-image: linear-gradient(to right, #000 0%, #000 80%, rgba(0, 0, 0, 0.6) 92%, transparent 100%);
+  mask-image: linear-gradient(to right, #000 0%, #000 80%, rgba(0, 0, 0, 0.6) 92%, transparent 100%);
+}
+
+.editorialFaceBack .finalEarthImg,
+.finalWorld .finalEarthImg,
+.finalEarthImg {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+  user-select: none !important;
+  -webkit-user-drag: none !important;
+  pointer-events: none !important;
+  transform: rotate(2.5deg) !important;
+  transform-origin: bottom left !important;
+  filter: drop-shadow(0 -16px 45px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 45px rgba(56, 189, 248, 0.32)) drop-shadow(0 20px 40px rgba(0, 0, 0, 0.95)) !important;
+}
+
+@keyframes spaceStationFloatBig {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-14px) rotate(0.6deg);
+  }
+
+  100% {
+    transform: translateY(-24px) rotate(-0.5deg);
+  }
+}
+
+/* Eyebrow: Bright lime-green bar + HAULO / BEYOND THE ORDINARY */
+.finalEyebrow {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 14px !important;
+  margin-bottom: clamp(14px, 2.2vh, 22px) !important;
+  width: max-content !important;
+}
+
+.finalEyebrowBar {
+  display: inline-block;
+  width: 28px;
+  height: 5px;
+  background-color: #a3e635;
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(163, 230, 53, 0.45);
+}
+
+.finalEyebrowText {
+  font-size: clamp(13px, 1.05vw, 15.5px) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em !important;
+  color: #ffffff !important;
+  text-transform: uppercase !important;
+  line-height: 1 !important;
+}
+
+/* Two-line Stacked BUILD BEYOND. */
+.finalTitle {
+  display: flex !important;
+  flex-direction: column !important;
+  white-space: normal !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: clamp(52px, 6.8vw, 102px) !important;
+  font-weight: 700 !important;
+  line-height: 0.94 !important;
+  letter-spacing: -0.04em !important;
+  color: #ffffff !important;
+  text-transform: uppercase !important;
+  margin: 0 !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-shadow: 0 6px 36px rgba(0, 0, 0, 0.95);
+  -webkit-text-stroke: 0 !important;
+}
+
+.finalTitle span {
+  display: block !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-weight: 700 !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+/* Tagline: Neon Lime Green */
+.finalTagline {
+  font-size: clamp(20px, 1.8vw, 27px) !important;
+  font-weight: 400 !important;
+  color: #a3e635 !important;
+  letter-spacing: -0.015em !important;
+  line-height: 1.35 !important;
+  margin-top: clamp(16px, 2.4vh, 24px) !important;
+  margin-bottom: 0 !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
+}
+
+/* Final Technical CTA Button (Dark Chamfered Sci-Fi Frame with Glowing Neon Dot) */
+.editorialFaceBack .finalTechCtaBtn,
+.finalWorld .finalTechCtaBtn {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 252px !important;
+  height: 46px !important;
+  padding: 0 20px 0 22px !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  margin-top: clamp(26px, 3.8vh, 38px) !important;
+  text-decoration: none !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+  z-index: 10 !important;
+  pointer-events: auto !important;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), filter 0.22s ease !important;
+}
+
+.editorialFaceBack .finalTechCtaBtn:hover,
+.finalWorld .finalTechCtaBtn:hover {
+  transform: translateY(-2px) !important;
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.35)) !important;
+}
+
+.editorialFaceBack .finalTechCtaBtn .tech-btn-frame,
+.finalWorld .finalTechCtaBtn .tech-btn-frame {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  overflow: visible !important;
+  z-index: 1 !important;
+}
+
+.editorialFaceBack .finalTechCtaBtn .btn-bg-polygon,
+.finalWorld .finalTechCtaBtn .btn-bg-polygon {
+  fill: #000000 !important;
+  transition: fill 0.25s ease !important;
+}
+
+.editorialFaceBack .finalTechCtaBtn:hover .btn-bg-polygon,
+.finalWorld .finalTechCtaBtn:hover .btn-bg-polygon {
+  fill: #080d12 !important;
+}
+
+.editorialFaceBack .finalTechCtaBtn .tech-btn-frame line,
+.finalWorld .finalTechCtaBtn .tech-btn-frame line {
+  stroke: rgba(255, 255, 255, 0.85) !important;
+  transition: stroke 0.25s ease !important;
+}
+
+.editorialFaceBack .finalTechCtaBtn .tech-btn-frame circle,
+.finalWorld .finalTechCtaBtn .tech-btn-frame circle {
+  fill: #FFFFFF !important;
+}
+
+.editorialFaceBack .finalTechCtaBtn .btn-corner-accent polygon,
+.editorialFaceBack .finalTechCtaBtn .btn-corner-accent rect,
+.finalWorld .finalTechCtaBtn .btn-corner-accent polygon,
+.finalWorld .finalTechCtaBtn .btn-corner-accent rect {
+  fill: #FFFFFF !important;
+}
+
+.editorialFaceBack .finalTechCtaBtn:hover .tech-btn-frame line,
+.finalWorld .finalTechCtaBtn:hover .tech-btn-frame line {
+  stroke: #FFFFFF !important;
+}
+
+/* Glowing Neon Lime-Green Dot Icon */
+.editorialFaceBack .finalTechCtaBtn .finalStatusDot,
+.finalWorld .finalTechCtaBtn .finalStatusDot {
+  position: relative !important;
+  display: block !important;
+  width: 9.5px !important;
+  height: 9.5px !important;
+  border-radius: 50% !important;
+  background-color: #bef264 !important;
+  box-shadow: 0 0 10px 2.5px #a3e635, 0 0 20px rgba(163, 230, 53, 0.8) !important;
+  flex-shrink: 0 !important;
+  z-index: 2 !important;
+  animation: finalNeonDotPulse 2.4s ease-in-out infinite !important;
+}
+
+@keyframes finalNeonDotPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 8px 1.5px #a3e635, 0 0 16px rgba(163, 230, 53, 0.6);
+    transform: scale(1);
+  }
+
+  50% {
+    box-shadow: 0 0 14px 3px #bef264, 0 0 26px rgba(163, 230, 53, 0.95);
+    transform: scale(1.15);
+  }
+}
+
+/* Center Text: START A PROJECT */
+.editorialFaceBack .finalTechCtaBtn .finalBtnText,
+.finalWorld .finalTechCtaBtn .finalBtnText {
+  position: relative !important;
+  flex: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100% !important;
+  padding: 0 14px !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  color: #FFFFFF !important;
+  white-space: nowrap !important;
+  z-index: 2 !important;
+  user-select: none !important;
+}
+
+/* Right Arrow Up-Right: ↗ */
+.editorialFaceBack .finalTechCtaBtn .finalBtnArrow,
+.finalWorld .finalTechCtaBtn .finalBtnArrow {
+  position: relative !important;
+  color: #FFFFFF !important;
+  flex-shrink: 0 !important;
+  z-index: 2 !important;
+  transition: transform 0.22s ease !important;
+}
+
+.editorialFaceBack .finalTechCtaBtn:hover .finalBtnArrow,
+.finalWorld .finalTechCtaBtn:hover .finalBtnArrow {
+  transform: translate(2px, -2px) !important;
+}

@@ -9,10 +9,44 @@ export const BeyondPortalSection = ({
   limitsTitleRef
 }) => {
   return (
-    <div
-      ref={beyondWorldRef}
-      className="worldLayer beyondWorld"
-    >
+    <>
+      {/* SVG Dual-Eye Feathered Mask and ClipPath for smooth, organic portal emergence from frog's eyes */}
+      <svg
+        className="beyondPortalSvgDefs"
+        aria-hidden="true"
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
+          pointerEvents: "none",
+          zIndex: 44,
+          overflow: "visible"
+        }}
+      >
+        <defs>
+          <filter id="eyesPortalFeather" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="7" />
+          </filter>
+          <mask id="eyesPortalMask" maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%">
+            <rect x="-100%" y="-100%" width="300%" height="300%" fill="black" />
+            <g filter="url(#eyesPortalFeather)">
+              <circle id="portalLeftEyeMask" cx="0" cy="0" r="0" fill="white" />
+              <circle id="portalRightEyeMask" cx="0" cy="0" r="0" fill="white" />
+            </g>
+          </mask>
+          <clipPath id="eyesPortalClip" clipPathUnits="userSpaceOnUse">
+            <circle id="portalLeftEye" cx="0" cy="0" r="0" />
+            <circle id="portalRightEye" cx="0" cy="0" r="0" />
+          </clipPath>
+        </defs>
+      </svg>
+
+      <div
+        ref={beyondWorldRef}
+        className="worldLayer beyondWorld"
+      >
       {/* 2D Cosmic Starfield Canvas */}
       <GalleryStarfieldCanvas />
 
@@ -30,12 +64,8 @@ export const BeyondPortalSection = ({
         {/* Subtle Horizontal Divider */}
         <div className="beyondDivider" />
 
-        {/* Bottom Group: Mission Statement + Value Pillars */}
+        {/* Bottom Group: Value Pillars */}
         <div ref={limitsTitleRef} className="beyondBottomGroup">
-          <p className="beyondHeroParagraph">
-            We partner with ambitious teams to turn complex ideas into purposeful digital products, distinctive brands, and experiences designed to make a difference.
-          </p>
-
           <div className="beyondValuesRow">
             <div className="beyondValueCol">
               <span className="beyondValueTitle">DESIGN</span>
@@ -53,7 +83,8 @@ export const BeyondPortalSection = ({
         </div>
       </div>
     </div>
-  );
+  </>
+);
 };
 
 export default BeyondPortalSection;

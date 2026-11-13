@@ -20,21 +20,21 @@ function AppContent() {
 
   useEffect(() => {
     const updateThemeAndProgress = (progress, scrollY) => {
-      // Total timeline duration = 14.2s:
-      // - 0s to 5.45s: Scene 0 Intro, Scene 1 Services Hero, Scene 2-5 3D Orbit & Card 3 (WHITE background) -> Light (isDark = false)
-      // - 5.45s to 14.2s: Scene 6 Beyond, Scene 7 Projects, Scene 8 Gallery, Scene 9 Final (BLACK background) -> Dark (isDark = true)
-      const t = progress * 14.2;
-      const dark = t >= 6.60 || t < 0.18;
+      // Total timeline duration = 14.15s:
+      // - 0s to 5.95s: Scene 0 Intro, Scene 1 Services Hero, Scene 2-5 3D Orbit & Card 3 (WHITE background) -> Light (isDark = false)
+      // - 5.95s to 14.15s: Scene 6 Beyond, Scene 7 Projects, Scene 8 Gallery, Scene 9 Final (BLACK background) -> Dark (isDark = true)
+      const t = progress * 14.15;
+      const dark = t >= 5.95 || t < 0.18;
 
       setIsDark((prev) => (prev !== dark ? dark : prev));
       setActiveSection("service");
 
       // Header, LeftRail, and RightRail are NOT visible on the initial "HAULO SERVICE" intro screen
-      // They smoothly fade in only when moving into the main showcase (t >= 0.40)
-      if (t >= 0.40) {
+      // They smoothly glide in only when moving into the main showcase (t >= 0.25)
+      if (t >= 0.25) {
         introPassedRef.current = true;
       }
-      const visible = introPassedRef.current || t >= 0.40;
+      const visible = introPassedRef.current || t >= 0.25;
       setShowChrome((prev) => (prev !== visible ? visible : prev));
 
       rightRailRef.current?.updateProgress?.(progress);
@@ -76,15 +76,10 @@ function AppContent() {
   return (
     <>
       <CustomCursor />
-      <div
-        className={`transition-opacity duration-700 ease-out ${
-          showChrome ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
-      >
-        <Header isDark={isDark} activeSection={activeSection} />
-        <LeftRail ref={leftRailRef} isDark={isDark} />
-        <RightRail ref={rightRailRef} isDark={isDark} />
-      </div>
+      {/* Navigation Chrome: Header, LeftRail, and RightRail with smooth cinematic entrance */}
+      <Header isDark={isDark} activeSection={activeSection} visible={showChrome} />
+      <LeftRail ref={leftRailRef} isDark={isDark} visible={showChrome} />
+      <RightRail ref={rightRailRef} isDark={isDark} visible={showChrome} />
       <main>
         {/* Main Single-Stage Continuous Cinematic Reel Showcase (900vh height + 100dvh sticky stage) */}
         <CinematicShowcase />

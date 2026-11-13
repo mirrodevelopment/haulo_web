@@ -10,6 +10,10 @@
   justify-content: center !important;
 }
 
+.portalBlackScreen {
+  opacity: 0;
+}
+
 .portalGlow {
   position: absolute;
   top: 50%;
@@ -88,6 +92,7 @@
   transform-style: preserve-3d;
   margin: 0;
   padding: 0;
+  text-align: center;
 }
 
 .portalWordGroup {
@@ -121,6 +126,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  font-weight: 600;
 }
 
 .portalLetter {
@@ -136,6 +142,7 @@
 .portalLetterInner {
   display: inline-block;
   padding: 0 0.015em;
+  font-weight: 600;
   color: #06020e;
   background: linear-gradient(
     180deg,

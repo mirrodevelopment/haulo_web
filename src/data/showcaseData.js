@@ -1,10 +1,15 @@
-// Project Panel Assets
-import galleryCardImg from "../assets/gallery/galleryCard.png";
+// Project Panel Assets from src/assets/projects-img
+import project1Png from "../assets/projects-img/project1.png";
+import project2Png from "../assets/projects-img/project2.png";
+import project1Webp from "../assets/projects-img/1-project.webp";
+import project2Webp from "../assets/projects-img/2-project.webp";
+import project3Webp from "../assets/projects-img/3-project.webp";
+import project4Webp from "../assets/projects-img/4-project.webp";
 
 export const projectPanelsData = [
   {
     id: "proj-brand",
-    image: galleryCardImg,
+    image: project1Png,
     metaLeft: "BRAND & IDENTITY • HAULO",
     metaRight: "FEATURED SERVICE",
     title: "Brand & Identity",
@@ -18,7 +23,7 @@ export const projectPanelsData = [
   },
   {
     id: "proj-ecommerce",
-    image: galleryCardImg,
+    image: project2Png,
     metaLeft: "E-COMMERCE SYSTEMS • HAULO",
     metaRight: "DIGITAL COMMERCE",
     title: "E-commerce Development",
@@ -32,7 +37,7 @@ export const projectPanelsData = [
   },
   {
     id: "proj-cloud",
-    image: galleryCardImg,
+    image: project1Png,
     metaLeft: "CLOUD SYSTEMS • HAULO",
     metaRight: "INFRASTRUCTURE",
     title: "Cloud & Infrastructure",
@@ -46,7 +51,7 @@ export const projectPanelsData = [
   },
   {
     id: "proj-software",
-    image: galleryCardImg,
+    image: project1Png,
     metaLeft: "SOFTWARE ENGINEERING • HAULO",
     metaRight: "CORE SYSTEMS",
     title: "Software Engineering",
@@ -60,7 +65,7 @@ export const projectPanelsData = [
   },
   {
     id: "proj-erp",
-    image: galleryCardImg,
+    image: project1Png,
     metaLeft: "BUSINESS SYSTEMS • HAULO",
     metaRight: "ENTERPRISE SOLUTIONS",
     title: "ERP & Business Systems",

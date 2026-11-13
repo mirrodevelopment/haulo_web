@@ -34,11 +34,7 @@ export const createMeasurementsManager = ({
     finalH: 740
   };
 
-  const getProjectEnterX = () => {
-    const cardEl = projectTrackRef?.current?.querySelector(".projectPanel");
-    const cardW = cardEl?.offsetWidth || Math.min(window.innerWidth * 0.38, 480);
-    return Math.round((window.innerWidth + cardW) * 0.48);
-  };
+  const getProjectEnterX = () => 0;
 
   const getProjectDistance = () =>
     Math.max(0, (projectTrackRef.current?.scrollWidth || 0) - window.innerWidth);
@@ -46,6 +42,14 @@ export const createMeasurementsManager = ({
   let cachedMarqueeOffsets = [0, -1450, -3100, -4750];
 
   const getMarqueeOffset = (sentenceIndex) => {
+    if (marqueeRef?.current) {
+      const texts = marqueeRef.current.querySelectorAll(".marqueeText");
+      if (texts && texts[sentenceIndex] && texts[sentenceIndex].offsetWidth > 0) {
+        const el = texts[sentenceIndex];
+        const center = el.offsetLeft + el.offsetWidth / 2;
+        return Math.round(window.innerWidth / 2 - center);
+      }
+    }
     return cachedMarqueeOffsets[sentenceIndex] ?? 0;
   };
 
@@ -77,12 +81,9 @@ export const createMeasurementsManager = ({
       }
     }
 
-    // Direct 1:1 pixel match between right-side hero card and 3D front card
-    if (promptsUiUxCardRef?.current && targetW > 0 && targetH > 0) {
-      gsap.set(promptsUiUxCardRef.current, {
-        width: Math.round(targetW),
-        height: Math.round(targetH)
-      });
+    // Target dimensions measured for downstream calculations
+    if (promptsUiUxCardRef?.current) {
+      gsap.set(promptsUiUxCardRef.current, { clearProps: "width,height" });
     }
 
     const promptsW = promptsEl?.offsetWidth || Math.max(340, Math.min(vw * 0.94, 1560));
@@ -139,24 +140,14 @@ export const createMeasurementsManager = ({
     }
 
     // 3. Measure and cache exact marquee sentence center offsets for each 3D card
-    if (marqueeRef?.current && marqueeWorldRef?.current) {
-      const container = marqueeRef.current;
-      const world = marqueeWorldRef.current;
-      const prevVis = world.style.visibility;
-      world.style.visibility = "visible";
-
-      const containerRect = container.getBoundingClientRect();
-      const texts = container.querySelectorAll(".marqueeText");
-
-      if (texts.length >= 4 && containerRect.width > 0) {
+    if (marqueeRef?.current) {
+      const texts = marqueeRef.current.querySelectorAll(".marqueeText");
+      if (texts && texts.length >= 4) {
         cachedMarqueeOffsets = Array.from(texts).map((el) => {
-          const elRect = el.getBoundingClientRect();
-          const relativeCenter = (elRect.left - containerRect.left) + elRect.width / 2;
-          return Math.round(vw / 2 - relativeCenter);
+          const center = el.offsetLeft + el.offsetWidth / 2;
+          return Math.round(vw / 2 - center);
         });
       }
-
-      world.style.visibility = prevVis;
     }
   };
 

@@ -42,12 +42,13 @@ export const useCinematicTimeline = (refs) => {
       },
       (context) => {
         if (!stageRef.current || !refs.promptsWorldRef?.current) return;
-        const { isDesktop, isTablet } = context.conditions;
+        const { isDesktop, isTablet, isMobile } = context.conditions;
 
         // Responsive 3D Box Geometry
-        const boxRadius = isDesktop ? 155 : isTablet ? 130 : 105;
+        const boxRadius = isDesktop ? 195 : isTablet ? 145 : 105;
         const perspScale = 2000 / (2000 - boxRadius);
-        const promptsUiUxOffset = isDesktop ? 260 : isTablet ? 170 : 0;
+        const promptsUiUxOffset = isDesktop ? 295 : isTablet ? 170 : 0;
+        const promptsUiUxOffsetY = isMobile ? Math.round(Math.min(window.innerHeight * 0.22, 185)) : 0;
         const orbit = { angle: 0, split: 0, sideReveal: 0, boxMorph: 0 };
 
         const cardNodes = [
@@ -86,6 +87,7 @@ export const useCinematicTimeline = (refs) => {
           boxRadius,
           perspScale,
           promptsUiUxOffset,
+          promptsUiUxOffsetY,
           renderOrbit,
           getCachedExpandCard,
           getMarqueeOffset,
@@ -102,9 +104,9 @@ export const useCinematicTimeline = (refs) => {
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "top top",
-            end: "+=9600",
+            end: "+=10400",
             pin: stageRef.current,
-            scrub: 0.28,
+            scrub: true,
             invalidateOnRefresh: true,
             onRefreshInit: updateCachedMeasurements,
             onUpdate: (self) => {
@@ -112,8 +114,8 @@ export const useCinematicTimeline = (refs) => {
               beyondVisibilityRef.current = t >= 4.8 && t <= 6.95 ? 1 : 0;
 
               // Scene 8 Three.js Gallery scroll progress
-              if (t >= 10.7 && t <= 14.0) {
-                window.__galleryScrollProgress = Math.max(0, Math.min(1, (t - 10.82) / (13.15 - 10.82)));
+              if (t >= 10.35 && t <= 14.20) {
+                window.__galleryScrollProgress = Math.max(0, Math.min(1, (t - 10.35) / (13.50 - 10.35)));
               } else {
                 window.__galleryScrollProgress = 0;
               }
@@ -151,6 +153,7 @@ export const useCinematicTimeline = (refs) => {
           boxRadius,
           perspScale,
           promptsUiUxOffset,
+          promptsUiUxOffsetY,
           orbit,
           renderOrbit,
           getCachedCardScales,
@@ -163,7 +166,14 @@ export const useCinematicTimeline = (refs) => {
         const cleanupStepController = setupStepController({
           master,
           portalWorldRef: refs.portalWorldRef,
+          promptsHeadingRef: refs.promptsHeadingRef,
+          promptsBottomLeftRef: refs.promptsBottomLeftRef,
+          promptsUiUxCardRef: refs.promptsUiUxCardRef,
+          promptsUiUxOffsetY,
           cardOrbitCtaRef: refs.cardOrbitCtaRef,
+          beyondWorldRef: refs.beyondWorldRef,
+          beyondTitleRef: refs.beyondTitleRef,
+          limitsTitleRef: refs.limitsTitleRef,
           introState,
           updateCachedMeasurements,
           autoAdvanceRef,

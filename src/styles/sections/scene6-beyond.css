@@ -10,6 +10,8 @@
   overflow: hidden;
   z-index: 46;
   pointer-events: auto;
+  mask: url(#eyesPortalMask);
+  -webkit-mask: url(#eyesPortalMask);
 }
 
 /* Typography Container */
@@ -54,7 +56,8 @@
   color: #a3e635;
   text-transform: uppercase;
   margin-bottom: clamp(10px, 1.8vh, 16px);
-  display: inline-block;
+  display: block;
+  will-change: transform, opacity;
 }
 
 .beyondHeroHeadline {
@@ -70,14 +73,18 @@
 }
 
 .beyondHeroLine1 {
+  display: block;
   color: #ffffff;
   text-shadow: 0 4px 30px rgba(0, 0, 0, 0.85);
+  will-change: transform, opacity;
 }
 
 .beyondHeroLine2 {
+  display: block;
   color: #a3e635;
   filter: drop-shadow(0 4px 24px rgba(163, 230, 53, 0.25));
   text-shadow: 0 4px 30px rgba(0, 0, 0, 0.85);
+  will-change: transform, opacity;
 }
 
 /* Elegant Divider */

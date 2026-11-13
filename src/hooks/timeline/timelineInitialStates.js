@@ -45,6 +45,7 @@ export const setupInitialStates = ({
   boxRadius,
   perspScale,
   promptsUiUxOffset,
+  promptsUiUxOffsetY = 0,
   renderOrbit,
   getCachedExpandCard,
   getMarqueeOffset,
@@ -55,7 +56,8 @@ export const setupInitialStates = ({
     const stageImages = stageRef.current.querySelectorAll("img");
     stageImages.forEach((img) => {
       if (typeof img.decode === "function") {
-        img.decode().catch(() => {});
+        img.decode().catch(() => { });
+
       }
     });
   }
@@ -66,10 +68,12 @@ export const setupInitialStates = ({
     gsap.set(card, {
       xPercent: -50,
       yPercent: -50,
+      x: 0,
       y: 0,
       rotationX: 0,
       rotationZ: 0,
       scale: 1,
+      transformOrigin: "50% 50% 0",
       visibility: "visible"
     });
   });
@@ -80,21 +84,30 @@ export const setupInitialStates = ({
 
   // Scene 0: HAULO SERVICE Intro
   if (portalWorldRef?.current) gsap.set(portalWorldRef.current, { autoAlpha: 1, display: "flex" });
-  if (portalGlowRef?.current) gsap.set(portalGlowRef.current, { scale: 1, scaleX: 1, scaleY: 1, opacity: 0.9 });
+  if (portalGlowRef?.current) {
+    gsap.set(portalGlowRef.current, {
+      xPercent: -50,
+      yPercent: -50,
+      scale: 1,
+      scaleX: 1,
+      scaleY: 1,
+      opacity: 0.9
+    });
+  }
   if (portalTextRef?.current) {
     gsap.set(portalTextRef.current, {
+      xPercent: -50,
+      yPercent: -50,
       scale: 1,
       x: 0,
-      y: 0,
-      opacity: 1,
-      autoAlpha: 1
+      y: 0
     });
   }
   if (portalTopWordRef?.current) {
-    gsap.set(portalTopWordRef.current, { y: 0, yPercent: 0, opacity: 1 });
+    gsap.set(portalTopWordRef.current, { y: 0, yPercent: 0, x: 0 });
   }
   if (portalBottomWordRef?.current) {
-    gsap.set(portalBottomWordRef.current, { y: 0, yPercent: 0, opacity: 1 });
+    gsap.set(portalBottomWordRef.current, { y: 0, yPercent: 0, x: 0 });
   }
 
   // Scene 1: Services Card
@@ -124,7 +137,8 @@ export const setupInitialStates = ({
   if (heroTextTargets.length) {
     gsap.set(heroTextTargets, {
       opacity: 0,
-      y: 65
+      x: 0,
+      y: 45
     });
   }
   if (promptsUiUxCardRef?.current) {
@@ -132,7 +146,7 @@ export const setupInitialStates = ({
       xPercent: -50,
       yPercent: -50,
       x: promptsUiUxOffset,
-      y: 80,
+      y: promptsUiUxOffsetY,
       rotationZ: 0,
       scale: 1,
       opacity: 0,
@@ -168,26 +182,66 @@ export const setupInitialStates = ({
     });
   }
   const logoCardDecorEls = cardNeuralPosRef?.current
-    ? Array.from(cardNeuralPosRef.current.querySelectorAll(".logoCardBadge, .logoCardBottom, .logoCardBg"))
+    ? Array.from(cardNeuralPosRef.current.querySelectorAll(".logoCardBadge, .logoCardBottom, .logoCardBg, .logoCardBgImg"))
     : [];
   if (neuralStarRef?.current) {
-    gsap.set(neuralStarRef.current, { scale: 1, x: 0, y: 0, rotationZ: 0, transformOrigin: "50% 50%" });
+    gsap.set(neuralStarRef.current, { scale: 0.8, autoAlpha: 0, opacity: 0, xPercent: -50, yPercent: -50, top: "50%", left: "50%", transformOrigin: "50% 50%" });
   }
   if (logoCardDecorEls.length) {
     gsap.set(logoCardDecorEls, { opacity: 1, y: 0 });
   }
   renderOrbit();
 
-  // Scene 6: Beyond World (Iris circle originates from mascot left eye)
+  // Scene 6: Beyond World (Dual-Eye Cosmic Portal from frog's eyes)
   if (beyondWorldRef?.current) {
-    gsap.set(beyondWorldRef.current, { autoAlpha: 0, scale: 1, yPercent: 0, clipPath: "circle(0% at 50% 50%)" });
-    const eyeRingInit = beyondWorldRef.current.querySelector(".beyondEyeIrisRing");
-    if (eyeRingInit) gsap.set(eyeRingInit, { scale: 0.15, opacity: 0 });
+    gsap.set(beyondWorldRef.current, {
+      autoAlpha: 0,
+      opacity: 0,
+      scale: 1,
+      yPercent: 0,
+      mask: "url(#eyesPortalMask)",
+      WebkitMask: "url(#eyesPortalMask)"
+    });
+    const leftEyeCircle = document.getElementById("portalLeftEye");
+    const rightEyeCircle = document.getElementById("portalRightEye");
+    const leftEyeMask = document.getElementById("portalLeftEyeMask");
+    const rightEyeMask = document.getElementById("portalRightEyeMask");
+    const cx = window.innerWidth / 2;
+    const cy = window.innerHeight / 2 + 24;
+    [leftEyeCircle, leftEyeMask].forEach((el) => {
+      if (el) {
+        el.setAttribute("cx", (cx - 46).toFixed(1));
+        el.setAttribute("cy", cy.toFixed(1));
+        el.setAttribute("r", "0");
+      }
+    });
+    [rightEyeCircle, rightEyeMask].forEach((el) => {
+      if (el) {
+        el.setAttribute("cx", (cx + 46).toFixed(1));
+        el.setAttribute("cy", cy.toFixed(1));
+        el.setAttribute("r", "0");
+      }
+    });
   }
-  if (beyondTitleRef?.current) gsap.set(beyondTitleRef.current, { x: 0, y: 70, scale: 1, autoAlpha: 0 });
-  if (limitsTitleRef?.current) gsap.set(limitsTitleRef.current, { x: 0, y: 70, scale: 1, autoAlpha: 0 });
+  if (beyondTitleRef?.current) {
+    gsap.set(beyondTitleRef.current, { x: 0, y: 0, scale: 1, autoAlpha: 1 });
+    const eyebrowEl = beyondTitleRef.current.querySelector(".beyondEyebrow");
+    const line1El = beyondTitleRef.current.querySelector(".beyondHeroLine1");
+    const line2El = beyondTitleRef.current.querySelector(".beyondHeroLine2");
+    if (eyebrowEl) gsap.set(eyebrowEl, { x: 0, y: 0, autoAlpha: 1 });
+    if (line1El) gsap.set(line1El, { x: 0, y: 0, autoAlpha: 1 });
+    if (line2El) gsap.set(line2El, { x: 0, y: 0, autoAlpha: 1 });
+  }
+
   const dividerInit = beyondWorldRef?.current?.querySelector(".beyondDivider");
-  if (dividerInit) gsap.set(dividerInit, { y: 50, scaleX: 0.85, autoAlpha: 0 });
+  if (dividerInit) gsap.set(dividerInit, { scaleX: 1, autoAlpha: 1 });
+
+  if (limitsTitleRef?.current) {
+    gsap.set(limitsTitleRef.current, { x: 0, y: 0, scale: 1, autoAlpha: 1 });
+    const valueCols = limitsTitleRef.current.querySelectorAll(".beyondValueCol");
+    if (valueCols?.length) gsap.set(valueCols, { x: 0, y: 0, autoAlpha: 1 });
+  }
+
   if (beyondStarRef?.current) gsap.set(beyondStarRef.current, { scale: 0.55, rotationZ: 0, yPercent: 0, autoAlpha: 0 });
 
   // Scene 7: Projects Horizontal Track
@@ -209,11 +263,22 @@ export const setupInitialStates = ({
     });
   }
   if (projectTrackRef?.current) {
-    const enterX = getProjectEnterX ? getProjectEnterX() : Math.round(window.innerWidth * 0.65);
-    gsap.set(projectTrackRef.current, { x: enterX });
+    gsap.set(projectTrackRef.current, { x: 0 });
   }
   if (projectCards.length) {
-    gsap.set(projectCards, { y: 0, scale: 1, rotationZ: 0, rotationX: 0, rotationY: 0 });
+    projectCards.forEach((card) => {
+      gsap.set(card, {
+        y: 0,
+        z: 0,
+        zIndex: 5,
+        scale: 1.0,
+        rotationZ: 0,
+        rotationX: 0,
+        rotationY: 0,
+        opacity: 1,
+        transformOrigin: "center center"
+      });
+    });
   }
 
   // Scene 8: Spatial Gallery
@@ -234,6 +299,19 @@ export const setupInitialStates = ({
         filter: "none"
       });
     });
+
+    // Initialize Face 1 typography elements
+    if (galleryWorldRef?.current) {
+      const faceFront = galleryWorldRef.current.querySelector(".editorialFaceFront");
+      if (faceFront) {
+        const typoNodes = faceFront.querySelectorAll(
+          ".editorialBadgeGroup, .editorialAlphaflyTitle, .editorialGiantR, .editorialHeadline, .editorialVisionTitle, .editorialIdeasText, .editorialVerticalCreate, .editorialBiggerDreams, .editorialMicroTag, .editorialFieldReportTag, .editorialVerticalKinetic, .editorialHighVoltageTitle, .editorialVerticalLabel"
+        );
+        if (typoNodes.length) {
+          gsap.set(typoNodes, { opacity: 0, z: 40, scale: 0.88 });
+        }
+      }
+    }
   };
 
   const setBatch2EntranceState = (nodes) => {
@@ -260,6 +338,7 @@ export const setupInitialStates = ({
     gsap.set(galleryWorldRef.current, {
       autoAlpha: 0,
       display: "none",
+      pointerEvents: "none",
       x: 0,
       y: 0,
       xPercent: 0,
@@ -267,22 +346,52 @@ export const setupInitialStates = ({
       scale: 1,
       filter: "none"
     });
+    const faceBack = galleryWorldRef.current.querySelector(".editorialFaceBack");
+    if (faceBack) {
+      gsap.set(faceBack, {
+        xPercent: -22,
+        yPercent: -18,
+        z: -120,
+        rotationY: 4,
+        rotationX: -3,
+        rotationZ: -1.2,
+        scale: 0.86,
+        opacity: 0,
+        autoAlpha: 0,
+        display: "none",
+        pointerEvents: "none",
+        transformOrigin: "left top"
+      });
+    }
+
     const stage = galleryWorldRef.current.querySelector(".editorialStage");
     if (stage) {
+      const getStageScaleInit = (multiplier = 1.0) => {
+        const w = typeof window !== "undefined" ? window.innerWidth : 1440;
+        let base = 1.0;
+        if (w <= 380) base = 0.44;
+        else if (w <= 480) base = 0.50;
+        else if (w <= 600) base = 0.58;
+        else if (w <= 768) base = 0.68;
+        else if (w <= 1024) base = 0.85;
+        else if (w <= 1280) base = 0.94;
+        return Number((base * multiplier).toFixed(3));
+      };
+
       gsap.set(stage, {
-        xPercent: 40,
-        yPercent: -28,
-        rotationY: -5,
-        rotationX: 3.5,
-        z: -80,
-        scale: 0.92,
+        xPercent: 95,
+        yPercent: -2,
+        rotationY: -2,
+        rotationX: 1.0,
+        z: -50,
+        scale: () => getStageScaleInit(0.94),
         autoAlpha: 0
       });
     }
   }
 
   // Scene 9: Final Panel
-  if (finalWorldRef?.current) gsap.set(finalWorldRef.current, { autoAlpha: 0 });
+  if (finalWorldRef?.current) gsap.set(finalWorldRef.current, { autoAlpha: 0, display: "none", pointerEvents: "none" });
   if (finalScreenCardRef?.current) {
     gsap.set(finalScreenCardRef.current, {
       autoAlpha: 0,

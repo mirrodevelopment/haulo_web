@@ -37,7 +37,7 @@ export const ThreeEditorialWorld = () => {
       antialias: true,
       powerPreference: "high-performance"
     });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.25));
     renderer.setSize(width, height);
     renderer.setClearColor(0x000000, 0);
     container.appendChild(renderer.domElement);
@@ -79,8 +79,23 @@ export const ThreeEditorialWorld = () => {
     let currentRotX = 0;
     let currentZ = 950;
 
+    let isVisible = true;
+    const parentEl = container.closest('.worldLayer') || container;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+      },
+      { threshold: 0.01 }
+    );
+    if (parentEl) observer.observe(parentEl);
+
     const animate = () => {
       if (!isMounted) return;
+
+      if (!isVisible) {
+        animId = requestAnimationFrame(animate);
+        return;
+      }
 
       const progress = typeof window.__galleryScrollProgress === "number"
         ? window.__galleryScrollProgress
@@ -96,9 +111,19 @@ export const ThreeEditorialWorld = () => {
       const targetRotX = scrollRotX - mouseY * 0.10;
 
       // Smooth lerp
-      currentRotY += (targetRotY - currentRotY) * 0.06;
-      currentRotX += (targetRotX - currentRotX) * 0.06;
-      currentZ += (scrollZ - currentZ) * 0.06;
+      const diffY = targetRotY - currentRotY;
+      const diffX = targetRotX - currentRotX;
+      const diffZ = scrollZ - currentZ;
+
+      // When outside the gallery section and settled, idle to save GPU power
+      if (progress === 0 && Math.abs(diffY) < 0.001 && Math.abs(diffX) < 0.001 && Math.abs(diffZ) < 0.1) {
+        animId = requestAnimationFrame(animate);
+        return;
+      }
+
+      currentRotY += diffY * 0.06;
+      currentRotX += diffX * 0.06;
+      currentZ += diffZ * 0.06;
 
       camera.position.x += ((mouseX * 80) - camera.position.x) * 0.05;
       camera.position.y += ((-mouseY * 60) - camera.position.y) * 0.05;
@@ -113,6 +138,7 @@ export const ThreeEditorialWorld = () => {
 
     return () => {
       isMounted = false;
+      observer.disconnect();
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
       if (animId) cancelAnimationFrame(animId);

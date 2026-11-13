@@ -2,28 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import hauloLogoText from "../assets/HAULO-LOGO-TEXT.png";
 
-export function Header({ isDark = false, activeSection = "service" }) {
+export function Header({ isDark = false, activeSection = "service", visible = true }) {
   const headerRef = useRef(null);
-
-  useEffect(() => {
-    // Initial page-load header entrance animation
-    if (headerRef.current) {
-      gsap.fromTo(
-        headerRef.current,
-        {
-          autoAlpha: 0,
-          y: -14
-        },
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power3.out',
-          delay: 0.2
-        }
-      );
-    }
-  }, []);
 
   const getNavLinkClass = (sectionKey) => {
     // Only SERVICE is active across all sections because the entire showcase is the service page
@@ -39,7 +19,14 @@ export function Header({ isDark = false, activeSection = "service" }) {
   return (
     <header
       ref={headerRef}
-      className="fixed top-0 left-0 right-0 h-16 sm:h-20 px-6 sm:px-10 md:px-11 flex items-center justify-between z-[100] pointer-events-none pt-[env(safe-area-inset-top,0)] transition-colors duration-300"
+      className="fixed top-0 left-0 right-0 h-16 sm:h-20 px-6 sm:px-10 md:px-11 flex items-center justify-between z-[100] pt-[env(safe-area-inset-top,0)] transition-colors duration-300"
+      style={{
+        transform: visible ? 'translateY(0)' : 'translateY(-32px)',
+        opacity: visible ? 1 : 0,
+        pointerEvents: visible ? 'auto' : 'none',
+        transition: 'transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease',
+        willChange: 'transform, opacity'
+      }}
     >
       <a
         href="#top"

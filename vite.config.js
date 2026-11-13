@@ -11,5 +11,17 @@ export default defineConfig({
     watch: {
       ignored: ['**/*.mp4', '**/*.mov', '**/*.webm']
     }
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'three-vendor': ['three'],
+          'gsap-vendor': ['gsap'],
+          'ui-vendor': ['react', 'react-dom', 'react-router-dom', 'lenis', 'lucide-react']
+        }
+      }
+    },
+    chunkSizeWarningLimit: 1000
   }
 })
